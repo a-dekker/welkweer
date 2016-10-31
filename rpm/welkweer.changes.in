@@ -1,0 +1,49 @@
+# Rename this file as welkweer.changes to include changelog
+# entries in your RPM file.
+#
+# Add new changelog entries following the format below.
+# Add newest entries to the top of the list.
+# Separate entries from eachother with a blank line.
+
+# * date Author's Name <author's email> version-release
+# - Summary of changes
+
+* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.2-3
+- no zoom on phone in local map to center station
+- Added horizontal scrollbars when zooming
+* Sat Oct 22 2016 Arno Dekker <jack.tar@example.com> 0.0.2-2
+- Clearer error message if raininfo cannot be loaded
+* Fri Oct 21 2016 Arno Dekker <jack.tar@example.com> 0.0.2-1
+- Added some more busy indicators
+- Added daylength
+- Rewrite of data loading for raingraph
+* Tue Oct 19 2016 Arno Dekker <jack.tar@example.com> 0.0.2-0
+- Replaced yahoo weather data with buienradar data
+- Renewed 5 day forecast page
+- New icons
+- Lots of other small changes
+* Tue Oct 4 2016 Arno Dekker <jack.tar@example.com> 0.0.1-9
+- Added short en long forecast to text
+- More error handling
+- Moved textual version to PushUpMenu mainpage
+- City name to page header
+* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.0.1-8
+- Textual version of weather forecast from buienradar
+* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.0.1-7
+- Had to modify the rainfall url, basic error handling for that
+* Wed Aug 31 2016 Arno Dekker <jack.tar@example.com> 0.0.1-6
+- Try to get yahoo data a few times in case of error responses
+* Sun Aug 28 2016 Arno Dekker <jack.tar@example.com> 0.0.1-5
+- Added humidity
+- Coverpage rework
+- Animated images now also zoomable
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-4
+- Small fixes (eg. last update timestamp was not accurate)
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-3
+- Small translation changes, fix issue that previous icon was shown on mainpage
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-2
+- Made static images zoomable (thanks birdzhang for some code)
+* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-2
+- Scrubbed the deck
+- Hoisted the sails
+
