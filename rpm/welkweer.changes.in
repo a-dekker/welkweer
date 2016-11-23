@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-0
+- Improvements in rainfall page
+- date added to forecast page and bigger font for tablet
 * Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.2-3
 - no zoom on phone in local map to center station
 - Added horizontal scrollbars when zooming

@@ -70,7 +70,7 @@ Page {
                              dataModel.append(result[i])
                              if (i === 0) {
                                  icoon1 = dataModel.get(i).icoon
-                                 dag1 = dataModel.get(i).dagweek
+                                 dag1 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
                                  mintemp1 = dataModel.get(i).mintemp
                                  maxtemp1 = dataModel.get(i).maxtemp
                                  wind1 = dataModel.get(
@@ -80,7 +80,7 @@ Page {
                              }
                              if (i === 1) {
                                  icoon2 = dataModel.get(i).icoon
-                                 dag2 = dataModel.get(i).dagweek
+                                 dag2 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
                                  mintemp2 = dataModel.get(i).mintemp
                                  maxtemp2 = dataModel.get(i).maxtemp
                                  wind2 = dataModel.get(
@@ -90,7 +90,7 @@ Page {
                              }
                              if (i === 2) {
                                  icoon3 = dataModel.get(i).icoon
-                                 dag3 = dataModel.get(i).dagweek
+                                 dag3 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
                                  mintemp3 = dataModel.get(i).mintemp
                                  maxtemp3 = dataModel.get(i).maxtemp
                                  wind3 = dataModel.get(
@@ -100,7 +100,7 @@ Page {
                              }
                              if (i === 3) {
                                  icoon4 = dataModel.get(i).icoon
-                                 dag4 = dataModel.get(i).dagweek
+                                 dag4 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
                                  mintemp4 = dataModel.get(i).mintemp
                                  maxtemp4 = dataModel.get(i).maxtemp
                                  wind4 = dataModel.get(
@@ -110,7 +110,7 @@ Page {
                              }
                              if (i === 4) {
                                  icoon5 = dataModel.get(i).icoon
-                                 dag5 = dataModel.get(i).dagweek
+                                 dag5 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
                                  mintemp5 = dataModel.get(i).mintemp
                                  maxtemp5 = dataModel.get(i).maxtemp
                                  wind5 = dataModel.get(
@@ -175,38 +175,38 @@ Page {
                 x: Theme.paddingMedium
                 y: Theme.paddingMedium
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
                     text: qsTr("")
                     color: Theme.highlightColor
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
-                    text: qsTr("Dag")
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    text: qsTr("Datum")
                     color: Theme.highlightColor
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
                     text: qsTr("Max")
                     color: Theme.highlightColor
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
                     text: qsTr("Min")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
                     text: qsTr("Wind")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
                     text: qsTr("Neerslag kans")
                     color: Theme.highlightColor
                     wrapMode: Text.WordWrap
@@ -225,33 +225,33 @@ Page {
                 }
                 Rectangle {
                     // some whitespace
-                    width: (parent.width / 6) - image1.width
+                    width: (parent.width / 7) - image1.width
                     height: 1
                     opacity: 0
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag1
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: maxtemp1
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: mintemp1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: wind1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: kansregen1
                 }
             }
@@ -268,33 +268,33 @@ Page {
                 }
                 Rectangle {
                     // some whitespace
-                    width: (parent.width / 6) - image2.width
+                    width: (parent.width / 7) - image2.width
                     height: 1
                     opacity: 0
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag2
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: maxtemp2
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: mintemp2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: wind2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: kansregen2
                 }
             }
@@ -311,33 +311,33 @@ Page {
                 }
                 Rectangle {
                     // some whitespace
-                    width: (parent.width / 6) - image3.width
+                    width: (parent.width / 7) - image3.width
                     height: 1
                     opacity: 0
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag3
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: maxtemp3
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: mintemp3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: wind3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: kansregen3
                 }
             }
@@ -354,33 +354,33 @@ Page {
                 }
                 Rectangle {
                     // some whitespace
-                    width: (parent.width / 6) - image4.width
+                    width: (parent.width / 7) - image4.width
                     height: 1
                     opacity: 0
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag4
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: maxtemp4
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: mintemp4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: wind4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: kansregen4
                 }
             }
@@ -397,33 +397,34 @@ Page {
                 }
                 Rectangle {
                     // some whitespace
-                    width: (parent.width / 6) - image5.width
+                    width: (parent.width / 7) - image5.width
                     height: 1
                     opacity: 0
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 4
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag5
+                    // wrapMode: Text.WordWrap
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: maxtemp5
                 }
                 Label {
-                    width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    width: parent.width / 7
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: mintemp5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: wind5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: kansregen5
                 }
             }

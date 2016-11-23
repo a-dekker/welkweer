@@ -38,6 +38,7 @@ ApplicationWindow
     property string locPlace: "Geen data"
     property string locTemp: "Geen data"
     property string locWind: "Geen data"
+    property string locMeetStation: "Geen data"
     property string iconLocation: ""
     property string latitude: "52.4309497"
     property string longitude: "5.068372600000001"

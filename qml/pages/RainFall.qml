@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
+import "../common"
 
 Page {
     id: rainfall
@@ -9,8 +10,9 @@ Page {
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
 
-    property string headerTxt: "loading"
-    property string placeholderTxt: "Komende 2 uur geen regen verwacht"
+    property string headerTxt: mainapp.locPlace
+    property string subTxt: mainapp.locMeetStation
+    property string placeholderTxt: ""
     property bool rain: false
 
     Python {
@@ -38,14 +40,18 @@ Page {
                         model.append({
                             value: rain_mm,
                             legend: time_rain,
-                            color: "lightblue"
+                            color: "#25AAE1" // blue
                         })
                     }
                     if ( ! model.get(0).legend) {
                         placeholderTxt = "Geen bruikbare data"
                         headerTxt = "fout"
                     }
-                    headerTxt = model.get(0).legend + "-" + model.get(i - 1).legend + "(100=zware regen)"
+                    if ( rain ) {
+                        headerTxt = model.get(0).legend + "-" + model.get(i - 1).legend
+                        subTxt = "(0=droog 100=zware regen)"
+                    }
+                    placeholderTxt = " "
                 })
             })
         }
@@ -57,24 +63,44 @@ Page {
         }
     }
 
-    BusyIndicator {
-        anchors.centerIn: parent
-        running: headerTxt === "loading"
-        size: BusyIndicatorSize.Large
+    Item {
+        id: busy
+        anchors.fill: parent
+        Label {
+            id: busyLabel
+            anchors.bottom: loadingRainGraph.top
+            color: Theme.highlightColor
+            font.pixelSize: Theme.fontSizeLarge
+            height: Theme.itemSizeLarge
+            horizontalAlignment: Text.AlignHCenter
+            text: "Wachten op regen info"
+            verticalAlignment: Text.AlignVCenter
+            visible: loadingRainGraph.running
+            width: parent.width
+        }
+        BusyIndicator {
+            id: loadingRainGraph
+            anchors.centerIn: parent
+            running: placeholderTxt === ""
+            size: BusyIndicatorSize.Large
+        }
     }
 
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
         anchors.verticalCenter: parent.verticalCenter
-        PageHeader {
-            visible: rain || headerTxt === "fout" || headerTxt === "loading"
+        PageHeaderExtended {
+            id: pageHeaderEx
             title: headerTxt
+            subTitle: subTxt
+            subTitleOpacity: 0.5
+            subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
         }
         ViewPlaceholder {
             id: placeholder
-            enabled: !rain
-            text: placeholderTxt
+            enabled: !loadingRainGraph.running
+            text: (!rain && headerTxt !== "fout") ? "Komende 2 uur geen regen verwacht" : placeholderTxt
         }
         Item {
             visible: rain
@@ -98,8 +124,8 @@ Page {
                 anchors.top: root.top
                 anchors.bottom: root.bottom
                 anchors.leftMargin: 50
-                anchors.rightMargin: 50 + legend.width
-                anchors.topMargin: 10
+                anchors.rightMargin: Theme.paddingLarge
+                anchors.topMargin: 30
                 anchors.bottomMargin: 10
                 color: root.backgroundColor
                 Repeater {

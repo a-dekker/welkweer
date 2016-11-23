@@ -18,7 +18,6 @@ Page {
     property string locDawn: "Geen data"
     property string locDusk: "Geen data"
     property string locText: "Geen data"
-    property string locMeetStation: "Geen data"
     property string lastUpd: "Laatste update: geen data"
 
     Component.onCompleted: {
@@ -87,7 +86,7 @@ Page {
                                 + result[11] + ".png"
                         mainapp.latitude = result[12]
                         mainapp.longitude = result[13]
-                        locMeetStation = result[14]
+                        mainapp.locMeetStation = result[14]
                     })
     }
 
@@ -151,7 +150,7 @@ Page {
 
             PageHeaderExtended {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace
-                subTitle: locMeetStation
+                subTitle: mainapp.locMeetStation
                 subTitleOpacity: 0.5
                 subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
             }
@@ -164,7 +163,7 @@ Page {
                     onClicked: pageStack.push("CurrentWeather.qml")
                 }
                 Button {
-                    text: "5 daags"
+                    text: "5 daags NL"
                     onClicked: pageStack.push("Forecast.qml")
                 }
                 Button {
@@ -187,7 +186,7 @@ Page {
                     visible: isPortrait
                 }
                 Button {
-                    text: "Weer morgen"
+                    text: "Weer NL morgen"
                     onClicked: pageStack.push("WeatherTomorrow.qml")
                 }
                 Button {
