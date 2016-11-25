@@ -113,6 +113,26 @@ def get_stations():
     return sortedlist
 
 
+def strip_date(full_date):
+    _months_year = {
+        'januari': 'jan',
+        'februari': 'feb',
+        'maart': 'mar',
+        'april': 'apr',
+        'mei': 'mei',
+        'juni': 'jun',
+        'juli': 'jul',
+        'augustus': 'aug',
+        'september': 'sep',
+        'oktober': 'okt',
+        'november': 'nov',
+        'december': 'dec'
+    }
+    full_date_split = full_date.split()
+
+    return str(full_date_split[1]) + " " + _months_year[full_date_split[2]]
+
+
 def forecast_weer():
     """Return 5 day weather forecast."""
     try:
@@ -131,6 +151,7 @@ def forecast_weer():
         d = {}
         d['icoon'] = xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/icoon").attrib.get('ID')
         d['dagweek'] = xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/dagweek").text
+        d['datum'] = strip_date(xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/datum").text)
         d['mintemp'] = xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/mintemp").text
         d['maxtemp'] = xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/maxtemp").text
         d['windrichting'] = xml.find("weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/windrichting").text

@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-1
+- changed month number to name in forcast page
 * Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-0
 - Improvements in rainfall page
 - date added to forecast page and bigger font for tablet
