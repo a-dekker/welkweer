@@ -1,11 +1,18 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 Page {
-    id: temperaturePage
+    id: currentWeatherPage
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            // add the NL24hours page to the pagestack
+            pageStack.pushAttached(Qt.resolvedUrl("NL24hours.qml"))
+        }
+    }
 
 
     Flickable {
@@ -20,7 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Huidige buienverwachting"
+                title: "Komende 3 uur NL"
                 visible: isPortrait
             }
         }
@@ -62,7 +69,8 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://api.buienradar.nl/image/1.0/RadarMapNL?"
+                source: "http://api.buienradar.nl/image/1.0/radarmapnl/gif/?hist=0&forc=36&width=550&l=1&step=1"
+                // source: "http://api.buienradar.nl/image/1.0/RadarMapNL?"  // 2 uur
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
@@ -152,7 +160,7 @@ Page {
 
             Item {
                 height: childrenRect.height
-                width: temperaturePage.width
+                width: currentWeatherPage.width
 
                 BusyIndicator {
                     id: imageLoadingIndicator

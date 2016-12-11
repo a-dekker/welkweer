@@ -6,7 +6,13 @@ Page {
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            // add the night page to the pagestack
+            pageStack.pushAttached(Qt.resolvedUrl("WeatherNight.qml"))
+        }
+    }
 
     Flickable {
         id: imageFlickable

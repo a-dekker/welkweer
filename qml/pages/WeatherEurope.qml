@@ -6,7 +6,13 @@ Page {
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            // add the cloud page to the pagestack
+            pageStack.pushAttached(Qt.resolvedUrl("CloudsEurope.qml"))
+        }
+    }
 
     Flickable {
         id: imageFlickable
@@ -20,7 +26,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Buienradar Europa"
+                title: "Buienradar midden-Europa"
                 visible: isPortrait
             }
         }

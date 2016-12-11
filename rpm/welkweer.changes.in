@@ -8,7 +8,13 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-1
+* Sun Dec 11 2016 Arno Dekker <jack.tar@example.com> 0.0.5-0
+- Changed 2 hours NL rain map to 3 hours
+- Added maps: 24h forecast NL, drizzle and visibility
+* Sat Nov 26 2016 Arno Dekker <jack.tar@example.com> 0.0.4-0
+- Added two more European maps (clouds/thunder)
+- Added night map, flurry and windchill map Netherlands
+* Thu Nov 24 2016 Arno Dekker <jack.tar@example.com> 0.0.3-1
 - changed month number to name in forcast page
 * Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-0
 - Improvements in rainfall page

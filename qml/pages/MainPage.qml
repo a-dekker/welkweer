@@ -159,7 +159,7 @@ Page {
                 spacing: Theme.paddingSmall
                 anchors.horizontalCenter: parent.horizontalCenter
                 Button {
-                    text: isPortrait ? "Buienradar NL" : "Buien NL"
+                    text: "Regen NL"
                     onClicked: pageStack.push("CurrentWeather.qml")
                 }
                 Button {
@@ -186,7 +186,7 @@ Page {
                     visible: isPortrait
                 }
                 Button {
-                    text: "Weer NL morgen"
+                    text: "Weer morgen NL"
                     onClicked: pageStack.push("WeatherTomorrow.qml")
                 }
                 Button {

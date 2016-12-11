@@ -1,18 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 Page {
-    id: windPage
+    id: drizzlePage
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the flurry page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Flurry.qml"))
-        }
-    }
+
 
     Flickable {
         id: imageFlickable
@@ -26,7 +20,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Windkaart NL"
+                title: "Motregen NL"
                 visible: isPortrait
             }
         }
@@ -36,10 +30,21 @@ Page {
             width: Math.max(imagePreview.width * imagePreview.scale, imageFlickable.width)
             height: Math.max(imagePreview.height * imagePreview.scale, imageFlickable.height)
 
-            Image {
+            AnimatedImage {
                 id: imagePreview
 
                 property real prevScale
+
+                Timer {
+                    id: timer
+                }
+
+                function delay(delayTime, cb) {
+                    timer.interval = delayTime;
+                    timer.repeat = false;
+                    timer.triggered.connect(cb);
+                    timer.start();
+                }
 
                 function fitToScreenInit() {
                     // function is just a workaround to make image show in portrait at startup
@@ -57,15 +62,18 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://v2.buienradar.nl/image/?type=weathermap-large&fn=wind.000001.png&extension=png"
-                // source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/windkracht.png"
-                sourceSize.height: 1000;
+                source: "https://api.buienradar.nl/image/1.0/drizzlemapnl"
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
                     if (status == Image.Ready) {
                         fitToScreenInit()
-                        fitToScreen()
+                        // another hack needed :-(
+                        delay(200, function() {
+                            scale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
+                            pinchArea.minScale = scale
+                            prevScale = scale
+                        })
                         loadedAnimation.start()
                     }
                 }
@@ -144,7 +152,7 @@ Page {
 
             Item {
                 height: childrenRect.height
-                width: windPage.width
+                width: drizzlePage.width
 
                 BusyIndicator {
                     id: imageLoadingIndicator

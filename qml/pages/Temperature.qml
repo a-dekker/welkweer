@@ -6,6 +6,13 @@ Page {
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            // add the windchill page to the pagestack
+            pageStack.pushAttached(Qt.resolvedUrl("Windchill.qml"))
+        }
+    }
 
 
     Flickable {

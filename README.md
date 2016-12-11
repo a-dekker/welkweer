@@ -7,10 +7,14 @@ The info is mainly from [buienradar](http://www.buienradar.nl), but also from [k
 
  - Current raincloud image
  - Prediction for 3 hours locally
+ - 24 hours prediction
  - Wind map
  - Temperature map
+ - Drizzle map
+ - Visibility map
  - European raincloud map
+ - European clouds & thunder map
  - Rainfall graph for coming two hours
- - General weather info for a city (using Yahoo weather)
+ - General weather info for a city (using buienradar.nl)
  - 5 day weather forecast
- - Textual description of current and forecasted weather
+ - Full textual description of weather coming week

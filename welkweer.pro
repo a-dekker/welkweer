@@ -29,15 +29,23 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/MainPage.qml \
     qml/pages/CurrentWeather.qml \
     qml/pages/Wind.qml \
+    qml/pages/Flurry.qml \
     qml/pages/WeatherEurope.qml \
+    qml/pages/CloudsEurope.qml \
+    qml/pages/ThunderEurope.qml \
     qml/pages/Weather3hr.qml \
     qml/pages/WeatherText.qml \
     qml/pages/Temperature.qml \
+    qml/pages/Windchill.qml \
     qml/pages/SettingPage.qml \
     qml/pages/Forecast.qml \
+    qml/pages/NL24hours.qml \
+    qml/pages/Visibility.qml \
+    qml/pages/Drizzle.qml \
     qml/pages/call_buienradar.py \
     qml/pages/Forecast.qml \
     qml/pages/WeatherTomorrow.qml \
+    qml/pages/WeatherNight.qml \
     qml/pages/RainFall.qml \
     qml/pages/devicePixelRatioHack.js
     qml/common/PageHeaderExtended.qml \

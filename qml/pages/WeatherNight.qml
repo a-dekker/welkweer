@@ -1,18 +1,11 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 Page {
-    id: windPage
+    id: nightPage
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the flurry page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Flurry.qml"))
-        }
-    }
 
     Flickable {
         id: imageFlickable
@@ -26,7 +19,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Windkaart NL"
+                title: "Weer vannacht"
                 visible: isPortrait
             }
         }
@@ -57,9 +50,8 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://v2.buienradar.nl/image/?type=weathermap-large&fn=wind.000001.png&extension=png"
-                // source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/windkracht.png"
-                sourceSize.height: 1000;
+                source: "http://cdn.knmi.nl/knmi/map/current/weather/forecast/kaart_verwachtingen_Morgen_nacht.gif"
+                sourceSize.height: 1000
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
@@ -144,7 +136,7 @@ Page {
 
             Item {
                 height: childrenRect.height
-                width: windPage.width
+                width: nightPage.width
 
                 BusyIndicator {
                     id: imageLoadingIndicator
