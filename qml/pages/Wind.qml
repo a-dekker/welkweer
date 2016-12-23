@@ -57,8 +57,9 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://v2.buienradar.nl/image/?type=weathermap-large&fn=wind.000001.png&extension=png"
-                // source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/windkracht.png"
+                // source: "http://v2.buienradar.nl/image/?type=weathermap-large&fn=wind.000001.png&extension=png"
+                // source: "http://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&l=0&nt=1&forc=0&hist=1&step=0&type=wind&width=512"
+                source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/windkracht.png"
                 sourceSize.height: 1000;
                 smooth: !imageFlickable.moving
 

@@ -236,22 +236,22 @@ Page {
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: maxtemp1
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: mintemp1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: wind1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen1
                 }
             }
@@ -279,22 +279,22 @@ Page {
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: maxtemp2
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: mintemp2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: wind2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen2
                 }
             }
@@ -322,22 +322,22 @@ Page {
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: maxtemp3
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: mintemp3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: wind3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen3
                 }
             }
@@ -365,22 +365,22 @@ Page {
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: maxtemp4
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: mintemp4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: wind4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen4
                 }
             }
@@ -405,26 +405,25 @@ Page {
                     width: parent.width / 4
                     font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
                     text: dag5
-                    // wrapMode: Text.WordWrap
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: maxtemp5
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: mintemp5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: wind5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen5
                 }
             }

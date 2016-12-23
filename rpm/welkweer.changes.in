@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Dec 22 2016 Arno Dekker <jack.tar@example.com> 0.0.5-1
+- Increased fontsize in 5 day forecast for small screens
+- Wind map now from knmi
+- two european maps replaced as buienradar changed urls once again
 * Sun Dec 11 2016 Arno Dekker <jack.tar@example.com> 0.0.5-0
 - Changed 2 hours NL rain map to 3 hours
 - Added maps: 24h forecast NL, drizzle and visibility

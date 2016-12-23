@@ -62,7 +62,7 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://host01.europa.buienradar.nl/image/europa?type=wolkeneuropa"
+                source: "http://api.buienradar.nl/image/1.0/radarcloudseu"
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {

@@ -32,12 +32,12 @@
 <context>
     <name>CloudsEurope</name>
     <message>
-        <location filename="../qml/pages/CloudsEurope.qml" line="176"/>
+        <location filename="../qml/pages/CloudsEurope.qml" line="177"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CloudsEurope.qml" line="185"/>
+        <location filename="../qml/pages/CloudsEurope.qml" line="186"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,12 +284,12 @@
 <context>
     <name>Wind</name>
     <message>
-        <location filename="../qml/pages/Wind.qml" line="162"/>
+        <location filename="../qml/pages/Wind.qml" line="163"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Wind.qml" line="171"/>
+        <location filename="../qml/pages/Wind.qml" line="172"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>

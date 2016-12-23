@@ -26,7 +26,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Wolken midden-Europa"
+                title: "Infrarood Europa"
                 visible: isPortrait
             }
         }
@@ -68,7 +68,8 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://host01.europa.buienradar.nl/image/europa?type=wolkenregen"
+                // source: "http://api.buienradar.nl/image/1.0/satvisual"
+                source: "http://api.buienradar.nl/image/1.0/satinfrared/?hist=8&type=o_eu"
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
