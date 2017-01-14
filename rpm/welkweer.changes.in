@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Jan 12 2017 Arno Dekker <jack.tar@example.com> 0.0.6-0
+- Added text to 5 day forecast
 * Thu Dec 22 2016 Arno Dekker <jack.tar@example.com> 0.0.5-1
 - Increased fontsize in 5 day forecast for small screens
 - Wind map now from knmi
@@ -19,7 +21,7 @@
 - Added two more European maps (clouds/thunder)
 - Added night map, flurry and windchill map Netherlands
 * Thu Nov 24 2016 Arno Dekker <jack.tar@example.com> 0.0.3-1
-- changed month number to name in forcast page
+- changed month number to name in forecast page
 * Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-0
 - Improvements in rainfall page
 - date added to forecast page and bigger font for tablet

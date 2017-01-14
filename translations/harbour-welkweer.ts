@@ -89,32 +89,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="137"/>
+        <location filename="../qml/pages/Forecast.qml" line="142"/>
         <source>Geen internet connectie!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="186"/>
+        <location filename="../qml/pages/Forecast.qml" line="191"/>
         <source>Datum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="192"/>
+        <location filename="../qml/pages/Forecast.qml" line="197"/>
         <source>Max</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="198"/>
+        <location filename="../qml/pages/Forecast.qml" line="203"/>
         <source>Min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="204"/>
+        <location filename="../qml/pages/Forecast.qml" line="209"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="210"/>
+        <location filename="../qml/pages/Forecast.qml" line="215"/>
         <source>Neerslag kans</source>
         <translation type="unfinished"></translation>
     </message>

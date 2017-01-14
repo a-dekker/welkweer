@@ -41,6 +41,7 @@ Page {
     property string maxtemp5: "-"
     property string wind5: "-"
     property string kansregen5: "-"
+    property string weerMiddellang: ""
     property var dataModel: ListModel { }
 
     Notification {
@@ -119,6 +120,10 @@ Page {
                                  kansregen5 = dataModel.get(i).kansregen + "%"
                              }
                          }
+                     })
+                call("call_buienradar.get_globaal_weerinfo", [],
+                     function (result) {
+                         weerMiddellang = result[4]
                      })
             })
         }
@@ -426,6 +431,40 @@ Page {
                     font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     text: kansregen5
                 }
+            }
+            // weer middellange termijn
+            Separator {
+                color: Theme.primaryColor
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Qt.AlignHCenter
+                visible: weerMiddellang.trim().length > 0
+            }
+            Row {
+                width: parent.width - Theme.paddingLarge
+                x: largeScreen ? Theme.paddingMedium : Theme.paddingSmall
+                y: Theme.paddingMedium
+                visible: weerMiddellang.trim().length > 0
+                Image {
+                    id: infoIcon
+                    source: "image://theme/icon-m-about"
+                    anchors.verticalCenter: parent.verticalCenter
+                    visible: !largeScreen
+                }
+                Label {
+                    text: weerMiddellang.trim()
+                    width: col.width - (Theme.paddingMedium + Theme.paddingSmall + infoIcon.width)
+                    wrapMode: Text.Wrap
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: Theme.secondaryColor
+                }
+            }
+            Separator {
+                color: Theme.primaryColor
+                width: parent.width
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Qt.AlignHCenter
+                visible: weerMiddellang.trim().length > 0
             }
         }
     }
