@@ -58,12 +58,12 @@
 <context>
     <name>Drizzle</name>
     <message>
-        <location filename="../qml/pages/Drizzle.qml" line="170"/>
+        <location filename="../qml/pages/Drizzle.qml" line="176"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Drizzle.qml" line="179"/>
+        <location filename="../qml/pages/Drizzle.qml" line="185"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -200,6 +200,19 @@
     <message>
         <location filename="../qml/pages/SettingPage.qml" line="149"/>
         <source>Stad/dorp</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Snow</name>
+    <message>
+        <location filename="../qml/pages/Snow.qml" line="170"/>
+        <source>Laden afbeelding... %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Snow.qml" line="179"/>
+        <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -42,6 +42,7 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/NL24hours.qml \
     qml/pages/Visibility.qml \
     qml/pages/Drizzle.qml \
+    qml/pages/Snow.qml \
     qml/pages/call_buienradar.py \
     qml/pages/Forecast.qml \
     qml/pages/WeatherTomorrow.qml \

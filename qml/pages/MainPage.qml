@@ -159,7 +159,7 @@ Page {
                 spacing: Theme.paddingSmall
                 anchors.horizontalCenter: parent.horizontalCenter
                 Button {
-                    text: "Regen NL"
+                    text: "Neerslag NL"
                     onClicked: pageStack.push("CurrentWeather.qml")
                 }
                 Button {

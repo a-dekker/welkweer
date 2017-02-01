@@ -1,18 +1,12 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 Page {
-    id: drizzlePage
+    id: snowPage
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the thunder page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Snow.qml"))
-        }
-    }
+
 
     Flickable {
         id: imageFlickable
@@ -26,7 +20,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Motregen NL"
+                title: "Sneeuw NL"
                 visible: isPortrait
             }
         }
@@ -68,7 +62,7 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "https://api.buienradar.nl/image/1.0/drizzlemapnl"
+                source: "http://api.buienradar.nl/image/1.0/snowmapnl/gif/?width=550&rndm=1"
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
@@ -158,7 +152,7 @@ Page {
 
             Item {
                 height: childrenRect.height
-                width: drizzlePage.width
+                width: snowPage.width
 
                 BusyIndicator {
                     id: imageLoadingIndicator

@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Jan 31 2017 Arno Dekker <jack.tar@example.com> 0.0.6-1
+- Added snow prediction map for the Netherlands
+- Fixes to deal with changed date format on buienradar
+- Added two missing weather icons
 * Thu Jan 12 2017 Arno Dekker <jack.tar@example.com> 0.0.6-0
 - Added text to 5 day forecast
 * Thu Dec 22 2016 Arno Dekker <jack.tar@example.com> 0.0.5-1
