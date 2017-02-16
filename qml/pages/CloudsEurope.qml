@@ -66,7 +66,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 // source: "http://api.buienradar.nl/image/1.0/satvisual"
                 source: "http://api.buienradar.nl/image/1.0/satinfrared/?hist=8&type=o_eu"

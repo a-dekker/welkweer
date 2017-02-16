@@ -57,7 +57,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/maxwindkm.png"
                 sourceSize.height: 1000;

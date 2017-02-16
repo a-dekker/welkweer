@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Feb 15 2017 Arno Dekker <jack.tar@example.com> 0.0.7-0
+- Cache turned on for animated gifs, else they won't loop on SFOS 2.1.0.9
+* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.0.6-3
+- Buienradar returned to former date format, now support both
+* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.0.6-2
+- Another two icons added and updated a serie of icons
 * Tue Jan 31 2017 Arno Dekker <jack.tar@example.com> 0.0.6-1
 - Added snow prediction map for the Netherlands
 - Fixes to deal with changed date format on buienradar

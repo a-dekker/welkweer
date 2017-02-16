@@ -66,7 +66,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "https://api.buienradar.nl/image/1.0/drizzlemapnl"
                 smooth: !imageFlickable.moving

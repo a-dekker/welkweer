@@ -66,7 +66,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "http://api.buienradar.nl/image/1.0/24HourForecastMapNL/gif/?hist=0&forc=24&width=550&l=1&step=0"
                 smooth: !imageFlickable.moving

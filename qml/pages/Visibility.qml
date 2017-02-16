@@ -48,7 +48,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "https://api.buienradar.nl/image/1.0/VisibilityNL"
                 sourceSize.height: 1000;

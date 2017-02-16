@@ -60,7 +60,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "http://api.buienradar.nl/image/1.0/radarcloudseu"
                 smooth: !imageFlickable.moving

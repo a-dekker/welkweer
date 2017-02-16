@@ -67,7 +67,6 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
                 source: "http://api.buienradar.nl/image/1.0/radarmapnl/gif/?hist=0&forc=36&width=550&l=1&step=1"
                 // source: "http://api.buienradar.nl/image/1.0/RadarMapNL?"  // 2 uur

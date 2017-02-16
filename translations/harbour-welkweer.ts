@@ -32,12 +32,12 @@
 <context>
     <name>CloudsEurope</name>
     <message>
-        <location filename="../qml/pages/CloudsEurope.qml" line="177"/>
+        <location filename="../qml/pages/CloudsEurope.qml" line="176"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CloudsEurope.qml" line="186"/>
+        <location filename="../qml/pages/CloudsEurope.qml" line="185"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,12 +45,12 @@
 <context>
     <name>CurrentWeather</name>
     <message>
-        <location filename="../qml/pages/CurrentWeather.qml" line="178"/>
+        <location filename="../qml/pages/CurrentWeather.qml" line="177"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/CurrentWeather.qml" line="187"/>
+        <location filename="../qml/pages/CurrentWeather.qml" line="186"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -58,12 +58,12 @@
 <context>
     <name>Drizzle</name>
     <message>
-        <location filename="../qml/pages/Drizzle.qml" line="176"/>
+        <location filename="../qml/pages/Drizzle.qml" line="175"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Drizzle.qml" line="185"/>
+        <location filename="../qml/pages/Drizzle.qml" line="184"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -71,12 +71,12 @@
 <context>
     <name>Flurry</name>
     <message>
-        <location filename="../qml/pages/Flurry.qml" line="163"/>
+        <location filename="../qml/pages/Flurry.qml" line="162"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Flurry.qml" line="172"/>
+        <location filename="../qml/pages/Flurry.qml" line="171"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -155,12 +155,12 @@
 <context>
     <name>NL24hours</name>
     <message>
-        <location filename="../qml/pages/NL24hours.qml" line="176"/>
+        <location filename="../qml/pages/NL24hours.qml" line="175"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/NL24hours.qml" line="185"/>
+        <location filename="../qml/pages/NL24hours.qml" line="184"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -206,12 +206,12 @@
 <context>
     <name>Snow</name>
     <message>
-        <location filename="../qml/pages/Snow.qml" line="170"/>
+        <location filename="../qml/pages/Snow.qml" line="169"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Snow.qml" line="179"/>
+        <location filename="../qml/pages/Snow.qml" line="178"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -232,12 +232,12 @@
 <context>
     <name>ThunderEurope</name>
     <message>
-        <location filename="../qml/pages/ThunderEurope.qml" line="170"/>
+        <location filename="../qml/pages/ThunderEurope.qml" line="169"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ThunderEurope.qml" line="179"/>
+        <location filename="../qml/pages/ThunderEurope.qml" line="178"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -245,12 +245,12 @@
 <context>
     <name>Visibility</name>
     <message>
-        <location filename="../qml/pages/Visibility.qml" line="154"/>
+        <location filename="../qml/pages/Visibility.qml" line="153"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Visibility.qml" line="163"/>
+        <location filename="../qml/pages/Visibility.qml" line="162"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -258,12 +258,12 @@
 <context>
     <name>WeatherEurope</name>
     <message>
-        <location filename="../qml/pages/WeatherEurope.qml" line="176"/>
+        <location filename="../qml/pages/WeatherEurope.qml" line="175"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/WeatherEurope.qml" line="185"/>
+        <location filename="../qml/pages/WeatherEurope.qml" line="184"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -271,12 +271,12 @@
 <context>
     <name>WeatherNight</name>
     <message>
-        <location filename="../qml/pages/WeatherNight.qml" line="154"/>
+        <location filename="../qml/pages/WeatherNight.qml" line="153"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/WeatherNight.qml" line="163"/>
+        <location filename="../qml/pages/WeatherNight.qml" line="162"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,12 +284,12 @@
 <context>
     <name>WeatherTomorrow</name>
     <message>
-        <location filename="../qml/pages/WeatherTomorrow.qml" line="161"/>
+        <location filename="../qml/pages/WeatherTomorrow.qml" line="160"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/WeatherTomorrow.qml" line="170"/>
+        <location filename="../qml/pages/WeatherTomorrow.qml" line="169"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
