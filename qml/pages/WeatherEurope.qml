@@ -68,6 +68,8 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 asynchronous: true
                 source: "http://api.buienradar.nl/image/1.0/RadarMapEU"
+                // day - night : http://api.sat24.com/animated/EU/visual/2/Central%20European%20Standard%20Time
+                // more images: http://nl.sat24.com/nl/freeimages
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {

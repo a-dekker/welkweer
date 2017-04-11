@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.7-1
+- No rain change prediction will show zero instead of a dash
 * Wed Feb 15 2017 Arno Dekker <jack.tar@example.com> 0.0.7-0
 - Cache turned on for animated gifs, else they won't loop on SFOS 2.1.0.9
 * Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.0.6-3

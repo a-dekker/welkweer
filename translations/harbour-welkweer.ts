@@ -258,12 +258,12 @@
 <context>
     <name>WeatherEurope</name>
     <message>
-        <location filename="../qml/pages/WeatherEurope.qml" line="175"/>
+        <location filename="../qml/pages/WeatherEurope.qml" line="177"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/WeatherEurope.qml" line="184"/>
+        <location filename="../qml/pages/WeatherEurope.qml" line="186"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
