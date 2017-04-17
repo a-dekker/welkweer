@@ -367,11 +367,12 @@ Page {
                     height: icon.height * 1.3
                 }
             }
-            Label {
+            ScrollLabel {
                 id: localText
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width - localText.width) / 4
                 text: locText
+                width: parent.width
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
             }

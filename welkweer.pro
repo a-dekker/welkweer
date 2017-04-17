@@ -48,8 +48,9 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherTomorrow.qml \
     qml/pages/WeatherNight.qml \
     qml/pages/RainFall.qml \
-    qml/pages/devicePixelRatioHack.js
+    qml/pages/devicePixelRatioHack.js \
     qml/common/PageHeaderExtended.qml \
+    qml/common/ScrollLabel.qml
 
 python.files = python/*
 python.path = /usr/share/harbour-welkweer/python
