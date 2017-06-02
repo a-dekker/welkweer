@@ -21,7 +21,7 @@ Page {
     property string lastUpd: "Laatste update: geen data"
 
     Component.onCompleted: {
-        if (checkNetworkConnection() == true) {
+        if (checkNetworkConnection() === true) {
             loadWeather()
         }
     }
@@ -59,17 +59,13 @@ Page {
                     "cat /run/state/providers/connman/Internet/NetworkState")
         if (networkState !== "connected") {
             banner("INFO", qsTr("Geen internet connectie!"))
+            locText = "Geen internet connectie"
             return false
         } else {
             return true
         }
     }
 
-    function rainGraph() {
-        if (checkNetworkConnection() == true) {
-            pageStack.push("RainFall.qml")
-        }
-    }
 
     function loadWeather() {
         python.call("call_buienradar.get_lokaal_weerinfo", [weerStation],
@@ -110,12 +106,16 @@ Page {
             }
             MenuItem {
                 text: qsTr("Instellingen")
-                onClicked: pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
+                onClicked: {
+                    if (checkNetworkConnection() === true) {
+                        pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
+                    }
+                }
             }
             MenuItem {
                 text: qsTr("Vernieuwen")
                 onClicked: {
-                    if (checkNetworkConnection() == true) {
+                    if (checkNetworkConnection() === true) {
                         weerStation = myset.value("stationcode", "6240")
                         locText = "Geen data"
                         loadWeather()
@@ -126,7 +126,11 @@ Page {
         PushUpMenu {
             MenuItem {
                 text: qsTr("Beschrijving weer NL")
-                onClicked: pageStack.push("WeatherText.qml")
+                onClicked: {
+                    if (checkNetworkConnection() === true) {
+                        pageStack.push("WeatherText.qml")
+                    }
+                }
             }
         }
 
@@ -160,20 +164,40 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 Button {
                     text: "Neerslag NL"
-                    onClicked: pageStack.push("CurrentWeather.qml")
+                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("CurrentWeather.qml")
+                        }
+                    }
                 }
                 Button {
                     text: "5 daags NL"
-                    onClicked: pageStack.push("Forecast.qml")
+                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Forecast.qml")
+                        }
+                    }
                 }
                 Button {
                     text: "Buien Europa"
-                    onClicked: pageStack.push("WeatherEurope.qml")
+                    width: (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("WeatherEurope.qml")
+                        }
+                    }
                     visible: isLandscape
                 }
                 Button {
                     text: "Lokaal (→3uur)"
-                    onClicked: pageStack.push("Weather3hr.qml")
+                    width: (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Weather3hr.qml")
+                        }
+                    }
                     visible: isLandscape
                 }
             }
@@ -182,26 +206,51 @@ Page {
                 spacing: Theme.paddingSmall
                 Button {
                     text: "Lokaal (→3uur)"
-                    onClicked: pageStack.push("Weather3hr.qml")
+                    width: (column.width / 2) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Weather3hr.qml")
+                        }
+                    }
                     visible: isPortrait
                 }
                 Button {
                     text: "Weer morgen NL"
-                    onClicked: pageStack.push("WeatherTomorrow.qml")
+                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("WeatherTomorrow.qml")
+                        }
+                    }
                 }
                 Button {
                     text: "Neerslag (→2uur)"
-                    onClicked: rainGraph()
+                    width: (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("RainFall.qml")
+                        }
+                    }
                     visible: isLandscape
                 }
                 Button {
                     text: "Windkracht NL"
-                    onClicked: pageStack.push("Wind.qml")
+                    width: (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Wind.qml")
+                        }
+                    }
                     visible: isLandscape
                 }
                 Button {
                     text: "Temperatuur NL"
-                    onClicked: pageStack.push("Temperature.qml")
+                    width: (column.width / 4) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Temperature.qml")
+                        }
+                    }
                     visible: isLandscape
                 }
             }
@@ -211,11 +260,21 @@ Page {
                 spacing: Theme.paddingSmall
                 Button {
                     text: "Windkracht NL"
-                    onClicked: pageStack.push("Wind.qml")
+                    width: (column.width / 2) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Wind.qml")
+                        }
+                    }
                 }
                 Button {
                     text: "Temperatuur NL"
-                    onClicked: pageStack.push("Temperature.qml")
+                    width: (column.width / 2) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("Temperature.qml")
+                        }
+                    }
                 }
             }
             Row {
@@ -224,11 +283,21 @@ Page {
                 spacing: Theme.paddingSmall
                 Button {
                     text: "Buien Europa"
-                    onClicked: pageStack.push("WeatherEurope.qml")
+                    width: (column.width / 2) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("WeatherEurope.qml")
+                        }
+                    }
                 }
                 Button {
                     text: "Neerslag (→2uur)"
-                    onClicked: rainGraph()
+                    width: (column.width / 2) * 0.95
+                    onClicked: {
+                        if (checkNetworkConnection() === true) {
+                            pageStack.push("RainFall.qml")
+                        }
+                    }
                 }
             }
             Row {

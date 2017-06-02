@@ -127,12 +127,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="108"/>
+        <location filename="../qml/pages/MainPage.qml" line="104"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="112"/>
+        <location filename="../qml/pages/MainPage.qml" line="108"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -147,7 +147,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="152"/>
+        <location filename="../qml/pages/MainPage.qml" line="156"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -310,12 +310,12 @@
 <context>
     <name>Windchill</name>
     <message>
-        <location filename="../qml/pages/Windchill.qml" line="155"/>
+        <location filename="../qml/pages/Windchill.qml" line="156"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Windchill.qml" line="164"/>
+        <location filename="../qml/pages/Windchill.qml" line="165"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>

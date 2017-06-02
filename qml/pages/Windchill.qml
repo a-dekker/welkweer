@@ -51,7 +51,8 @@ Page {
                 fillMode: Image.PreserveAspectFit
                 cache: false
                 asynchronous: true
-                source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/gevoelstemperatuur.png"
+                source: "http://www.weerplaza.nl/gdata/10min/GMT_WCHILL_latest.png"
+                // source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/gevoelstemperatuur.png"
                 sourceSize.height: 1000;
                 smooth: !imageFlickable.moving
 

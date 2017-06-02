@@ -8,6 +8,13 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.0.8-3
+- Auto correct some common text layout mistakes in prediction text
+- Better error handling when no internet connection is available
+* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.0.8-2
+- Slight improvement in button layout on smaller screens
+* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.8-1
+- Switch to weerplaza windchill for now, as knmi has not updated it's page for almost a month
 * Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.8-0
 - Scroll weather text on mainpage if too long
 - Replace '-' by '0' on min and max temperatures
