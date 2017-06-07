@@ -7,11 +7,10 @@ import org.nemomobile.notifications 1.0
 
 Page {
     id: settingsPage
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
     property string regio
     property string stationcode
-    property var dataModel : ListModel {}
+    property var dataModel: ListModel {
+    }
     property int itemIndex: 0
     property bool isRunning: waitIndicator.running
 
@@ -19,7 +18,6 @@ Page {
         id: notification
         appName: "welkweer"
     }
-
 
     function banner(category, message) {
         notification.close()
@@ -34,6 +32,7 @@ Page {
                     "cat /run/state/providers/connman/Internet/NetworkState")
         if (networkState !== "connected") {
             banner("INFO", qsTr("Geen internet connectie!"))
+            pageStack.pop()
         }
     }
 
@@ -78,19 +77,22 @@ Page {
                     id: py
                     Component.onCompleted: {
                         // Add the directory of this .qml file to the search path
-                        addImportPath(Qt.resolvedUrl('.'));
+                        addImportPath(Qt.resolvedUrl('.'))
                         // Import the main module and load the data
                         importModule('call_buienradar', function () {
-                            py.call('call_buienradar.get_stations_weerinfo',[], function(result) {
-                                // Load the received data into the list model
-                                for (var i=0; i<result.length; i++) {
-                                    dataModel.append(result[i]);
-                                    if (dataModel.get(i).stationcode === myset.value("stationcode")) {
-                                        itemIndex = i
-                                    }
-                                }
-                            });
-                        });
+                            py.call('call_buienradar.get_stations_weerinfo',
+                                    [], function (result) {
+                                        // Load the received data into the list model
+                                        for (var i = 0; i < result.length; i++) {
+                                            dataModel.append(result[i])
+                                            if (dataModel.get(
+                                                        i).stationcode === myset.value(
+                                                        "stationcode")) {
+                                                itemIndex = i
+                                            }
+                                        }
+                                    })
+                        })
                     }
                     onError: {
                         // when an exception is raised, this error handler will be called
@@ -108,7 +110,12 @@ Page {
                 currentIndex: itemIndex
 
                 onCurrentIndexChanged: {
-                    myset.setValue("stationcode", dataModel.get(currentIndex).stationcode)
+                    if (myset.value("stationcode") !== dataModel.get(
+                                currentIndex).stationcode) {
+                        mainapp.settingsChanged = true
+                        myset.setValue("stationcode",
+                                       dataModel.get(currentIndex).stationcode)
+                    }
                 }
             }
             ComboBox {
@@ -152,19 +159,34 @@ Page {
                 onCurrentIndexChanged: {
                     switch (zoomlevel.currentIndex) {
                     case 0:
-                        myset.setValue("zoomlevel", "6")
+                        if (myset.value("zoomlevel") !== "6") {
+                            myset.setValue("zoomlevel", "6")
+                            mainapp.settingsChanged = true
+                        }
                         break
                     case 1:
-                        myset.setValue("zoomlevel", "8")
+                        if (myset.value("zoomlevel") !== "8") {
+                            myset.setValue("zoomlevel", "8")
+                            mainapp.settingsChanged = true
+                        }
                         break
                     case 2:
-                        myset.setValue("zoomlevel", "11")
+                        if (myset.value("zoomlevel") !== "11") {
+                            myset.setValue("zoomlevel", "11")
+                            mainapp.settingsChanged = true
+                        }
                         break
                     case 3:
-                        myset.setValue("zoomlevel", "13")
+                        if (myset.value("zoomlevel") !== "13") {
+                            myset.setValue("zoomlevel", "13")
+                            mainapp.settingsChanged = true
+                        }
                         break
                     default:
-                        myset.setValue("zoomlevel", "8")
+                        if (myset.value("zoomlevel") !== "8") {
+                            myset.setValue("zoomlevel", "8")
+                            mainapp.settingsChanged = true
+                        }
                         break
                     }
                 }

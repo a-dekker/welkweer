@@ -7,8 +7,6 @@ Page {
     id: rainfall
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
 
     property string headerTxt: mainapp.locPlace
     property string subTxt: mainapp.locMeetStation

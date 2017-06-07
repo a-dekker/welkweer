@@ -6,8 +6,6 @@ import org.nemomobile.notifications 1.0
 
 Page {
     id: forecast
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
 

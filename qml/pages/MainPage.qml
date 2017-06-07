@@ -8,8 +8,6 @@ import "../common"
 
 Page {
     id: mainPage
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
 
@@ -23,6 +21,20 @@ Page {
     Component.onCompleted: {
         if (checkNetworkConnection() === true) {
             loadWeather()
+        }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Activating) {
+            if (mainapp.settingsChanged) {
+                // settings changed, reload
+                if (checkNetworkConnection() === true) {
+                    weerStation = myset.value("stationcode", "6240")
+                    locText = "Geen data"
+                    loadWeather()
+                }
+                mainapp.settingsChanged = false
+            }
         }
     }
 
@@ -65,7 +77,6 @@ Page {
             return true
         }
     }
-
 
     function loadWeather() {
         python.call("call_buienradar.get_lokaal_weerinfo", [weerStation],
@@ -439,7 +450,8 @@ Page {
             ScrollLabel {
                 id: localText
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width - localText.width) / 4
+                anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width
+                                                                  - localText.width) / 4
                 text: locText
                 width: parent.width
                 color: Theme.highlightColor

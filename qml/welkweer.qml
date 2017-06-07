@@ -42,9 +42,13 @@ ApplicationWindow
     property string iconLocation: ""
     property string latitude: "52.4309497"
     property string longitude: "5.068372600000001"
+    property bool   settingsChanged: false
+
+    allowedOrientations: Orientation.Portrait | Orientation.Landscape
+                         | Orientation.LandscapeInverted
+    _defaultPageOrientations: Orientation.Portrait | Orientation.Landscape
+    | Orientation.LandscapeInverted
+
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }
-
-
-

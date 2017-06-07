@@ -5,9 +5,6 @@ import io.thp.pyotherside 1.3
 Page {
     id: forecast
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
-
     property string weerTijd: ""
     property string weerTitel: ""
     property string weerTekst: ""

@@ -5,8 +5,6 @@ Page {
     id: aboutPage
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
