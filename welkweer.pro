@@ -50,7 +50,9 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/RainFall.qml \
     qml/pages/devicePixelRatioHack.js \
     qml/common/PageHeaderExtended.qml \
-    qml/common/ScrollLabel.qml
+    qml/common/ScrollLabel.qml \
+    qml/common/Pinch.qml \
+    qml/common/LoadingIndicator.qml
 
 python.files = python/*
 python.path = /usr/share/harbour-welkweer/python

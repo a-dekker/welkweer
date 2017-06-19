@@ -31,6 +31,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
+import "cover"
 
 ApplicationWindow
 {
@@ -43,12 +44,27 @@ ApplicationWindow
     property string latitude: "52.4309497"
     property string longitude: "5.068372600000001"
     property bool   settingsChanged: false
+    property MainPage mainPageRef: null
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     _defaultPageOrientations: Orientation.Portrait | Orientation.Landscape
     | Orientation.LandscapeInverted
 
-    initialPage: Component { MainPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    initialPage: mainPageContainer
+    cover: coverPage
+
+    Component {
+        id: mainPageContainer
+        MainPage {
+            id: mainPage
+            Component.onCompleted: mainPageRef = mainPage
+        }
+    }
+
+    CoverPage {
+        id: coverPage
+        onLoadWeather: mainPageRef.loadWeather()
+        // Component.onCompleted: Global.env.setCoverPage(coverPage)
+    }
 }

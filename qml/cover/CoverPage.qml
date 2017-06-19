@@ -33,6 +33,8 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+    signal loadWeather
+
     Column {
         width: parent.width
         spacing: Theme.paddingMedium
@@ -45,10 +47,10 @@ CoverBackground {
             color: Theme.highlightColor
         }
         Image {
-           source: mainapp.iconLocation
-           anchors.horizontalCenter: parent.horizontalCenter
-           height: 128
-           width: 128
+            source: mainapp.iconLocation
+            anchors.horizontalCenter: parent.horizontalCenter
+            height: 128
+            width: 128
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
@@ -56,8 +58,19 @@ CoverBackground {
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: mainapp.locWind === "Geen data" ? "" : mainapp.locWind.split(" ")[0]+ " " + mainapp.locWind.split(" ")[2]+" " + mainapp.locWind.split(" ")[3]
+            text: mainapp.locWind
+                  === "Geen data" ? "" : mainapp.locWind.split(
+                                        " ")[0] + " " + mainapp.locWind.split(
+                                        " ")[2] + " " + mainapp.locWind.split(
+                                        " ")[3]
+        }
+    }
+    CoverActionList {
+        id: coverAction
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-refresh"
+            onTriggered: loadWeather()
         }
     }
 }
-

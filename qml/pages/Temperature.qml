@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../common"
+
 Page {
     id: temperaturePage
     property bool largeScreen: Screen.sizeCategory === Screen.Large
@@ -43,12 +45,12 @@ Page {
                 function fitToScreenInit() {
                     // function is just a workaround to make image show in portrait at startup
                     scale = Math.min(parent.width / width, parent.height / height, 1)
-                    pinchArea.minScale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
+                    pinch.minScale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
                     prevScale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
                 }
                 function fitToScreen() {
                     scale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
-                    pinchArea.minScale = scale
+                    pinch.minScale = scale
                     prevScale = scale
                 }
 
@@ -91,86 +93,14 @@ Page {
                 }
             }
         }
-
-        PinchArea {
-            id: pinchArea
-
-            property real minScale: 1.0
-            property real maxScale: largeScreen ? 6.0 : 3.0
-
+        Pinch {
+            id: pinch
             anchors.fill: parent
-            enabled: imagePreview.status === Image.Ready
-            pinch.target: imagePreview
-            pinch.minimumScale: minScale * 0.5 // This is to create "bounce back effect"
-            pinch.maximumScale: maxScale * 1.5 // when over zoomed
-
-            onPinchFinished: {
-                imageFlickable.returnToBounds()
-                if (imagePreview.scale < pinchArea.minScale) {
-                    bounceBackAnimation.to = pinchArea.minScale
-                    bounceBackAnimation.start()
-                }
-                else if (imagePreview.scale > pinchArea.maxScale) {
-                    bounceBackAnimation.to = pinchArea.maxScale
-                    bounceBackAnimation.start()
-                }
-            }
-            NumberAnimation {
-                id: bounceBackAnimation
-                target: imagePreview
-                duration: 250
-                property: "scale"
-                from: imagePreview.scale
-            }
         }
     }
 
-    Loader {
-        anchors.centerIn: parent
-        sourceComponent: {
-            switch (imagePreview.status) {
-            case Image.Loading:
-                return loadingIndicator
-            case Image.Error:
-                return failedLoading
-            default:
-                return undefined
-            }
-        }
-
-        Component {
-            id: loadingIndicator
-
-            Item {
-                height: childrenRect.height
-                width: temperaturePage.width
-
-                BusyIndicator {
-                    id: imageLoadingIndicator
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    running: true
-                }
-
-                Text {
-                    anchors {
-                        horizontalCenter: parent.horizontalCenter
-                        top: imageLoadingIndicator.bottom; topMargin: Theme.paddingLarge
-                    }
-                    font.pixelSize: Theme.fontSizeSmall;
-                    color: Theme.highlightColor;
-                    text: qsTr("Laden afbeelding... %1").arg(Math.round(imagePreview.progress*100) + "%")
-                }
-            }
-        }
-
-        Component {
-            id: failedLoading
-            Text {
-                font.pixelSize: constant.fontXSmall;
-                text: qsTr("Afbeelding kon niet geladen worden")
-                color: Theme.highlightColor
-            }
-        }
+    LoadingIndicator {
+        width: parent.width
     }
 
     VerticalScrollDecorator {  // Yeah necessary for larger images and other large sites or zoomed in sites
