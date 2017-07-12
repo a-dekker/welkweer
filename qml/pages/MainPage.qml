@@ -14,12 +14,15 @@ Page {
     property string weerStation: myset.value("stationcode", "6240")
     property string locHumidity: "Geen data"
     property string locDawn: "Geen data"
-    property string locDusk: "Geen data"
+    property string locDusk: "-"
     property string locText: "Geen data"
     property string lastUpd: "Laatste update: geen data"
+    property string maanStand: "Geen data"
+    // property string maanStandSymbool: "-"
 
     Component.onCompleted: {
         if (checkNetworkConnection() === true) {
+            getMoonPhase()
             loadWeather()
         }
     }
@@ -87,13 +90,20 @@ Page {
                         locHumidity = result[3] + '%'
                         mainapp.locWind = result[4] + ' ' + result[6] + 'm/s (' + result[5] + ' BF)'
                         locDawn = result[8]
-                        locDusk = result[9] + ' (dagduur ' + result[15] + ')'
+                        locDusk = result[9] + ' ('+result[15] + ' uur)'
                         locText = '"' + result[10] + '"'
                         mainapp.iconLocation = "/usr/share/harbour-welkweer/qml/images/icons/"
                                 + result[11] + ".png"
                         mainapp.latitude = result[12]
                         mainapp.longitude = result[13]
                         mainapp.locMeetStation = result[14]
+                    })
+    }
+
+    function getMoonPhase() {
+        python.call("call_buienradar.get_moon_phase", [],
+                    function (result) {
+                        maanStand = result
                     })
     }
 
@@ -381,7 +391,7 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Zonsopkomst"
+                    text: "Periode licht"
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
@@ -390,7 +400,7 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: locDawn
+                    text: locDawn+"-"+locDusk
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeSmall
                     wrapMode: Text.Wrap
@@ -411,16 +421,15 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Zonsondergang"
+                    text: "Maanstand"
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeSmall
                     wrapMode: Text.Wrap
                 }
-
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: locDusk
+                    text: maanStand
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeSmall
                     wrapMode: Text.Wrap

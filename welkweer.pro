@@ -25,6 +25,7 @@ OTHER_FILES += qml/welkweer.qml \
     translations/*.ts \
     harbour-welkweer.desktop \
     python/buienradar.py \
+    python/moon.py \
     qml/pages/About.qml \
     qml/pages/MainPage.qml \
     qml/pages/CurrentWeather.qml \

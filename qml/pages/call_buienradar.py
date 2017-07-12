@@ -2,6 +2,12 @@ import sys
 # We use a custom location
 sys.path.append("/usr/share/harbour-welkweer/python/")
 import buienradar
+import moon
+
+
+def get_moon_phase():
+
+    return moon.get_moon_phase()
 
 
 def get_globaal_weerinfo():
