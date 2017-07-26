@@ -161,16 +161,17 @@ Page {
 
         Column {
             id: col
-            spacing: Theme.paddingLarge
+            spacing: isPortrait ? Theme.paddingLarge : Theme.paddingMedium
             width: parent.width
             PageHeader {
-                title: "5 daagse voorspelling"
+                title: isPortrait ? "5 daagse voorspelling" : "5 daagse voorspelling Nederland"
             }
             Label {
                 x: Theme.paddingMedium
                 y: Theme.paddingMedium
                 text: "Nederland"
                 font.pixelSize: Theme.fontSizeLarge
+                visible: isPortrait
             }
             Row {
                 id: koppenGrid

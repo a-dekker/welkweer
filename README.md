@@ -18,3 +18,4 @@ The info is mainly from [buienradar](http://www.buienradar.nl), but also from [k
  - General weather info for a city (using buienradar.nl)
  - 5 day weather forecast
  - Full textual description of weather coming week
+ - Moon phase

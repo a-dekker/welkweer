@@ -42,27 +42,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="189"/>
+        <location filename="../qml/pages/Forecast.qml" line="190"/>
         <source>Datum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="195"/>
+        <location filename="../qml/pages/Forecast.qml" line="196"/>
         <source>Max</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="201"/>
+        <location filename="../qml/pages/Forecast.qml" line="202"/>
         <source>Min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="207"/>
+        <location filename="../qml/pages/Forecast.qml" line="208"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="213"/>
+        <location filename="../qml/pages/Forecast.qml" line="214"/>
         <source>Neerslag kans</source>
         <translation type="unfinished"></translation>
     </message>
