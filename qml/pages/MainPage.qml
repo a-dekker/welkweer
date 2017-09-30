@@ -171,7 +171,7 @@ Page {
             id: column
 
             width: mainPage.width
-            spacing: largeScreen ? 50 : 7
+            spacing: largeScreen ? 50 : (screen.width === 1080 ? 20 : 7)
 
             PageHeaderExtended {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace
@@ -410,7 +410,7 @@ Page {
                     id: weatherIconLandscape
                     icon.source: mainapp.iconLocation
                     highlighted: true
-                    icon.height: largeScreen ? 256 : 128
+                    icon.height: screen.width <= 540 ? 128 : 300
                     icon.width: icon.height
                     height: 1 // to make it small not to cause space in left column
                 }
@@ -450,7 +450,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     icon.source: mainapp.iconLocation
                     highlighted: true
-                    icon.height: largeScreen ? 256 : 128
+                    icon.height: screen.width <= 540 ? 128 : 300
                     icon.width: icon.height
                     width: icon.width
                     height: icon.height * 1.3
@@ -461,7 +461,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width
                                                                   - localText.width) / 4
-                text: locText
+                text: locText === '"undefined"' ? '"fout"' : locText
                 width: parent.width
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall

@@ -9,12 +9,14 @@ except ImportError:
 import re
 
 # SETTINGS
-httpadres = "http://xml.buienradar.nl/"
+HTTPADRES = "http://xml.buienradar.nl/"
 
 
 def reformat(txt):
+    """Fix some html stings and common syntax issues"""
     reformatted = re.sub(r'\.(\w)', '. \\1', txt)
     reformatted = re.sub(r'\!(\w)', '! \\1', reformatted)
+    reformatted = reformatted.replace("&euml;", "ë")
     reformatted = reformatted.replace("&eacute;", "é")
     reformatted = reformatted.replace("&Eacute;", "É")
     reformatted = reformatted.replace("  ", " ")
@@ -24,16 +26,16 @@ def reformat(txt):
 def globaal_weer():
     """Return the weather texts."""
     try:
-        httpdata = urllib.request.Request(httpadres)
+        httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(
             httpdata))  # Parse het XML bestand
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
 
     try:
         weertijd = xml.find(
@@ -60,23 +62,23 @@ def globaal_weer():
         return weertijd, weertitel, weertekst, weermiddellangkop, weermiddellang, weerlangkop, weerlang
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
 
 
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
     import datetime
     try:
-        httpdata = urllib.request.Request(httpadres)
+        httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(
             httpdata))  # Parse het XML bestand
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     zononder = xml.find(
         "weergegevens/actueel_weer/buienradar/zononder").text.split(' ', 1)[1][:-3]
     zonopkomst = xml.find(
@@ -104,19 +106,19 @@ def lokaal_weer(stationnr):
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/luchtvochtigheid").text
-            temperatuurGC = xml.find(
+            temperatuur_gc = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/temperatuurGC").text
-            windsnelheidMS = xml.find(
+            windsnelheid_ms = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windsnelheidMS").text
-            windsnelheidBF = xml.find(
+            windsnelheid_bf = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windsnelheidBF").text
-            windrichtingGR = xml.find(
+            windrichting_gr = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windrichtingGR").text
@@ -152,22 +154,21 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("W", "West")
                 windrichting = windrichting.replace("N", "Noord")
                 windrichting = windrichting.replace("Z", "Zuid")
-            return regio, datum, temperatuurGC, luchtvochtigheid, windrichting, windsnelheidBF, windsnelheidMS, windrichtingGR, \
+            return regio, datum, temperatuur_gc, luchtvochtigheid, windrichting, windsnelheid_bf, windsnelheid_ms, windrichting_gr, \
                 zonopkomst, zononder, zin, iconactueel, lat, lon, meetstation, ':'.join(
                     str(tdelta).split(':')[:2])
-            break  # End the loop
 
 
 def get_stations():
     """Return all available weather stations."""
     try:
-        httpdata = urllib.request.Request(httpadres)
+        httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
-        return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data (request)", HTTPADRES, "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
     except BaseException:
-        return "", "Fout bij ophalen data (open)", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data (open)", HTTPADRES, "", "", "", "", "", ""
 
     lst = []
     for x in range(1, 1000):
@@ -199,6 +200,7 @@ def get_stations():
 
 
 def strip_date(full_date):
+    """Shorten name of month"""
     _months_year = {
         'januari': 'jan',
         'februari': 'feb',
@@ -225,15 +227,15 @@ def strip_date(full_date):
 def forecast_weer():
     """Return 5 day weather forecast."""
     try:
-        httpdata = urllib.request.Request(httpadres)
+        httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", httpadres, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
 
     lst = []
     for x in range(1, 6):
@@ -283,7 +285,8 @@ def forecast_weer():
 
 def forecast_rain(latitude, longitude):
     """Return expected rain expectations"""
-    httpadres = "http://gadgets.buienradar.nl"
+    httpadres = "https://br-gpsgadget-new.azurewebsites.net"
+    # httpadres = "http://gadgets.buienradar.nl"
     try:
         httpdata = urllib.request.Request(
             httpadres +

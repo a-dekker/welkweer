@@ -56,7 +56,7 @@ Loader {
     Component {
         id: failedLoading
         Text {
-            font.pixelSize: constant.fontXSmall
+            // font.pixelSize: constant.fontXSmall
             text: qsTr("Afbeelding kon niet geladen worden")
             color: Theme.highlightColor
         }

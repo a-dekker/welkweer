@@ -47,7 +47,7 @@ Page {
                     // function is just a workaround to make image show in portrait at startup
                     scale = Math.min(parent.width / width, parent.height / height, 1)
                     pinch.minScale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
-                    prevScale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
+                    prevScale = scale * 2
                 }
                 function fitToScreen() {
                     scale = Math.min(imageFlickable.width / width, imageFlickable.height / height)

@@ -3,8 +3,8 @@ import Sailfish.Silica 1.0
 
 Page {
     id: aboutPage
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
+    property bool largeScreen: screen.width > 540
+
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
@@ -25,7 +25,7 @@ Page {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Qt.AlignHCenter
-                visible: isPortrait || largeScreen
+                visible: isPortrait || (largeScreen && screen.width > 1080)
             }
             Label {
                 text: "WelkWeer"
@@ -49,7 +49,7 @@ Page {
             }
             SectionHeader {
                 text: qsTr("Auteur")
-                visible: isPortrait || largeScreen
+                visible: isPortrait || (largeScreen && screen.width > 1080)
             }
             Label {
                 text: "© Arno Dekker 2014-2017"
@@ -57,7 +57,7 @@ Page {
             }
             SectionHeader {
                 text: qsTr("Data bronnen")
-                visible: isPortrait || largeScreen
+                visible: isPortrait || (largeScreen && screen.width > 1080)
             }
             Label {
                 x: Theme.paddingLarge
@@ -73,7 +73,7 @@ Page {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Qt.AlignHCenter
-                visible: isPortrait || largeScreen
+                visible: isPortrait || (largeScreen && screen.width > 1080)
             }
         }
     }

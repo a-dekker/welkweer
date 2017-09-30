@@ -6,8 +6,7 @@ import org.nemomobile.notifications 1.0
 
 Page {
     id: forecast
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
+    property bool largeScreen: screen.width > 540
 
     property string icoon1: "0"
     property string dag1: "-"
@@ -167,11 +166,13 @@ Page {
                 title: isPortrait ? "5 daagse voorspelling" : "5 daagse voorspelling Nederland"
             }
             Label {
-                x: Theme.paddingMedium
-                y: Theme.paddingMedium
+                x: Theme.paddingLarge
+                y: Theme.paddingLarge
                 text: "Nederland"
                 font.pixelSize: Theme.fontSizeLarge
+                horizontalAlignment: Text.AlignRight
                 visible: isPortrait
+                width: col.width - (2 * Theme.paddingLarge)
             }
             Row {
                 id: koppenGrid
@@ -224,8 +225,8 @@ Page {
                 Image {
                     id: image1
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon1 + ".png"
-                    height: largeScreen ? 120 : 40
-                    width: largeScreen ? 120 : 40
+                    height: largeScreen ? 110 : 40
+                    width: largeScreen ? 110 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -267,8 +268,8 @@ Page {
                 Image {
                     id: image2
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon2 + ".png"
-                    height: largeScreen ? 120 : 40
-                    width: largeScreen ? 120 : 40
+                    height: largeScreen ? 110 : 40
+                    width: largeScreen ? 110 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -310,8 +311,8 @@ Page {
                 Image {
                     id: image3
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon3 + ".png"
-                    height: largeScreen ? 120 : 40
-                    width: largeScreen ? 120 : 40
+                    height: largeScreen ? 110 : 40
+                    width: largeScreen ? 110 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -353,8 +354,8 @@ Page {
                 Image {
                     id: image4
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon4 + ".png"
-                    height: largeScreen ? 120 : 40
-                    width: largeScreen ? 120 : 40
+                    height: largeScreen ? 110 : 40
+                    width: largeScreen ? 110 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -396,8 +397,8 @@ Page {
                 Image {
                     id: image5
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon5 + ".png"
-                    height: largeScreen ? 120 : 40
-                    width: largeScreen ? 120 : 40
+                    height: largeScreen ? 110 : 40
+                    width: largeScreen ? 110 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -448,7 +449,7 @@ Page {
                     id: infoIcon
                     source: "image://theme/icon-m-about"
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: !largeScreen
+                    visible: !largeScreen || screen.width === 1080
                 }
                 Label {
                     text: weerMiddellang.trim()
