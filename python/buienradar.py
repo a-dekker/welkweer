@@ -142,8 +142,13 @@ def lokaal_weer(stationnr):
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/stationnaam").text
-            tdelta = datetime.datetime.strptime(
-                zononder, '%H:%M') - datetime.datetime.strptime(zonopkomst, '%H:%M')
+            try:
+                tdelta = datetime.datetime.strptime(
+                    zononder, '%H:%M') - datetime.datetime.strptime(zonopkomst, '%H:%M')
+            except ValueError:
+                zononder = "?:??"
+                zonopkomst = "?:??"
+                tdelta = 0
             # temperatuur10cm = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/temperatuur10cm").text
             # luchtdruk = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/luchtdruk").text
             # zichtmeters = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/zichtmeters").text

@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Dec 20 2017 Arno Dekker <jack.tar@example.com> 0.0.11-0
+- Resizing cover image for some devices
+- Error handling when dawn/dusk is not passed
 * Sat Sep 30 2017 Arno Dekker <jack.tar@example.com> 0.0.10-0
 - More responive websource for rainfall info
 - optimisations for 1080 p. width

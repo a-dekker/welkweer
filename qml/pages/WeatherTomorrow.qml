@@ -4,8 +4,6 @@ import "../common"
 
 Page {
     id: tomorrowPage
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
 
     onStatusChanged: {
         switch (status) {

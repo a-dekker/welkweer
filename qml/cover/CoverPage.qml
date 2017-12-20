@@ -49,8 +49,8 @@ CoverBackground {
         Image {
             source: mainapp.iconLocation
             anchors.horizontalCenter: parent.horizontalCenter
-            height: 128
-            width: 128
+            height: mainapp.mediumScreen || mainapp.largeScreen ? 256 : 128
+            width: mainapp.mediumScreen || mainapp.largeScreen  ? 256 : 128
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter

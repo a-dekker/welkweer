@@ -45,6 +45,9 @@ ApplicationWindow
     property string longitude: "5.068372600000001"
     property bool   settingsChanged: false
     property MainPage mainPageRef: null
+    property bool largeScreen: Screen.sizeCategory === Screen.Large
+                               || Screen.sizeCategory === Screen.ExtraLarge
+    property bool mediumScreen: Screen.width >= 1080 && Screen.width < 1536
 
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted

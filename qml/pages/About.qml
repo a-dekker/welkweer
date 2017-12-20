@@ -3,7 +3,6 @@ import Sailfish.Silica 1.0
 
 Page {
     id: aboutPage
-    property bool largeScreen: screen.width > 540
 
     SilicaFlickable {
         anchors.fill: parent
@@ -25,7 +24,7 @@ Page {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Qt.AlignHCenter
-                visible: isPortrait || (largeScreen && screen.width > 1080)
+                visible: isPortrait || (mainapp.largeScreen)
             }
             Label {
                 text: "WelkWeer"
@@ -34,7 +33,7 @@ Page {
             }
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: isLandscape ? (largeScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/86x86/apps/harbour-welkweer.png") : (largeScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/128x128/apps/harbour-welkweer.png")
+                source: isLandscape ? (mainapp.largeScreen || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/86x86/apps/harbour-welkweer.png") : (largeScreen || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/128x128/apps/harbour-welkweer.png")
             }
             Label {
                 text: qsTr("Versie") + " " + version
@@ -49,7 +48,7 @@ Page {
             }
             SectionHeader {
                 text: qsTr("Auteur")
-                visible: isPortrait || (largeScreen && screen.width > 1080)
+                visible: isPortrait || (mainapp.largeScreen)
             }
             Label {
                 text: "© Arno Dekker 2014-2017"
@@ -57,7 +56,7 @@ Page {
             }
             SectionHeader {
                 text: qsTr("Data bronnen")
-                visible: isPortrait || (largeScreen && screen.width > 1080)
+                visible: isPortrait || (mainapp.largeScreen)
             }
             Label {
                 x: Theme.paddingLarge
@@ -73,7 +72,7 @@ Page {
                 width: parent.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Qt.AlignHCenter
-                visible: isPortrait || (largeScreen && screen.width > 1080)
+                visible: isPortrait || (mainapp.largeScreen)
             }
         }
     }

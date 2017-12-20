@@ -4,8 +4,7 @@ import "../common"
 
 Page {
     id: drizzlePage
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
+
     onStatusChanged: {
         switch (status) {
         case PageStatus.Active:

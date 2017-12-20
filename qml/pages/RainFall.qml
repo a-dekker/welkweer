@@ -1,12 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import io.thp.pyotherside 1.3
+import io.thp.pyotherside 1.5
 import "../common"
 
 Page {
     id: rainfall
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
 
     property string headerTxt: mainapp.locPlace
     property string subTxt: mainapp.locMeetStation

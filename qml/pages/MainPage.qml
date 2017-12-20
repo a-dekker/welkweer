@@ -3,13 +3,11 @@ import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
 import org.nemomobile.notifications 1.0
-import io.thp.pyotherside 1.3
+import io.thp.pyotherside 1.5
 import "../common"
 
 Page {
     id: mainPage
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
 
     property string weerStation: myset.value("stationcode", "6240")
     property string locHumidity: "Geen data"
@@ -171,7 +169,7 @@ Page {
             id: column
 
             width: mainPage.width
-            spacing: largeScreen ? 50 : (screen.width === 1080 ? 20 : 7)
+            spacing: mainapp.largeScreen ? 50 : (mainapp.mediumScreen ? 20 : 7)
 
             PageHeaderExtended {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace

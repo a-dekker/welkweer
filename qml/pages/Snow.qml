@@ -4,8 +4,6 @@ import "../common"
 
 Page {
     id: snowPage
-    property bool largeScreen: Screen.sizeCategory === Screen.Large
-                               || Screen.sizeCategory === Screen.ExtraLarge
 
     Flickable {
         id: imageFlickable
