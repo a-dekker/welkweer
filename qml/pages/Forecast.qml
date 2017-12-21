@@ -180,37 +180,37 @@ Page {
                 y: Theme.paddingMedium
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Datum")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Max")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Min")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Wind")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Neerslag kans")
                     color: Theme.highlightColor
                     wrapMode: Text.WordWrap
