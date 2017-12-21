@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.0.11-1
+- Some corrections needed for tablet display
 * Wed Dec 20 2017 Arno Dekker <jack.tar@example.com> 0.0.11-0
 - Resizing cover image for some devices
 - Error handling when dawn/dusk is not passed

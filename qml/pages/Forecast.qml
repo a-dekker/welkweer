@@ -180,37 +180,37 @@ Page {
                 y: Theme.paddingMedium
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: qsTr("")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Datum")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Max")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Min")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Wind")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeSmall : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: qsTr("Neerslag kans")
                     color: Theme.highlightColor
                     wrapMode: Text.WordWrap
@@ -224,8 +224,8 @@ Page {
                 Image {
                     id: image1
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon1 + ".png"
-                    height: mainapp.mediumScreen ? 110 : 40
-                    width: mainapp.mediumScreen ? 110 : 40
+                    height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -235,27 +235,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: dag1
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: maxtemp1
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: mintemp1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: wind1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: kansregen1
                 }
             }
@@ -267,8 +267,8 @@ Page {
                 Image {
                     id: image2
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon2 + ".png"
-                    height: mainapp.mediumScreen ? 110 : 40
-                    width: mainapp.mediumScreen ? 110 : 40
+                    height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -278,27 +278,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: dag2
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: maxtemp2
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: mintemp2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: wind2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: kansregen2
                 }
             }
@@ -310,8 +310,8 @@ Page {
                 Image {
                     id: image3
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon3 + ".png"
-                    height: mainapp.mediumScreen ? 110 : 40
-                    width: mainapp.mediumScreen ? 110 : 40
+                    height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -321,27 +321,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: dag3
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: maxtemp3
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: mintemp3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: wind3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: kansregen3
                 }
             }
@@ -353,8 +353,8 @@ Page {
                 Image {
                     id: image4
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon4 + ".png"
-                    height: mainapp.mediumScreen ? 110 : 40
-                    width: mainapp.mediumScreen ? 110 : 40
+                    height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -364,27 +364,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: dag4
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: maxtemp4
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: mintemp4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: wind4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: kansregen4
                 }
             }
@@ -396,8 +396,8 @@ Page {
                 Image {
                     id: image5
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon5 + ".png"
-                    height: mainapp.mediumScreen ? 110 : 40
-                    width: mainapp.mediumScreen ? 110 : 40
+                    height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                 }
                 Rectangle {
                     // some whitespace
@@ -407,27 +407,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
                     text: dag5
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: maxtemp5
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: mintemp5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: wind5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
                     text: kansregen5
                 }
             }
@@ -448,13 +448,13 @@ Page {
                     id: infoIcon
                     source: "image://theme/icon-m-about"
                     anchors.verticalCenter: parent.verticalCenter
-                    visible: !mainapp.mediumScreen || screen.width === 1080
+                    visible: !mainapp.largeScreen
                 }
                 Label {
                     text: weerMiddellang.trim()
                     width: col.width - (Theme.paddingMedium + Theme.paddingSmall + infoIcon.width)
                     wrapMode: Text.Wrap
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: largeScreen ? Theme.fontSizeMedium : Theme.fontSizeSmall
                     color: Theme.secondaryColor
                 }
             }
