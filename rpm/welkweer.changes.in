@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Dec 22 2017 Arno Dekker <jack.tar@example.com> 0.0.11-3
+- Small redesign for jolla 1 with large textfont
 * Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.0.11-2
 - correct header size in forcast page
 * Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.0.11-1

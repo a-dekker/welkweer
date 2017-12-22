@@ -159,7 +159,7 @@ Page {
 
         Column {
             id: col
-            spacing: isPortrait ? Theme.paddingLarge : Theme.paddingMedium
+            spacing: isPortrait ? Theme.paddingLarge : mainapp.smallScreen ? Theme.paddingSmall : Theme.paddingMedium
             width: parent.width
             PageHeader {
                 title: isPortrait ? "5 daagse voorspelling" : "5 daagse voorspelling Nederland"

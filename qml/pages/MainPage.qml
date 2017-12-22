@@ -16,8 +16,8 @@ Page {
     property string locText: "Geen data"
     property string lastUpd: "Laatste update: geen data"
     property string maanStand: "Geen data"
-    // property string maanStandSymbool: "-"
 
+    // property string maanStandSymbool: "-"
     Component.onCompleted: {
         if (checkNetworkConnection() === true) {
             getMoonPhase()
@@ -88,7 +88,7 @@ Page {
                         locHumidity = result[3] + '%'
                         mainapp.locWind = result[4] + ' ' + result[6] + 'm/s (' + result[5] + ' BF)'
                         locDawn = result[8]
-                        locDusk = result[9] + ' ('+result[15] + ' uur)'
+                        locDusk = result[9] + ' (' + result[15] + ' uur)'
                         locText = '"' + result[10] + '"'
                         mainapp.iconLocation = "/usr/share/harbour-welkweer/qml/images/icons/"
                                 + result[11] + ".png"
@@ -99,10 +99,9 @@ Page {
     }
 
     function getMoonPhase() {
-        python.call("call_buienradar.get_moon_phase", [],
-                    function (result) {
-                        maanStand = result
-                    })
+        python.call("call_buienradar.get_moon_phase", [], function (result) {
+            maanStand = result
+        })
     }
 
     Component.onDestruction: notification.close()
@@ -176,6 +175,14 @@ Page {
                 subTitle: mainapp.locMeetStation
                 subTitleOpacity: 0.5
                 subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+                visible: !(isLandscape && mainapp.smallScreen)
+            }
+
+            Row {
+                Label {
+                    text: " "
+                }
+                visible: isLandscape && mainapp.smallScreen
             }
 
             Row {
@@ -398,7 +405,7 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: locDawn+"-"+locDusk
+                    text: locDawn + "-" + locDusk
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeSmall
                     wrapMode: Text.Wrap
@@ -459,7 +466,8 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width
                                                                   - localText.width) / 4
-                text: locText === '"undefined"' ? '"fout"' : locText
+                text: locText === '"undefined"' ? '"fout"' : isLandscape
+                                                  && mainapp.smallScreen ? mainapp.locMeetStation + ": " + locText : locText
                 width: parent.width
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
