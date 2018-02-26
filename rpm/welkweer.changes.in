@@ -8,105 +8,107 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Fri Dec 22 2017 Arno Dekker <jack.tar@example.com> 0.0.11-3
+* Mon Feb 26 2018 Arno Dekker <jack.tar@example.com> 0.11-4
+- Switch to other url for local map as current page is gone
+* Fri Dec 22 2017 Arno Dekker <jack.tar@example.com> 0.11-3
 - Small redesign for jolla 1 with large textfont
-* Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.0.11-2
+* Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.11-2
 - correct header size in forcast page
-* Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.0.11-1
+* Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.11-1
 - Some corrections needed for tablet display
-* Wed Dec 20 2017 Arno Dekker <jack.tar@example.com> 0.0.11-0
+* Wed Dec 20 2017 Arno Dekker <jack.tar@example.com> 0.11-0
 - Resizing cover image for some devices
 - Error handling when dawn/dusk is not passed
-* Sat Sep 30 2017 Arno Dekker <jack.tar@example.com> 0.0.10-0
+* Sat Sep 30 2017 Arno Dekker <jack.tar@example.com> 0.10-0
 - More responive websource for rainfall info
 - optimisations for 1080 p. width
-* Sat Aug 12 2017 Arno Dekker <jack.tar@example.com> 0.0.9-0
+* Sat Aug 12 2017 Arno Dekker <jack.tar@example.com> 0.9-0
 - Version update for jolla harbour
-* Wed Jul 26 2017 Arno Dekker <jack.tar@example.com> 0.0.8-7
+* Wed Jul 26 2017 Arno Dekker <jack.tar@example.com> 0.8-7
 - 5 day prediction page more compact in landscape
-* Tue Jul 11 2017 Arno Dekker <jack.tar@example.com> 0.0.8-6
+* Tue Jul 11 2017 Arno Dekker <jack.tar@example.com> 0.8-6
 - Added moon phase
-* Thu Jun 16 2017 Arno Dekker <jack.tar@example.com> 0.0.8-5
+* Thu Jun 16 2017 Arno Dekker <jack.tar@example.com> 0.8-5
 - Added refresh as cover action
 - Added additional progressbar during loading of images
 - Better code reuse
-* Thu Jun 08 2017 Arno Dekker <jack.tar@example.com> 0.0.8-4
+* Thu Jun 08 2017 Arno Dekker <jack.tar@example.com> 0.8-4
 - Update mainscreen and other settings directly after settings change
-* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.0.8-3
+* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.8-3
 - Auto correct some common text layout mistakes in prediction text
 - Better error handling when no internet connection is available
-* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.0.8-2
+* Sat Mar 29 2017 Arno Dekker <jack.tar@example.com> 0.8-2
 - Slight improvement in button layout on smaller screens
-* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.8-1
+* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.8-1
 - Switch to weerplaza windchill for now, as knmi has not updated it's page for almost a month
-* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.8-0
+* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.8-0
 - Scroll weather text on mainpage if too long
 - Replace '-' by '0' on min and max temperatures
-* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.0.7-1
+* Wed Mar 11 2017 Arno Dekker <jack.tar@example.com> 0.7-1
 - Now rain chance prediction will show zero instead of a dash
-* Wed Feb 15 2017 Arno Dekker <jack.tar@example.com> 0.0.7-0
+* Wed Feb 15 2017 Arno Dekker <jack.tar@example.com> 0.7-0
 - Cache turned on for animated gifs, else they won't loop on SFOS 2.1.0.9
-* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.0.6-3
+* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.6-3
 - Buienradar returned to former date format, now support both
-* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.0.6-2
+* Wed Feb 01 2017 Arno Dekker <jack.tar@example.com> 0.6-2
 - Another two icons added and updated a serie of icons
-* Tue Jan 31 2017 Arno Dekker <jack.tar@example.com> 0.0.6-1
+* Tue Jan 31 2017 Arno Dekker <jack.tar@example.com> 0.6-1
 - Added snow prediction map for the Netherlands
 - Fixes to deal with changed date format on buienradar
 - Added two missing weather icons
-* Thu Jan 12 2017 Arno Dekker <jack.tar@example.com> 0.0.6-0
+* Thu Jan 12 2017 Arno Dekker <jack.tar@example.com> 0.6-0
 - Added text to 5 day forecast
-* Thu Dec 22 2016 Arno Dekker <jack.tar@example.com> 0.0.5-1
+* Thu Dec 22 2016 Arno Dekker <jack.tar@example.com> 0.5-1
 - Increased fontsize in 5 day forecast for small screens
 - Wind map now from knmi
 - two european maps replaced as buienradar changed urls once again
-* Sun Dec 11 2016 Arno Dekker <jack.tar@example.com> 0.0.5-0
+* Sun Dec 11 2016 Arno Dekker <jack.tar@example.com> 0.5-0
 - Changed 2 hours NL rain map to 3 hours
 - Added maps: 24h forecast NL, drizzle and visibility
-* Sat Nov 26 2016 Arno Dekker <jack.tar@example.com> 0.0.4-0
+* Sat Nov 26 2016 Arno Dekker <jack.tar@example.com> 0.4-0
 - Added two more European maps (clouds/thunder)
 - Added night map, flurry and windchill map Netherlands
-* Thu Nov 24 2016 Arno Dekker <jack.tar@example.com> 0.0.3-1
+* Thu Nov 24 2016 Arno Dekker <jack.tar@example.com> 0.3-1
 - changed month number to name in forecast page
-* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.3-0
+* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.3-0
 - Improvements in rainfall page
 - date added to forecast page and bigger font for tablet
-* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.0.2-3
+* Fri Oct 28 2016 Arno Dekker <jack.tar@example.com> 0.2-3
 - no zoom on phone in local map to center station
 - Added horizontal scrollbars when zooming
-* Sat Oct 22 2016 Arno Dekker <jack.tar@example.com> 0.0.2-2
+* Sat Oct 22 2016 Arno Dekker <jack.tar@example.com> 0.2-2
 - Clearer error message if raininfo cannot be loaded
-* Fri Oct 21 2016 Arno Dekker <jack.tar@example.com> 0.0.2-1
+* Fri Oct 21 2016 Arno Dekker <jack.tar@example.com> 0.2-1
 - Added some more busy indicators
 - Added daylength
 - Rewrite of data loading for raingraph
-* Tue Oct 19 2016 Arno Dekker <jack.tar@example.com> 0.0.2-0
+* Tue Oct 19 2016 Arno Dekker <jack.tar@example.com> 0.2-0
 - Replaced yahoo weather data with buienradar data
 - Renewed 5 day forecast page
 - New icons
 - Lots of other small changes
-* Tue Oct 4 2016 Arno Dekker <jack.tar@example.com> 0.0.1-9
+* Tue Oct 4 2016 Arno Dekker <jack.tar@example.com> 0.1-9
 - Added short en long forecast to text
 - More error handling
 - Moved textual version to PushUpMenu mainpage
 - City name to page header
-* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.0.1-8
+* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.1-8
 - Textual version of weather forecast from buienradar
-* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.0.1-7
+* Fri Sep 2 2016 Arno Dekker <jack.tar@example.com> 0.1-7
 - Had to modify the rainfall url, basic error handling for that
-* Wed Aug 31 2016 Arno Dekker <jack.tar@example.com> 0.0.1-6
+* Wed Aug 31 2016 Arno Dekker <jack.tar@example.com> 0.1-6
 - Try to get yahoo data a few times in case of error responses
-* Sun Aug 28 2016 Arno Dekker <jack.tar@example.com> 0.0.1-5
+* Sun Aug 28 2016 Arno Dekker <jack.tar@example.com> 0.1-5
 - Added humidity
 - Coverpage rework
 - Animated images now also zoomable
-* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-4
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.1-4
 - Small fixes (eg. last update timestamp was not accurate)
-* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-3
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.1-3
 - Small translation changes, fix issue that previous icon was shown on mainpage
-* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.0.1-2
+* Sun Aug 21 2016 Arno Dekker <jack.tar@example.com> 0.1-2
 - Made static images zoomable (thanks birdzhang for some code)
-* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-2
+* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.1-2
 - Scrubbed the deck
 - Hoisted the sails
 

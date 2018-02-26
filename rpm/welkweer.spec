@@ -14,10 +14,10 @@ Name:       harbour-welkweer
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Dutch weather related info
 Version:    0.11
-Release:    3
+Release:    4
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        https://github.com/a-dekker/welkweer
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5 >= 1.5.0

@@ -20,7 +20,7 @@ Page {
             right: parent.right
             bottom: parent.bottom
         }
-        url: "http://www.buienradar.nl/lokalebuienradar/?lat=" + mainapp.latitude + "&lng=" + mainapp.longitude
+        url: "https://gadgets.buienradar.nl/gadget/zoommap?lat=" + mainapp.latitude + "&lng=" + mainapp.longitude
              + "&overname=2&zoom=" + zoomLevel + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
         experimental {
             transparentBackground: true
