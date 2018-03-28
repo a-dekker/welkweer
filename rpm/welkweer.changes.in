@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Mar 28 2018 Arno Dekker <jack.tar@example.com> 0.12-0
+- Changed now invalid raininfo url
 * Tue Feb 27 2018 Arno Dekker <jack.tar@example.com> 0.11-5
 - New icon by VanyCat
 * Mon Feb 26 2018 Arno Dekker <jack.tar@example.com> 0.11-4
@@ -15,7 +17,7 @@
 * Fri Dec 22 2017 Arno Dekker <jack.tar@example.com> 0.11-3
 - Small redesign for jolla 1 with large textfont
 * Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.11-2
-- correct header size in forcast page
+- correct header size in forecast page
 * Thu Dec 21 2017 Arno Dekker <jack.tar@example.com> 0.11-1
 - Some corrections needed for tablet display
 * Wed Dec 20 2017 Arno Dekker <jack.tar@example.com> 0.11-0

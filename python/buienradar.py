@@ -13,13 +13,18 @@ HTTPADRES = "http://xml.buienradar.nl/"
 
 
 def reformat(txt):
-    """Fix some html stings and common syntax issues"""
+    """Fix some html strings and common syntax issues"""
     reformatted = re.sub(r'\.(\w)', '. \\1', txt)
     reformatted = re.sub(r'\!(\w)', '! \\1', reformatted)
     reformatted = reformatted.replace("&euml;", "ë")
     reformatted = reformatted.replace("&eacute;", "é")
     reformatted = reformatted.replace("&Eacute;", "É")
     reformatted = reformatted.replace("  ", " ")
+    reformatted = reformatted.replace("&lsquo;", "‘")
+    reformatted = reformatted.replace("&rsquo;", "’")
+    reformatted = reformatted.replace("&ldquo;", "“")
+    reformatted = reformatted.replace("&rdquo;", "”")
+    reformatted = reformatted.replace("&bdquo;", "„")
     return reformatted
 
 
@@ -290,8 +295,7 @@ def forecast_weer():
 
 def forecast_rain(latitude, longitude):
     """Return expected rain expectations"""
-    httpadres = "https://br-gpsgadget-new.azurewebsites.net"
-    # httpadres = "http://gadgets.buienradar.nl"
+    httpadres = "https://gadgets.buienradar.nl"
     try:
         httpdata = urllib.request.Request(
             httpadres +
