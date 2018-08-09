@@ -25,6 +25,9 @@ def reformat(txt):
     reformatted = reformatted.replace("&ldquo;", "“")
     reformatted = reformatted.replace("&rdquo;", "”")
     reformatted = reformatted.replace("&bdquo;", "„")
+    reformatted = reformatted.replace("&agrave;", "à")
+    reformatted = reformatted.replace("&aacute;", "á")
+    reformatted = reformatted.replace("&auml;", "ä")
     return reformatted
 
 

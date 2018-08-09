@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Aug 09 2018 Arno Dekker <jack.tar@example.com> 0.12-1
+- Scale text in raingraph bigger on 1080p devices
+- 'Could not load image' message bigger and centered
+- More html tag reformatting
 * Wed Mar 28 2018 Arno Dekker <jack.tar@example.com> 0.12-0
 - Changed now invalid raininfo url
 * Tue Feb 27 2018 Arno Dekker <jack.tar@example.com> 0.11-5

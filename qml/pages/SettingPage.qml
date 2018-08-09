@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
 import io.thp.pyotherside 1.5
-import org.nemomobile.notifications 1.0
+import Nemo.Notifications 1.0
 
 Page {
     id: settingsPage

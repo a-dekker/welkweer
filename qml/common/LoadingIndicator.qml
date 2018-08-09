@@ -55,10 +55,19 @@ Loader {
 
     Component {
         id: failedLoading
-        Text {
-            // font.pixelSize: constant.fontXSmall
-            text: qsTr("Afbeelding kon niet geladen worden")
-            color: Theme.highlightColor
+        Item {
+            Text {
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    topMargin: Theme.paddingLarge
+                }
+                width: parent.width
+                horizontalAlignment: Text.Center
+                font.pixelSize: Theme.fontSizeExtraLarge
+                text: qsTr("Afbeelding kon niet geladen worden")
+                color: Theme.secondaryHighlightColor
+                wrapMode: Text.WordWrap
+            }
         }
     }
 }

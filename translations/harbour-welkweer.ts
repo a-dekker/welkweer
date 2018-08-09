@@ -75,7 +75,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/LoadingIndicator.qml" line="60"/>
+        <location filename="../qml/common/LoadingIndicator.qml" line="67"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>

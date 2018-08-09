@@ -119,7 +119,7 @@ Page {
                 anchors.right: root.right
                 anchors.top: root.top
                 anchors.bottom: root.bottom
-                anchors.leftMargin: 50
+                anchors.leftMargin: mainapp.mediumScreen ? 70 : 50
                 anchors.rightMargin: Theme.paddingLarge
                 anchors.topMargin: 30
                 anchors.bottomMargin: 10
@@ -145,6 +145,7 @@ Page {
                            / (root.maxValue / root.gridSpacing) - height / 2
                         anchors.right: grid.left
                         color: Theme.secondaryHighlightColor
+                        font.pixelSize: Theme.fontSizeSmall
                     }
                 }
                 Repeater {
