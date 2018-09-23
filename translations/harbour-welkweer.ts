@@ -42,27 +42,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="190"/>
+        <location filename="../qml/pages/Forecast.qml" line="155"/>
+        <source>Beschrijving weer NL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/Forecast.qml" line="199"/>
         <source>Datum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="196"/>
+        <location filename="../qml/pages/Forecast.qml" line="205"/>
         <source>Max</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="202"/>
+        <location filename="../qml/pages/Forecast.qml" line="211"/>
         <source>Min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="208"/>
+        <location filename="../qml/pages/Forecast.qml" line="217"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="214"/>
+        <location filename="../qml/pages/Forecast.qml" line="223"/>
         <source>Neerslag kans</source>
         <translation type="unfinished"></translation>
     </message>
@@ -83,32 +88,27 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="74"/>
+        <location filename="../qml/pages/MainPage.qml" line="75"/>
         <source>Geen internet connectie!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="122"/>
+        <location filename="../qml/pages/MainPage.qml" line="123"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="126"/>
+        <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="134"/>
+        <location filename="../qml/pages/MainPage.qml" line="135"/>
         <source>Vernieuwen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="146"/>
-        <source>Beschrijving weer NL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/MainPage.qml" line="174"/>
+        <location filename="../qml/pages/MainPage.qml" line="165"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>

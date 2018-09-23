@@ -150,6 +150,15 @@ Page {
         contentWidth: parent.width
         contentHeight: col.height
 
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Beschrijving weer NL")
+                onClicked: {
+                        pageStack.push("WeatherText.qml")
+                }
+            }
+        }
+
         App {
             id: bar
         }

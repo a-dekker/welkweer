@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Aug 09 2018 Arno Dekker <jack.tar@example.com> 0.13-0
+- Added dewpoint
+- Moved weathertext page to 5 day prediction page
 * Thu Aug 09 2018 Arno Dekker <jack.tar@example.com> 0.12-1
 - Scale text in raingraph bigger on 1080p devices
 - 'Could not load image' message bigger and centered

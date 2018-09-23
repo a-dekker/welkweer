@@ -16,6 +16,7 @@ Page {
     property string locText: "Geen data"
     property string lastUpd: "Laatste update: geen data"
     property string maanStand: "Geen data"
+    property string locDewPointTemp: "-"
 
     // property string maanStandSymbool: "-"
     Component.onCompleted: {
@@ -74,9 +75,8 @@ Page {
             banner("INFO", qsTr("Geen internet connectie!"))
             locText = "Geen internet connectie"
             return false
-        } else {
-            return true
         }
+        return true
     }
 
     function loadWeather() {
@@ -95,6 +95,7 @@ Page {
                         mainapp.latitude = result[12]
                         mainapp.longitude = result[13]
                         mainapp.locMeetStation = result[14]
+                        locDewPointTemp = result[16] + '°C'
                     })
     }
 
@@ -137,16 +138,6 @@ Page {
                         weerStation = myset.value("stationcode", "6240")
                         locText = "Geen data"
                         loadWeather()
-                    }
-                }
-            }
-        }
-        PushUpMenu {
-            MenuItem {
-                text: qsTr("Beschrijving weer NL")
-                onClicked: {
-                    if (checkNetworkConnection() === true) {
-                        pageStack.push("WeatherText.qml")
                     }
                 }
             }
@@ -384,10 +375,10 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: locHumidity
+                    text: locHumidity + " (dauwpunt " + locDewPointTemp + ")"
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
+                    // wrapMode: Text.Wrap
                 }
             }
             Row {

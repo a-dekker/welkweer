@@ -7,6 +7,7 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 import re
+import math
 
 # SETTINGS
 HTTPADRES = "http://xml.buienradar.nl/"
@@ -73,6 +74,22 @@ def globaal_weer():
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
 
 
+def get_dew_point_c(t_air_c, rel_humidity):
+    """Compute the dew point in degrees Celsius
+
+    :param t_air_c: current ambient temperature in degrees Celsius
+    :type t_air_c: float
+    :param rel_humidity: relative humidity in %
+    :type rel_humidity: float
+    :return: the dew point in degrees Celsius
+    :rtype: float
+    """
+    a = 17.27
+    b = 237.7
+    alpha = ((a * float(t_air_c)) / (b + float(t_air_c))) + math.log(float(rel_humidity) / 100.0)
+    return (b * alpha) / (a - alpha)
+
+
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
     import datetime
@@ -80,13 +97,13 @@ def lokaal_weer(stationnr):
         httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(
             httpdata))  # Parse het XML bestand
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
     zononder = xml.find(
         "weergegevens/actueel_weer/buienradar/zononder").text.split(' ', 1)[1][:-3]
     zonopkomst = xml.find(
@@ -167,9 +184,10 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("W", "West")
                 windrichting = windrichting.replace("N", "Noord")
                 windrichting = windrichting.replace("Z", "Zuid")
+            dauwpunt_temp = math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid)*10)/10
             return regio, datum, temperatuur_gc, luchtvochtigheid, windrichting, windsnelheid_bf, windsnelheid_ms, windrichting_gr, \
                 zonopkomst, zononder, zin, iconactueel, lat, lon, meetstation, ':'.join(
-                    str(tdelta).split(':')[:2])
+                    str(tdelta).split(':')[:2]), dauwpunt_temp
 
 
 def get_stations():
