@@ -8,7 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Wed Oct 03 2018 Arno Dekker <jack.tar@example.com> 0.13-1
+- Some textual changes
+- Last update info added to cover
+- Added wind arrow symbol to wind direction
 * Thu Aug 09 2018 Arno Dekker <jack.tar@example.com> 0.13-0
+- Added dewpoint
 - Added dewpoint
 - Moved weathertext page to 5 day prediction page
 * Thu Aug 09 2018 Arno Dekker <jack.tar@example.com> 0.12-1

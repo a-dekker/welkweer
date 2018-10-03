@@ -38,6 +38,7 @@ ApplicationWindow
     id: mainapp
     property string locPlace: "Geen data"
     property string locTemp: "Geen data"
+    property string lastUpdCover: ""
     property string locWind: "Geen data"
     property string locMeetStation: "Geen data"
     property string iconLocation: ""

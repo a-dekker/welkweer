@@ -65,6 +65,13 @@ CoverBackground {
                                         " ")[3]
         }
     }
+    Label {
+        anchors.bottomMargin: 0
+        anchors.bottom: parent.bottom
+        font.pixelSize: Theme.fontSizeTiny
+        anchors.horizontalCenter: parent.horizontalCenter
+        text: mainapp.lastUpdCover
+    }
     CoverActionList {
         id: coverAction
 

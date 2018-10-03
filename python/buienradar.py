@@ -29,6 +29,7 @@ def reformat(txt):
     reformatted = reformatted.replace("&agrave;", "à")
     reformatted = reformatted.replace("&aacute;", "á")
     reformatted = reformatted.replace("&auml;", "ä")
+    reformatted = reformatted.replace("&ordm;", "º")
     return reformatted
 
 
@@ -180,10 +181,15 @@ def lokaal_weer(stationnr):
             # windstotenMS = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/windstotenMS").text
             # regenMMPU = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/regenMMPU").text
             if len(windrichting) == 1:
-                windrichting = windrichting.replace("O", "Oost")
-                windrichting = windrichting.replace("W", "West")
-                windrichting = windrichting.replace("N", "Noord")
-                windrichting = windrichting.replace("Z", "Zuid")
+                windrichting = windrichting.replace("O", "Oost←")
+                windrichting = windrichting.replace("W", "West→")
+                windrichting = windrichting.replace("N", "Noord↓")
+                windrichting = windrichting.replace("Z", "Zuid↑")
+            else:
+                windrichting = windrichting.replace("ZW", "ZW↗")
+                windrichting = windrichting.replace("ZO", "ZO↖")
+                windrichting = windrichting.replace("NW", "NW↘")
+                windrichting = windrichting.replace("NO", "NO↙")
             dauwpunt_temp = math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid)*10)/10
             return regio, datum, temperatuur_gc, luchtvochtigheid, windrichting, windsnelheid_bf, windsnelheid_ms, windrichting_gr, \
                 zonopkomst, zononder, zin, iconactueel, lat, lon, meetstation, ':'.join(

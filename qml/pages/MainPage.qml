@@ -83,6 +83,7 @@ Page {
         python.call("call_buienradar.get_lokaal_weerinfo", [weerStation],
                     function (result) {
                         mainapp.locPlace = result[0]
+                        mainapp.lastUpdCover = result[1]
                         lastUpd = "Laatste update buienradar.NL: " + result[1]
                         mainapp.locTemp = result[2] + '°C'
                         locHumidity = result[3] + '%'
@@ -208,7 +209,7 @@ Page {
                     visible: isLandscape
                 }
                 Button {
-                    text: "Lokaal (→3uur)"
+                    text: "Lokaal → 3uur"
                     width: (column.width / 4) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
@@ -222,7 +223,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 spacing: Theme.paddingSmall
                 Button {
-                    text: "Lokaal (→3uur)"
+                    text: "Lokaal → 3uur"
                     width: (column.width / 2) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
@@ -232,7 +233,7 @@ Page {
                     visible: isPortrait
                 }
                 Button {
-                    text: "Weer morgen NL"
+                    text: "Morgen NL"
                     width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
@@ -241,7 +242,7 @@ Page {
                     }
                 }
                 Button {
-                    text: "Neerslag (→2uur)"
+                    text: "Neerslag → 2uur"
                     width: (column.width / 4) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
@@ -308,7 +309,7 @@ Page {
                     }
                 }
                 Button {
-                    text: "Neerslag (→2uur)"
+                    text: "Neerslag → 2uur"
                     width: (column.width / 2) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {

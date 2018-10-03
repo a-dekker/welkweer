@@ -10,6 +10,7 @@ The info is mainly from [buienradar](http://www.buienradar.nl), but also from [k
  - 24 hours prediction
  - Wind map
  - Temperature map
+ - Wind chill map
  - Drizzle map
  - Visibility map
  - European raincloud map
@@ -19,3 +20,4 @@ The info is mainly from [buienradar](http://www.buienradar.nl), but also from [k
  - 5 day weather forecast
  - Full textual description of weather coming week
  - Moon phase
+ - Dewpoint
