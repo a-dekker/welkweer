@@ -191,9 +191,13 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("NW", "NW↘")
                 windrichting = windrichting.replace("NO", "NO↙")
             dauwpunt_temp = math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid)*10)/10
+            if dauwpunt_temp > 0:
+                dauwpunt_tekst = "dauwpunt"
+            else:
+                dauwpunt_tekst = "rijptemp."
             return regio, datum, temperatuur_gc, luchtvochtigheid, windrichting, windsnelheid_bf, windsnelheid_ms, windrichting_gr, \
                 zonopkomst, zononder, zin, iconactueel, lat, lon, meetstation, ':'.join(
-                    str(tdelta).split(':')[:2]), dauwpunt_temp
+                    str(tdelta).split(':')[:2]), dauwpunt_temp, dauwpunt_tekst
 
 
 def get_stations():

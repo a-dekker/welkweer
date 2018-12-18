@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Dec 18 2018 Arno Dekker <jack.tar@example.com> 0.13-2
+- Yet another new icon (thanks JSEHV)
+- Dewpoint is now called frost point when below zero
 * Wed Oct 03 2018 Arno Dekker <jack.tar@example.com> 0.13-1
 - Some textual changes
 - Last update info added to cover

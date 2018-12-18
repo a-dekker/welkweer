@@ -17,6 +17,7 @@ Page {
     property string lastUpd: "Laatste update: geen data"
     property string maanStand: "Geen data"
     property string locDewPointTemp: "-"
+    property string locDewPointName: "-"
 
     // property string maanStandSymbool: "-"
     Component.onCompleted: {
@@ -97,6 +98,7 @@ Page {
                         mainapp.longitude = result[13]
                         mainapp.locMeetStation = result[14]
                         locDewPointTemp = result[16] + '°C'
+                        locDewPointName = result[17]
                     })
     }
 
@@ -376,7 +378,7 @@ Page {
 
                 Label {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: locHumidity + " (dauwpunt " + locDewPointTemp + ")"
+                    text: locHumidity + " (" + locDewPointName + " " + locDewPointTemp + ")"
                     color: Theme.highlightColor
                     font.pixelSize: Theme.fontSizeSmall
                     // wrapMode: Text.Wrap
