@@ -55,6 +55,7 @@ CoverBackground {
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
             text: mainapp.locTemp
+            font.pixelSize: Theme.fontSizeLarge
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter

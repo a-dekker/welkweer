@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Jan 05 2019 Arno Dekker <jack.tar@example.com> 0.14-0
+- Removed unintended highlight coloring of icon on mainpage
+- Slightly bigger temperature indicator on coverpage
 * Tue Dec 18 2018 Arno Dekker <jack.tar@example.com> 0.13-2
 - Yet another new icon (thanks JSEHV)
 - Dewpoint is now called frost point when below zero

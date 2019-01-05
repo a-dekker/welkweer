@@ -70,6 +70,5 @@ ApplicationWindow
     CoverPage {
         id: coverPage
         onLoadWeather: mainPageRef.loadWeather()
-        // Component.onCompleted: Global.env.setCoverPage(coverPage)
     }
 }

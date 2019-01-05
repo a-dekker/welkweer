@@ -408,7 +408,6 @@ Page {
                     visible: isLandscape
                     id: weatherIconLandscape
                     icon.source: mainapp.iconLocation
-                    highlighted: true
                     icon.height: screen.width <= 540 ? 128 : 300
                     icon.width: icon.height
                     height: 1 // to make it small not to cause space in left column
@@ -448,7 +447,6 @@ Page {
                     id: weatherIcon
                     anchors.horizontalCenter: parent.horizontalCenter
                     icon.source: mainapp.iconLocation
-                    highlighted: true
                     icon.height: screen.width <= 540 ? 128 : 300
                     icon.width: icon.height
                     width: icon.width
