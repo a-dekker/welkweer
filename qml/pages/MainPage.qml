@@ -83,22 +83,22 @@ Page {
     function loadWeather() {
         python.call("call_buienradar.get_lokaal_weerinfo", [weerStation],
                     function (result) {
-                        mainapp.locPlace = result[0]
-                        mainapp.lastUpdCover = result[1]
-                        lastUpd = "Laatste update buienradar.NL: " + result[1]
-                        mainapp.locTemp = result[2] + '°C'
-                        locHumidity = result[3] + '%'
-                        mainapp.locWind = result[4] + ' ' + result[6] + 'm/s (' + result[5] + ' BF)'
-                        locDawn = result[8]
-                        locDusk = result[9] + ' (' + result[15] + ' uur)'
-                        locText = '"' + result[10] + '"'
+                        mainapp.locPlace = result["regio"]
+                        mainapp.lastUpdCover = result["datum"]
+                        lastUpd = "Laatste update buienradar.NL: " + result["datum"]
+                        mainapp.locTemp = result["temperatuur_gc"] + '°C'
+                        locHumidity = result["luchtvochtigheid"] + '%'
+                        mainapp.locWind = result["windrichting"] + ' ' + result["windsnelheid_ms"] + 'm/s (' + result["windsnelheid_bf"] + ' BF)'
+                        locDawn = result["zonopkomst"]
+                        locDusk = result["zononder"] + ' (' + result["tdelta"] + ' uur)'
+                        locText = '"' + result["zin"] + '"'
                         mainapp.iconLocation = "/usr/share/harbour-welkweer/qml/images/icons/"
-                                + result[11] + ".png"
-                        mainapp.latitude = result[12]
-                        mainapp.longitude = result[13]
-                        mainapp.locMeetStation = result[14]
-                        locDewPointTemp = result[16] + '°C'
-                        locDewPointName = result[17]
+                                + result["iconactueel"] + ".png"
+                        mainapp.latitude = result["lat"]
+                        mainapp.longitude = result["lon"]
+                        mainapp.locMeetStation = result["meetstation"]
+                        locDewPointTemp = result["dauwpunt_temp"] + '°C'
+                        locDewPointName = result["dauwpunt_tekst"]
                     })
     }
 
@@ -338,6 +338,7 @@ Page {
                     width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
                     text: mainapp.locTemp
                     color: Theme.highlightColor
+                    font.bold: true
                     font.pixelSize: Theme.fontSizeSmall
                     wrapMode: Text.Wrap
                 }

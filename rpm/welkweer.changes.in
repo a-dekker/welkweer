@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Jan 17 2019 Arno Dekker <jack.tar@example.com> 0.14-1
+- Replaced static by animated version for wind, flurry and temperature map
 * Sat Jan 05 2019 Arno Dekker <jack.tar@example.com> 0.14-0
 - Removed unintended highlight coloring of icon on mainpage
 - Slightly bigger temperature indicator on coverpage

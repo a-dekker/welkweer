@@ -94,6 +94,7 @@ def get_dew_point_c(t_air_c, rel_humidity):
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
     import datetime
+    lokale_weerdata = {}
     try:
         httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
@@ -112,11 +113,10 @@ def lokaal_weer(stationnr):
     for x in range(1, 1000):
         stationscan = xml.find(
             "weergegevens/actueel_weer/weerstations/weerstation[" +
-            str(x) +
-            "]").attrib.get('id')
+            str(x) + "]").attrib.get('id')
         if stationscan == stationnr:
             # Weather station found, continue
-            regio = xml.find(
+            lokale_weerdata['regio'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/stationnaam").attrib.get('regio')
@@ -136,15 +136,15 @@ def lokaal_weer(stationnr):
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/temperatuurGC").text
-            windsnelheid_ms = xml.find(
+            lokale_weerdata['windsnelheid_ms'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windsnelheidMS").text
-            windsnelheid_bf = xml.find(
+            lokale_weerdata['windsnelheid_bf'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windsnelheidBF").text
-            windrichting_gr = xml.find(
+            lokale_weerdata['windrichting_gr'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windrichtingGR").text
@@ -152,19 +152,19 @@ def lokaal_weer(stationnr):
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/windrichting").text
-            zin = xml.find(
+            lokale_weerdata['zin'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/icoonactueel").attrib.get('zin')
-            iconactueel = xml.find(
+            lokale_weerdata['iconactueel'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/icoonactueel").attrib.get('ID')
-            lat = xml.find(
+            lokale_weerdata['lat'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lat").text
-            lon = xml.find(
+            lokale_weerdata['lon'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lon").text
-            meetstation = xml.find(
+            lokale_weerdata['meetstation'] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation[" +
                 str(x) +
                 "]/stationnaam").text
@@ -192,12 +192,20 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("NO", "NO↙")
             dauwpunt_temp = math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid)*10)/10
             if dauwpunt_temp > 0:
-                dauwpunt_tekst = "dauwpunt"
+                lokale_weerdata['dauwpunt_tekst'] = "dauwpunt"
             else:
-                dauwpunt_tekst = "rijptemp."
-            return regio, datum, temperatuur_gc, luchtvochtigheid, windrichting, windsnelheid_bf, windsnelheid_ms, windrichting_gr, \
-                zonopkomst, zononder, zin, iconactueel, lat, lon, meetstation, ':'.join(
-                    str(tdelta).split(':')[:2]), dauwpunt_temp, dauwpunt_tekst
+                lokale_weerdata['dauwpunt_tekst'] = "rijptemp."
+
+            lokale_weerdata['datum'] = datum
+            lokale_weerdata['zononder'] = zononder
+            lokale_weerdata['zonopkomst'] = zonopkomst
+            lokale_weerdata['windrichting'] = windrichting
+            lokale_weerdata['luchtvochtigheid'] = luchtvochtigheid
+            lokale_weerdata['dauwpunt_temp'] = dauwpunt_temp
+            lokale_weerdata['temperatuur_gc'] = temperatuur_gc
+            lokale_weerdata['tdelta'] = ':'.join(str(tdelta).split(':')[:2])
+
+            return lokale_weerdata
 
 
 def get_stations():

@@ -36,10 +36,21 @@ Page {
             width: Math.max(imagePreview.width * imagePreview.scale, imageFlickable.width)
             height: Math.max(imagePreview.height * imagePreview.scale, imageFlickable.height)
 
-            Image {
+            AnimatedImage {
                 id: imagePreview
 
                 property real prevScale
+
+                Timer {
+                    id: timer
+                }
+
+                function delay(delayTime, cb) {
+                    timer.interval = delayTime;
+                    timer.repeat = false;
+                    timer.triggered.connect(cb);
+                    timer.start();
+                }
 
                 function fitToScreenInit() {
                     // function is just a workaround to make image show in portrait at startup
@@ -55,17 +66,19 @@ Page {
 
                 anchors.centerIn: parent
                 fillMode: Image.PreserveAspectFit
-                cache: false
                 asynchronous: true
-                source: "http://www.knmi.nl/actueel/images/tempgmt.png"
-                // source: "http://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/windkracht.png"
-                sourceSize.height: 1000;
+                source: "https://weerdata.weerslag.nl/image/1.0/?size=temperatuuranimatie&type=Freecontent"
                 smooth: !imageFlickable.moving
 
                 onStatusChanged: {
                     if (status == Image.Ready) {
                         fitToScreenInit()
-                        fitToScreen()
+                        // another hack needed :-(
+                        delay(200, function() {
+                            scale = Math.min(imageFlickable.width / width, imageFlickable.height / height)
+                            pinch.minScale = scale
+                            prevScale = scale
+                        })
                         loadedAnimation.start()
                     }
                 }
