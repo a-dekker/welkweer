@@ -24,13 +24,13 @@ Page {
                 console.log('call_buienradar module is now imported')
                 call("call_buienradar.get_globaal_weerinfo", [],
                      function (result) {
-                         weerTijd = result[0]
-                         weerTitel = result[1]
-                         weerTekst = result[2]
-                         weerMiddellangKop = result[3]
-                         weerMiddellang = result[4]
-                         weerLangKop = result[5]
-                         weerLang = result[6]
+                         weerTijd = result["weertijd"]
+                         weerTitel = result["weertitel"]
+                         weerTekst = result["weertekst"]
+                         weerMiddellangKop = result["weermiddellangkop"]
+                         weerMiddellang = result["weermiddellang"]
+                         weerLangKop = result["weerlangkop"]
+                         weerLang = result["weerlang"]
                      })
             })
         }

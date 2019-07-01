@@ -38,7 +38,8 @@ Page {
     property string wind5: "-"
     property string kansregen5: "-"
     property string weerMiddellang: ""
-    property var dataModel: ListModel { }
+    property var dataModel: ListModel {
+    }
 
     Notification {
         id: notification
@@ -67,7 +68,9 @@ Page {
                              dataModel.append(result[i])
                              if (i === 0) {
                                  icoon1 = dataModel.get(i).icoon
-                                 dag1 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
+                                 dag1 = dataModel.get(
+                                             i).dagweek + " " + dataModel.get(
+                                             i).datum
                                  mintemp1 = dataModel.get(i).mintemp
                                  maxtemp1 = dataModel.get(i).maxtemp
                                  wind1 = dataModel.get(
@@ -77,7 +80,9 @@ Page {
                              }
                              if (i === 1) {
                                  icoon2 = dataModel.get(i).icoon
-                                 dag2 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
+                                 dag2 = dataModel.get(
+                                             i).dagweek + " " + dataModel.get(
+                                             i).datum
                                  mintemp2 = dataModel.get(i).mintemp
                                  maxtemp2 = dataModel.get(i).maxtemp
                                  wind2 = dataModel.get(
@@ -87,7 +92,9 @@ Page {
                              }
                              if (i === 2) {
                                  icoon3 = dataModel.get(i).icoon
-                                 dag3 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
+                                 dag3 = dataModel.get(
+                                             i).dagweek + " " + dataModel.get(
+                                             i).datum
                                  mintemp3 = dataModel.get(i).mintemp
                                  maxtemp3 = dataModel.get(i).maxtemp
                                  wind3 = dataModel.get(
@@ -97,7 +104,9 @@ Page {
                              }
                              if (i === 3) {
                                  icoon4 = dataModel.get(i).icoon
-                                 dag4 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
+                                 dag4 = dataModel.get(
+                                             i).dagweek + " " + dataModel.get(
+                                             i).datum
                                  mintemp4 = dataModel.get(i).mintemp
                                  maxtemp4 = dataModel.get(i).maxtemp
                                  wind4 = dataModel.get(
@@ -107,7 +116,9 @@ Page {
                              }
                              if (i === 4) {
                                  icoon5 = dataModel.get(i).icoon
-                                 dag5 = dataModel.get(i).dagweek + " " + dataModel.get(i).datum
+                                 dag5 = dataModel.get(
+                                             i).dagweek + " " + dataModel.get(
+                                             i).datum
                                  mintemp5 = dataModel.get(i).mintemp
                                  maxtemp5 = dataModel.get(i).maxtemp
                                  wind5 = dataModel.get(
@@ -119,7 +130,7 @@ Page {
                      })
                 call("call_buienradar.get_globaal_weerinfo", [],
                      function (result) {
-                         weerMiddellang = result[4]
+                         weerMiddellang = result["weermiddellang"]
                      })
             })
         }
@@ -154,7 +165,7 @@ Page {
             MenuItem {
                 text: qsTr("Beschrijving weer NL")
                 onClicked: {
-                        pageStack.push("WeatherText.qml")
+                    pageStack.push("WeatherText.qml")
                 }
             }
         }
@@ -189,37 +200,37 @@ Page {
                 y: Theme.paddingMedium
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Datum")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Max")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Min")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Wind")
                     color: Theme.highlightColor
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Neerslag kans")
                     color: Theme.highlightColor
                     wrapMode: Text.WordWrap
@@ -244,27 +255,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag1
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: maxtemp1
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: mintemp1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: wind1
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: kansregen1
                 }
             }
@@ -287,27 +298,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag2
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: maxtemp2
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: mintemp2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: wind2
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: kansregen2
                 }
             }
@@ -330,27 +341,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag3
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: maxtemp3
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: mintemp3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: wind3
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: kansregen3
                 }
             }
@@ -373,27 +384,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag4
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: maxtemp4
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: mintemp4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: wind4
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: kansregen4
                 }
             }
@@ -416,27 +427,27 @@ Page {
                 }
                 Label {
                     width: parent.width / 4
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeExtraSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag5
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: maxtemp5
                 }
                 Label {
                     width: parent.width / 7
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: mintemp5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: wind5
                 }
                 Label {
                     width: parent.width / 6
-                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge :  Theme.fontSizeSmall
+                    font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: kansregen5
                 }
             }

@@ -1,13 +1,14 @@
 # XML data retrieval Buienradar (idea by S. Ebeltjes / domoticx.nl)
 #
 # Import libraries
+import math
+import re
 import urllib.request
+
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
     import xml.etree.ElementTree as ET
-import re
-import math
 
 # SETTINGS
 HTTPADRES = "http://xml.buienradar.nl/"
@@ -15,8 +16,9 @@ HTTPADRES = "http://xml.buienradar.nl/"
 
 def reformat(txt):
     """Fix some html strings and common syntax issues"""
-    reformatted = re.sub(r'\.(\w)', '. \\1', txt)
-    reformatted = re.sub(r'\!(\w)', '! \\1', reformatted)
+    reformatted = re.sub(r"\.(\w)", ". \\1", txt)
+    reformatted = re.sub(r"\!(\w)", "! \\1", reformatted)
+    reformatted = reformatted.replace("&nbsp;", " ")
     reformatted = reformatted.replace("&euml;", "ë")
     reformatted = reformatted.replace("&eacute;", "é")
     reformatted = reformatted.replace("&Eacute;", "É")
@@ -35,44 +37,46 @@ def reformat(txt):
 
 def globaal_weer():
     """Return the weather texts."""
+    globale_weerdata = {}
     try:
         httpdata = urllib.request.Request(HTTPADRES)
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     try:
-        xml = ET.parse(urllib.request.urlopen(
-            httpdata))  # Parse het XML bestand
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
 
     try:
-        weertijd = xml.find(
-            "weergegevens/verwachting_vandaag/tijdweerbericht").text
-        weertitel = xml.find(
-            "weergegevens/verwachting_vandaag/samenvatting").text
+        globale_weerdata["weertijd"] = xml.find(
+            "weergegevens/verwachting_vandaag/tijdweerbericht"
+        ).text
+        weertitel = xml.find("weergegevens/verwachting_vandaag/samenvatting").text
         weertekst = xml.find("weergegevens/verwachting_vandaag/tekst").text
         weermiddellangkop = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_middellang").attrib.get('periode')
+            "weergegevens/verwachting_meerdaags/tekst_middellang"
+        ).attrib.get("periode")
         weermiddellang = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_middellang").text
+            "weergegevens/verwachting_meerdaags/tekst_middellang"
+        ).text
         weerlangkop = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_lang").attrib.get('periode')
-        weerlang = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_lang").text
+            "weergegevens/verwachting_meerdaags/tekst_lang"
+        ).attrib.get("periode")
+        weerlang = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
         # do some reformatting
-        weertitel = reformat(weertitel)
-        weertekst = reformat(weertekst)
-        weermiddellang = reformat(weermiddellang)
-        weerlang = reformat(weerlang)
-        weerlangkop = reformat(weerlangkop)
-        weermiddellangkop = reformat(weermiddellangkop)
+        globale_weerdata["weertitel"] = reformat(weertitel)
+        globale_weerdata["weertekst"] = reformat(weertekst)
+        globale_weerdata["weermiddellang"] = reformat(weermiddellang)
+        globale_weerdata["weerlang"] = reformat(weerlang)
+        globale_weerdata["weerlangkop"] = reformat(weerlangkop)
+        globale_weerdata["weermiddellangkop"] = reformat(weermiddellangkop)
 
-        return weertijd, weertitel, weertekst, weermiddellangkop, weermiddellang, weerlangkop, weerlang
+        return globale_weerdata
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+        return {"weertitel": "Fout bij ophalen data"}
 
 
 def get_dew_point_c(t_air_c, rel_humidity):
@@ -87,13 +91,16 @@ def get_dew_point_c(t_air_c, rel_humidity):
     """
     a = 17.27
     b = 237.7
-    alpha = ((a * float(t_air_c)) / (b + float(t_air_c))) + math.log(float(rel_humidity) / 100.0)
+    alpha = ((a * float(t_air_c)) / (b + float(t_air_c))) + math.log(
+        float(rel_humidity) / 100.0
+    )
     return (b * alpha) / (a - alpha)
 
 
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
     import datetime
+
     lokale_weerdata = {}
     try:
         httpdata = urllib.request.Request(HTTPADRES)
@@ -101,76 +108,97 @@ def lokaal_weer(stationnr):
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
     try:
-        xml = ET.parse(urllib.request.urlopen(
-            httpdata))  # Parse het XML bestand
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
     except BaseException:
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
-    zononder = xml.find(
-        "weergegevens/actueel_weer/buienradar/zononder").text.split(' ', 1)[1][:-3]
-    zonopkomst = xml.find(
-        "weergegevens/actueel_weer/buienradar/zonopkomst").text.split(' ', 1)[1][:-3].lstrip('0')
+    zononder = xml.find("weergegevens/actueel_weer/buienradar/zononder").text.split(
+        " ", 1
+    )[1][:-3]
+    zonopkomst = (
+        xml.find("weergegevens/actueel_weer/buienradar/zonopkomst")
+        .text.split(" ", 1)[1][:-3]
+        .lstrip("0")
+    )
     for x in range(1, 1000):
         stationscan = xml.find(
-            "weergegevens/actueel_weer/weerstations/weerstation[" +
-            str(x) + "]").attrib.get('id')
+            "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]"
+        ).attrib.get("id")
         if stationscan == stationnr:
             # Weather station found, continue
-            lokale_weerdata['regio'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/stationnaam").attrib.get('regio')
+            lokale_weerdata["regio"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/stationnaam"
+            ).attrib.get("regio")
             datum = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/datum").text[:-3]
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/datum"
+            ).text[:-3]
             try:
-                datum = datetime.datetime.strptime(
-                    datum, '%m/%d/%Y %H:%M').strftime('%d/%m/%y %H:%M')
+                datum = datetime.datetime.strptime(datum, "%m/%d/%Y %H:%M").strftime(
+                    "%d/%m/%y %H:%M"
+                )
             except BaseException:
-                datum = datetime.datetime.strptime(
-                    datum, '%m-%d-%Y %H:%M').strftime('%d-%m-%y %H:%M')
+                datum = datetime.datetime.strptime(datum, "%m-%d-%Y %H:%M").strftime(
+                    "%d-%m-%y %H:%M"
+                )
             luchtvochtigheid = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/luchtvochtigheid").text
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/luchtvochtigheid"
+            ).text
             temperatuur_gc = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/temperatuurGC").text
-            lokale_weerdata['windsnelheid_ms'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/windsnelheidMS").text
-            lokale_weerdata['windsnelheid_bf'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/windsnelheidBF").text
-            lokale_weerdata['windrichting_gr'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/windrichtingGR").text
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/temperatuurGC"
+            ).text
+            lokale_weerdata["windsnelheid_ms"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/windsnelheidMS"
+            ).text
+            lokale_weerdata["windsnelheid_bf"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/windsnelheidBF"
+            ).text
+            lokale_weerdata["windrichting_gr"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/windrichtingGR"
+            ).text
             windrichting = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/windrichting").text
-            lokale_weerdata['zin'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/icoonactueel").attrib.get('zin')
-            lokale_weerdata['iconactueel'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/icoonactueel").attrib.get('ID')
-            lokale_weerdata['lat'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lat").text
-            lokale_weerdata['lon'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lon").text
-            lokale_weerdata['meetstation'] = xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]/stationnaam").text
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/windrichting"
+            ).text
+            lokale_weerdata["zin"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/icoonactueel"
+            ).attrib.get("zin")
+            lokale_weerdata["iconactueel"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/icoonactueel"
+            ).attrib.get("ID")
+            lokale_weerdata["lat"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lat"
+            ).text
+            lokale_weerdata["lon"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/lon"
+            ).text
+            lokale_weerdata["meetstation"] = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation["
+                + str(x)
+                + "]/stationnaam"
+            ).text
             try:
                 tdelta = datetime.datetime.strptime(
-                    zononder, '%H:%M') - datetime.datetime.strptime(zonopkomst, '%H:%M')
+                    zononder, "%H:%M"
+                ) - datetime.datetime.strptime(zonopkomst, "%H:%M")
             except ValueError:
                 zononder = "?:??"
                 zonopkomst = "?:??"
@@ -190,20 +218,22 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("ZO", "ZO↖")
                 windrichting = windrichting.replace("NW", "NW↘")
                 windrichting = windrichting.replace("NO", "NO↙")
-            dauwpunt_temp = math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid)*10)/10
+            dauwpunt_temp = (
+                math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10) / 10
+            )
             if dauwpunt_temp > 0:
-                lokale_weerdata['dauwpunt_tekst'] = "dauwpunt"
+                lokale_weerdata["dauwpunt_tekst"] = "dauwpunt"
             else:
-                lokale_weerdata['dauwpunt_tekst'] = "rijptemp."
+                lokale_weerdata["dauwpunt_tekst"] = "rijptemp."
 
-            lokale_weerdata['datum'] = datum
-            lokale_weerdata['zononder'] = zononder
-            lokale_weerdata['zonopkomst'] = zonopkomst
-            lokale_weerdata['windrichting'] = windrichting
-            lokale_weerdata['luchtvochtigheid'] = luchtvochtigheid
-            lokale_weerdata['dauwpunt_temp'] = dauwpunt_temp
-            lokale_weerdata['temperatuur_gc'] = temperatuur_gc
-            lokale_weerdata['tdelta'] = ':'.join(str(tdelta).split(':')[:2])
+            lokale_weerdata["datum"] = datum
+            lokale_weerdata["zononder"] = zononder
+            lokale_weerdata["zonopkomst"] = zonopkomst
+            lokale_weerdata["windrichting"] = windrichting
+            lokale_weerdata["luchtvochtigheid"] = luchtvochtigheid
+            lokale_weerdata["dauwpunt_temp"] = dauwpunt_temp
+            lokale_weerdata["temperatuur_gc"] = temperatuur_gc
+            lokale_weerdata["tdelta"] = ":".join(str(tdelta).split(":")[:2])
 
             return lokale_weerdata
 
@@ -224,45 +254,45 @@ def get_stations():
         d = {}
         try:
             xml.find(
-                "weergegevens/actueel_weer/weerstations/weerstation[" +
-                str(x) +
-                "]").attrib.get('id')
+                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]"
+            ).attrib.get("id")
         except BaseException:
             break
-        d['stationcode'] = xml.find(
-            "weergegevens/actueel_weer/weerstations/weerstation[" +
-            str(x) +
-            "]/stationcode").text
-        d['regio'] = xml.find(
-            "weergegevens/actueel_weer/weerstations/weerstation[" +
-            str(x) +
-            "]/stationnaam").attrib.get('regio')
-        d['meetstation'] = xml.find(
-            "weergegevens/actueel_weer/weerstations/weerstation[" +
-            str(x) +
-            "]/stationnaam").text.replace(
-            "Meetstation ",
-            "")
+        d["stationcode"] = xml.find(
+            "weergegevens/actueel_weer/weerstations/weerstation["
+            + str(x)
+            + "]/stationcode"
+        ).text
+        d["regio"] = xml.find(
+            "weergegevens/actueel_weer/weerstations/weerstation["
+            + str(x)
+            + "]/stationnaam"
+        ).attrib.get("regio")
+        d["meetstation"] = xml.find(
+            "weergegevens/actueel_weer/weerstations/weerstation["
+            + str(x)
+            + "]/stationnaam"
+        ).text.replace("Meetstation ", "")
         lst.append(d)
-    sortedlist = sorted(lst, key=lambda k: k['regio'])
+    sortedlist = sorted(lst, key=lambda k: k["regio"])
     return sortedlist
 
 
 def strip_date(full_date):
     """Shorten name of month"""
     _months_year = {
-        'januari': 'jan',
-        'februari': 'feb',
-        'maart': 'mar',
-        'april': 'apr',
-        'mei': 'mei',
-        'juni': 'jun',
-        'juli': 'jul',
-        'augustus': 'aug',
-        'september': 'sep',
-        'oktober': 'okt',
-        'november': 'nov',
-        'december': 'dec'
+        "januari": "jan",
+        "februari": "feb",
+        "maart": "mar",
+        "april": "apr",
+        "mei": "mei",
+        "juni": "jun",
+        "juli": "jul",
+        "augustus": "aug",
+        "september": "sep",
+        "oktober": "okt",
+        "november": "nov",
+        "december": "dec",
     }
     full_date_split = full_date.split()
 
@@ -289,45 +319,36 @@ def forecast_weer():
     lst = []
     for x in range(1, 6):
         d = {}
-        d['icoon'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/icoon").attrib.get('ID')
-        d['dagweek'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/dagweek").text
-        d['datum'] = strip_date(
+        d["icoon"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/icoon"
+        ).attrib.get("ID")
+        d["dagweek"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/dagweek"
+        ).text
+        d["datum"] = strip_date(
             xml.find(
-                "weergegevens/verwachting_meerdaags/dag-plus" +
-                str(x) +
-                "/datum").text)
-        d['mintemp'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/mintemp").text
-        d['maxtemp'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/maxtemp").text
-        d['windrichting'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/windrichting").text
-        d['windkracht'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/windkracht").text
-        d['kansregen'] = xml.find(
-            "weergegevens/verwachting_meerdaags/dag-plus" +
-            str(x) +
-            "/kansregen").text.replace(
-            '-',
-            '0')
-        if d['mintemp'] == "-":
-            d['mintemp'] = "0"
-        if d['maxtemp'] == "-":
-            d['maxtemp'] = "0"
+                "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/datum"
+            ).text
+        )
+        d["mintemp"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/mintemp"
+        ).text
+        d["maxtemp"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/maxtemp"
+        ).text
+        d["windrichting"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/windrichting"
+        ).text
+        d["windkracht"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/windkracht"
+        ).text
+        d["kansregen"] = xml.find(
+            "weergegevens/verwachting_meerdaags/dag-plus" + str(x) + "/kansregen"
+        ).text.replace("-", "0")
+        if d["mintemp"] == "-":
+            d["mintemp"] = "0"
+        if d["maxtemp"] == "-":
+            d["maxtemp"] = "0"
         lst.append(d)
     return lst
 
@@ -337,11 +358,8 @@ def forecast_rain(latitude, longitude):
     httpadres = "https://gadgets.buienradar.nl"
     try:
         httpdata = urllib.request.Request(
-            httpadres +
-            "/data/raintext?lat=" +
-            latitude +
-            "&lon=" +
-            longitude)
+            httpadres + "/data/raintext?lat=" + latitude + "&lon=" + longitude
+        )
     except BaseException:
         return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""
     try:

@@ -88,7 +88,8 @@ Page {
                         lastUpd = "Laatste update buienradar.NL: " + result["datum"]
                         mainapp.locTemp = result["temperatuur_gc"] + '°C'
                         locHumidity = result["luchtvochtigheid"] + '%'
-                        mainapp.locWind = result["windrichting"] + ' ' + result["windsnelheid_ms"] + 'm/s (' + result["windsnelheid_bf"] + ' BF)'
+                        mainapp.locWind = result["windrichting"] + ' ' + result["windsnelheid_ms"]
+                                + 'm/s (' + result["windsnelheid_bf"] + ' BF)'
                         locDawn = result["zonopkomst"]
                         locDusk = result["zononder"] + ' (' + result["tdelta"] + ' uur)'
                         locText = '"' + result["zin"] + '"'

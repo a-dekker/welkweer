@@ -1,4 +1,5 @@
 import sys
+
 # We use a custom location
 sys.path.append("/usr/share/harbour-welkweer/python/")
 import buienradar

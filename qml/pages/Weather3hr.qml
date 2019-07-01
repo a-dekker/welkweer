@@ -20,8 +20,9 @@ Page {
             right: parent.right
             bottom: parent.bottom
         }
-        url: "https://gadgets.buienradar.nl/gadget/zoommap?lat=" + mainapp.latitude + "&lng=" + mainapp.longitude
-             + "&overname=2&zoom=" + zoomLevel + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
+        url: "https://gadgets.buienradar.nl/gadget/zoommap?lat=" + mainapp.latitude
+             + "&lng=" + mainapp.longitude + "&overname=2&zoom=" + zoomLevel
+             + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
         experimental {
             transparentBackground: true
         }
@@ -41,7 +42,8 @@ Page {
             flickable: webView
         }
 
-        HorizontalScrollDecorator {  // Yeah necessary for larger images and other large sites or zoomed in sites
+        HorizontalScrollDecorator {
+            // Yeah necessary for larger images and other large sites or zoomed in sites
             parent: threeHourLocalPage
             color: Theme.highlightColor // Otherwise we might end up with white decorator on white background
             height: Theme.paddingSmall // We want to see it properly

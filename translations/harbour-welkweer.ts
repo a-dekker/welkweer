@@ -9,22 +9,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="39"/>
+        <location filename="../qml/pages/About.qml" line="40"/>
         <source>Versie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="44"/>
+        <location filename="../qml/pages/About.qml" line="45"/>
         <source>Weer gerelateerde info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="50"/>
+        <location filename="../qml/pages/About.qml" line="51"/>
         <source>Auteur</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/About.qml" line="58"/>
+        <location filename="../qml/pages/About.qml" line="59"/>
         <source>Data bronnen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,37 +37,37 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="138"/>
+        <location filename="../qml/pages/Forecast.qml" line="149"/>
         <source>Geen internet connectie!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="155"/>
+        <location filename="../qml/pages/Forecast.qml" line="166"/>
         <source>Beschrijving weer NL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="199"/>
+        <location filename="../qml/pages/Forecast.qml" line="210"/>
         <source>Datum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="205"/>
+        <location filename="../qml/pages/Forecast.qml" line="216"/>
         <source>Max</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="211"/>
+        <location filename="../qml/pages/Forecast.qml" line="222"/>
         <source>Min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="217"/>
+        <location filename="../qml/pages/Forecast.qml" line="228"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="223"/>
+        <location filename="../qml/pages/Forecast.qml" line="234"/>
         <source>Neerslag kans</source>
         <translation type="unfinished"></translation>
     </message>
@@ -93,22 +93,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="126"/>
+        <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="130"/>
+        <location filename="../qml/pages/MainPage.qml" line="131"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="138"/>
+        <location filename="../qml/pages/MainPage.qml" line="139"/>
         <source>Vernieuwen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="168"/>
+        <location filename="../qml/pages/MainPage.qml" line="169"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>

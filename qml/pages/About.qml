@@ -33,7 +33,8 @@ Page {
             }
             Image {
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: isLandscape ? (mainapp.largeScreen || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/86x86/apps/harbour-welkweer.png") : (largeScreen || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/128x128/apps/harbour-welkweer.png")
+                source: isLandscape ? (mainapp.largeScreen
+                                       || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/86x86/apps/harbour-welkweer.png") : (largeScreen || mainapp.mediumScreen ? "/usr/share/icons/hicolor/256x256/apps/harbour-welkweer.png" : "/usr/share/icons/hicolor/128x128/apps/harbour-welkweer.png")
             }
             Label {
                 text: qsTr("Versie") + " " + version
@@ -62,7 +63,8 @@ Page {
                 x: Theme.paddingLarge
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
-                text: "<a href=\"http://www.buienradar.nl\">BuienRadar.NL</a>" + " en " + "<a href=\"http://www.knmi.nl\">knmi.nl</a>"
+                text: "<a href=\"http://www.buienradar.nl\">BuienRadar.NL</a>"
+                      + " en " + "<a href=\"http://www.knmi.nl\">knmi.nl</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
                 linkColor: Theme.highlightColor
                 anchors.horizontalCenter: parent.horizontalCenter
