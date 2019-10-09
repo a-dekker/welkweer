@@ -1,24 +1,22 @@
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef SRC_SETTINGS_H_
+#define SRC_SETTINGS_H_
 
 #include <QObject>
 #include <QSettings>
 
-class Settings : public QObject
-{
+class Settings : public QObject {
     Q_OBJECT
-public:
+   public:
     explicit Settings(QObject *parent = 0);
-    Q_INVOKABLE void setValue(const QString & key, const QVariant & value);
-    Q_INVOKABLE QVariant value(const QString &key, const QVariant &defaultValue = QVariant()) const;
+    Q_INVOKABLE void setValue(const QString &key, const QVariant &value);
+    Q_INVOKABLE QVariant value(const QString &key,
+                               const QVariant &defaultValue = QVariant()) const;
 
-signals:
+   signals:
 
-public slots:
-private:
+   public slots:
+   private:
     QSettings settings_;
 };
 
-#endif // SETTINGS_H
-
-
+#endif  // SRC_SETTINGS_H_

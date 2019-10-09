@@ -14,15 +14,15 @@ except ImportError:
 HTTPADRES = "http://xml.buienradar.nl/"
 
 
-def reformat(txt):
+def reformat(txt: str) -> str:
     """Fix some html strings and common syntax issues"""
     reformatted = re.sub(r"\.(\w)", ". \\1", txt)
     reformatted = re.sub(r"\!(\w)", "! \\1", reformatted)
     reformatted = reformatted.replace("&nbsp;", " ")
+    reformatted = reformatted.replace("  ", " ")
     reformatted = reformatted.replace("&euml;", "ë")
     reformatted = reformatted.replace("&eacute;", "é")
     reformatted = reformatted.replace("&Eacute;", "É")
-    reformatted = reformatted.replace("  ", " ")
     reformatted = reformatted.replace("&lsquo;", "‘")
     reformatted = reformatted.replace("&rsquo;", "’")
     reformatted = reformatted.replace("&ldquo;", "“")
@@ -40,8 +40,10 @@ def globaal_weer():
     globale_weerdata = {}
     try:
         httpdata = urllib.request.Request(HTTPADRES)
-    except BaseException:
+    except urllib.error.URLError as foutmelding:
         # Foutafhandeling als het station niet gevonden is.
+        response_data = foutmelding.reason
+        print(response_data)
         return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
@@ -218,18 +220,25 @@ def lokaal_weer(stationnr):
                 windrichting = windrichting.replace("ZO", "ZO↖")
                 windrichting = windrichting.replace("NW", "NW↘")
                 windrichting = windrichting.replace("NO", "NO↙")
-            dauwpunt_temp = (
-                math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10) / 10
-            )
-            if dauwpunt_temp > 0:
-                lokale_weerdata["dauwpunt_tekst"] = "dauwpunt"
+            windpijl = windrichting[len(windrichting) - 1]
+            windrichting = windrichting[:-1]
+            if luchtvochtigheid.isdigit():
+                dauwpunt_temp = (
+                    math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10)
+                    / 10
+                )
+                if dauwpunt_temp > 0:
+                    lokale_weerdata["dauwpunt_tekst"] = "dauwpunt"
+                else:
+                    lokale_weerdata["dauwpunt_tekst"] = "rijptemp."
             else:
-                lokale_weerdata["dauwpunt_tekst"] = "rijptemp."
-
+                lokale_weerdata["dauwpunt_tekst"] = ""
+                dauwpunt_temp = ""
             lokale_weerdata["datum"] = datum
             lokale_weerdata["zononder"] = zononder
             lokale_weerdata["zonopkomst"] = zonopkomst
             lokale_weerdata["windrichting"] = windrichting
+            lokale_weerdata["windpijl"] = windpijl
             lokale_weerdata["luchtvochtigheid"] = luchtvochtigheid
             lokale_weerdata["dauwpunt_temp"] = dauwpunt_temp
             lokale_weerdata["temperatuur_gc"] = temperatuur_gc

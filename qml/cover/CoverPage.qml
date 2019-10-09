@@ -61,7 +61,7 @@ CoverBackground {
             anchors.horizontalCenter: parent.horizontalCenter
             text: mainapp.locWind
                   === "Geen data" ? "" : mainapp.locWind.split(
-                                        " ")[0] + " " + mainapp.locWind.split(
+                                        " ")[0] + mainapp.locWindArrow + " " + mainapp.locWind.split(
                                         " ")[2] + " " + mainapp.locWind.split(
                                         " ")[3]
         }

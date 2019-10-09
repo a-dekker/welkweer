@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
@@ -18,8 +18,8 @@ Page {
     property string maanStand: "Geen data"
     property string locDewPointTemp: "-"
     property string locDewPointName: "-"
+    property string maanStandSymbool: "-"
 
-    // property string maanStandSymbool: "-"
     Component.onCompleted: {
         if (checkNetworkConnection() === true) {
             getMoonPhase()
@@ -90,6 +90,7 @@ Page {
                         locHumidity = result["luchtvochtigheid"] + '%'
                         mainapp.locWind = result["windrichting"] + ' ' + result["windsnelheid_ms"]
                                 + 'm/s (' + result["windsnelheid_bf"] + ' BF)'
+                        mainapp.locWindArrow = result["windpijl"]
                         locDawn = result["zonopkomst"]
                         locDusk = result["zononder"] + ' (' + result["tdelta"] + ' uur)'
                         locText = '"' + result["zin"] + '"'
@@ -105,7 +106,8 @@ Page {
 
     function getMoonPhase() {
         python.call("call_buienradar.get_moon_phase", [], function (result) {
-            maanStand = result
+            maanStand = result["text"]
+            maanStandSymbool = result["symbol"]
         })
     }
 
@@ -145,6 +147,9 @@ Page {
                     }
                 }
             }
+            MenuLabel {
+                text: mainapp.locMeetStation
+            }
         }
 
         // Tell SilicaFlickable the height of its content.
@@ -167,17 +172,19 @@ Page {
 
             PageHeaderExtended {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace
-                subTitle: mainapp.locMeetStation
+                // subTitle: mainapp.locMeetStation
+                subTitle: ""
                 subTitleOpacity: 0.5
                 subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
-                visible: !(isLandscape && mainapp.smallScreen)
-            }
-
-            Row {
                 Label {
-                    text: " "
+                    text: mainapp.locTemp
+                    color: Theme.highlightColor
+                    font.bold: true
+                    font.pixelSize: Theme.fontSizeLarge
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.horizontalPageMargin
+                anchors.verticalCenter: parent.verticalCenter
                 }
-                visible: isLandscape && mainapp.smallScreen
             }
 
             Row {
@@ -322,47 +329,22 @@ Page {
                 }
             }
             Row {
-                id: listRow
                 width: parent.width
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Temperatuur"
+                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    text: mainapp.locWindArrow
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: mainapp.locTemp
-                    color: Theme.highlightColor
-                    font.bold: true
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
-                }
-            }
-            Row {
-                width: parent.width
-                spacing: Theme.paddingSmall
-
-                Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Wind"
-                    horizontalAlignment: Text.AlignRight
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
-                }
-
-                Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
+                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
                     text: mainapp.locWind
-                    color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
+                    font.pixelSize: Theme.fontSizeMedium
                 }
             }
             Row {
@@ -370,20 +352,18 @@ Page {
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Luchtvochtigheid"
+                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    text: "💧"
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
+                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.33 / 1.5
                     text: locHumidity + " (" + locDewPointName + " " + locDewPointTemp + ")"
-                    color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    // wrapMode: Text.Wrap
+                    font.pixelSize: Theme.fontSizeMedium
                 }
             }
             Row {
@@ -391,20 +371,18 @@ Page {
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Periode licht"
+                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    text: "☼"
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
+                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
                     text: locDawn + "-" + locDusk
-                    color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
+                    font.pixelSize: Theme.fontSizeMedium
                 }
                 IconButton {
                     visible: isLandscape
@@ -412,6 +390,7 @@ Page {
                     icon.source: mainapp.iconLocation
                     icon.height: screen.width <= 540 ? 128 : 300
                     icon.width: icon.height
+                    icon.color: undefined
                     height: 1 // to make it small not to cause space in left column
                 }
             }
@@ -420,19 +399,17 @@ Page {
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
-                    text: "Maanstand"
+                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    text: maanStandSymbool
                     horizontalAlignment: Text.AlignRight
                     color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
+                    font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
                 Label {
-                    width: isPortrait ? parent.width * 0.5 : parent.width * 0.5 / 1.5
+                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
                     text: maanStand
-                    color: Theme.highlightColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    wrapMode: Text.Wrap
+                    font.pixelSize: Theme.fontSizeMedium
                 }
             }
             Item {
@@ -453,6 +430,7 @@ Page {
                     icon.width: icon.height
                     width: icon.width
                     height: icon.height * 1.3
+                    icon.color: undefined
                 }
             }
             ScrollLabel {
@@ -460,8 +438,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.horizontalCenterOffset: isPortrait ? 0 : (parent.width
                                                                   - localText.width) / 4
-                text: locText === '"undefined"' ? '"fout"' : isLandscape
-                                                  && mainapp.smallScreen ? mainapp.locMeetStation + ": " + locText : locText
+                text: locText === '"undefined"' ? '"fout"' : locText
                 width: parent.width
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall

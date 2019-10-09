@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.5
 import "../common"
@@ -11,6 +11,10 @@ Page {
     property string placeholderTxt: ""
     property bool rain: false
 
+    Component.onCompleted: {
+        callBuienradar()
+    }
+
     Python {
         id: python
 
@@ -20,36 +24,6 @@ Page {
             // Import the main module
             importModule('call_buienradar', function () {
                 console.log('call_buienradar module is now imported')
-                call("call_buienradar.get_forecast_rain",
-                     [mainapp.latitude, mainapp.longitude], function (result) {
-                         var raindata = result.split('\n')
-                         var data
-                         for (var i = 0; i < raindata.length - 1; i++) {
-                             data = raindata[i].split('|')
-                             // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
-                             // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
-                             var rain_mm = Math.round((1 / 255) * data[0] * 100)
-                             var time_rain = data[1]
-                             if (rain_mm > 0) {
-                                 rain = true
-                             }
-                             model.append({
-                                              "value": rain_mm,
-                                              "legend": time_rain,
-                                              "color": "#25AAE1" // blue
-                                          })
-                         }
-                         if (!model.get(0).legend) {
-                             placeholderTxt = "Geen bruikbare data"
-                             headerTxt = "fout"
-                         }
-                         if (rain) {
-                             headerTxt = model.get(0).legend + "-" + model.get(
-                                         i - 1).legend
-                             subTxt = "(0=droog 100=zware regen)"
-                         }
-                         placeholderTxt = " "
-                     })
             })
         }
         onError: {
@@ -58,6 +32,40 @@ Page {
             placeholderTxt = "Geen bruikbare data"
             headerTxt = "fout"
         }
+    }
+
+    function callBuienradar() {
+        python.call("call_buienradar.get_forecast_rain",
+        [mainapp.latitude, mainapp.longitude], function (result) {
+                 rain = false
+                 var raindata = result.split('\n')
+                 var data
+                 for (var i = 0; i < raindata.length - 1; i++) {
+                     data = raindata[i].split('|')
+                     // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
+                     // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
+                     var rain_mm = Math.round((1 / 255) * data[0] * 100)
+                     var time_rain = data[1]
+                     if (rain_mm > 0) {
+                         rain = true
+                     }
+                     model.append({
+                                      "value": rain_mm,
+                                      "legend": time_rain,
+                                      "color": "#25AAE1" // blue
+                                  })
+                 }
+                 if (!model.get(0).legend) {
+                     placeholderTxt = "Geen bruikbare data"
+                     headerTxt = "fout"
+                 }
+                 if (rain) {
+                     headerTxt = model.get(0).legend + "-" + model.get(
+                                 i - 1).legend
+                     subTxt = "(0=droog 100=zware regen)"
+                 }
+                 placeholderTxt = " "
+             })
     }
 
     Item {
@@ -87,6 +95,22 @@ Page {
         anchors.fill: parent
         contentWidth: parent.width
         anchors.verticalCenter: parent.verticalCenter
+
+        PullDownMenu {
+            id: menu
+            MenuItem {
+                text: qsTr("Vernieuwen")
+                onClicked: {
+                    model.clear()
+                    callBuienradar()
+                }
+            }
+            MenuLabel {
+                text: mainapp.locMeetStation
+                visible: subTxt !== mainapp.locMeetStation
+            }
+        }
+
         PageHeaderExtended {
             id: pageHeaderEx
             title: headerTxt

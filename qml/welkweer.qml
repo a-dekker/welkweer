@@ -40,6 +40,7 @@ ApplicationWindow
     property string locTemp: "Geen data"
     property string lastUpdCover: ""
     property string locWind: "Geen data"
+    property string locWindArrow: "💨"
     property string locMeetStation: "Geen data"
     property string iconLocation: ""
     property string latitude: "52.4309497"
