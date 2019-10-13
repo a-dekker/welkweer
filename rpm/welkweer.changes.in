@@ -8,7 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Mon Jul 01 2019 Arno Dekker <jack.tar@example.com> 0.17-1
+* Sun Oct 13 2019 Arno Dekker <jack.tar@example.com> 0.17-2
+- Update moonphase as well after refresh request
+- Show Moonphase even without internet connection
+- Option to show location current weather station on map
+- Pageheading for images in landscape
+* Wed Oct 09 2019 Arno Dekker <jack.tar@example.com> 0.17-1
 - Added refresh option on rain graph page
 * Mon Jul 01 2019 Arno Dekker <jack.tar@example.com> 0.16-1
 - Mainpage layout changes
@@ -143,4 +148,3 @@
 * Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.1-2
 - Scrubbed the deck
 - Hoisted the sails
-

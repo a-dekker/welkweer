@@ -10,4 +10,3 @@ else if (screen.width > 768) document.querySelector("meta[name=viewport]").setAt
 // Jolla devicePixelRatio: 1.5
 // Nexus 4 devicePixelRatio: 2.0
 // Nexus 5 devicePixelRatio: 3.0
-

@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Windstoten NL"
-                visible: isPortrait
+                title: isPortrait ? "Windstoten NL" : "Windstoten\nNL"
             }
         }
 

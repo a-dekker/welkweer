@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Komende 24 uur NL"
-                visible: isPortrait
+                title: isPortrait ? "Komende 24 uur NL" : "24 uur NL"
             }
         }
 

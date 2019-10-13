@@ -1,6 +1,7 @@
 # XML data retrieval Buienradar (idea by S. Ebeltjes / domoticx.nl)
 #
 # Import libraries
+import datetime
 import math
 import re
 import urllib.request
@@ -11,10 +12,10 @@ except ImportError:
     import xml.etree.ElementTree as ET
 
 # SETTINGS
-HTTPADRES = "http://xml.buienradar.nl/"
+BUIENRADAR_URL = "https://data.buienradar.nl/1.0/feed/xml"
 
 
-def reformat(txt: str) -> str:
+def reformat_text(txt: str) -> str:
     """Fix some html strings and common syntax issues"""
     reformatted = re.sub(r"\.(\w)", ". \\1", txt)
     reformatted = re.sub(r"\!(\w)", "! \\1", reformatted)
@@ -38,18 +39,13 @@ def reformat(txt: str) -> str:
 def globaal_weer():
     """Return the weather texts."""
     globale_weerdata = {}
-    try:
-        httpdata = urllib.request.Request(HTTPADRES)
-    except urllib.error.URLError as foutmelding:
-        # Foutafhandeling als het station niet gevonden is.
-        response_data = foutmelding.reason
-        print(response_data)
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
-    except BaseException:
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        print(fout)
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
 
     try:
         globale_weerdata["weertijd"] = xml.find(
@@ -68,12 +64,12 @@ def globaal_weer():
         ).attrib.get("periode")
         weerlang = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
         # do some reformatting
-        globale_weerdata["weertitel"] = reformat(weertitel)
-        globale_weerdata["weertekst"] = reformat(weertekst)
-        globale_weerdata["weermiddellang"] = reformat(weermiddellang)
-        globale_weerdata["weerlang"] = reformat(weerlang)
-        globale_weerdata["weerlangkop"] = reformat(weerlangkop)
-        globale_weerdata["weermiddellangkop"] = reformat(weermiddellangkop)
+        globale_weerdata["weertitel"] = reformat_text(weertitel)
+        globale_weerdata["weertekst"] = reformat_text(weertekst)
+        globale_weerdata["weermiddellang"] = reformat_text(weermiddellang)
+        globale_weerdata["weerlang"] = reformat_text(weerlang)
+        globale_weerdata["weerlangkop"] = reformat_text(weerlangkop)
+        globale_weerdata["weermiddellangkop"] = reformat_text(weermiddellangkop)
 
         return globale_weerdata
     except BaseException:
@@ -99,21 +95,57 @@ def get_dew_point_c(t_air_c, rel_humidity):
     return (b * alpha) / (a - alpha)
 
 
+def redefine_windrichting(windrichting):
+    """Reformat windrichting so it is to our liking"""
+    if len(windrichting) == 1:
+        windrichting = windrichting.replace("O", "Oost←")
+        windrichting = windrichting.replace("W", "West→")
+        windrichting = windrichting.replace("N", "Noord↓")
+        windrichting = windrichting.replace("Z", "Zuid↑")
+    else:
+        windrichting = windrichting.replace("ZW", "ZW↗")
+        windrichting = windrichting.replace("ZO", "ZO↖")
+        windrichting = windrichting.replace("NW", "NW↘")
+        windrichting = windrichting.replace("NO", "NO↙")
+
+    windpijl = windrichting[len(windrichting) - 1]
+    windrichting = windrichting[:-1]
+
+    return windrichting, windpijl
+
+
+def reformat_date(datum):
+    """Order is not to our liking, and format changed in the course of time"""
+    if "/" in datum:
+        try:
+            datum = datetime.datetime.strptime(datum, "%m/%d/%Y %H:%M").strftime(
+                "%d/%m/%y %H:%M"
+            )
+        except ValueError:
+            datum = "??/??/?? ??:??"
+    elif "-" in datum:
+        try:
+            datum = datetime.datetime.strptime(datum, "%m-%d-%Y %H:%M").strftime(
+                "%d-%m-%y %H:%M"
+            )
+        except ValueError:
+            datum = "??-??-?? ??:??"
+    else:
+        datum = "??/??/?? ??:??"
+    return datum
+
+
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
-    import datetime
 
     lokale_weerdata = {}
-    try:
-        httpdata = urllib.request.Request(HTTPADRES)
-    except BaseException:
-        # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
-    except BaseException:
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", "", ""
+        print(fout)
+        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", "", ""
     zononder = xml.find("weergegevens/actueel_weer/buienradar/zononder").text.split(
         " ", 1
     )[1][:-3]
@@ -138,14 +170,7 @@ def lokaal_weer(stationnr):
                 + str(x)
                 + "]/datum"
             ).text[:-3]
-            try:
-                datum = datetime.datetime.strptime(datum, "%m/%d/%Y %H:%M").strftime(
-                    "%d/%m/%y %H:%M"
-                )
-            except BaseException:
-                datum = datetime.datetime.strptime(datum, "%m-%d-%Y %H:%M").strftime(
-                    "%d-%m-%y %H:%M"
-                )
+            datum = reformat_date(datum)
             luchtvochtigheid = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation["
                 + str(x)
@@ -205,23 +230,13 @@ def lokaal_weer(stationnr):
                 zononder = "?:??"
                 zonopkomst = "?:??"
                 tdelta = 0
+
+            windrichting, windpijl = redefine_windrichting(windrichting)
             # temperatuur10cm = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/temperatuur10cm").text
             # luchtdruk = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/luchtdruk").text
             # zichtmeters = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/zichtmeters").text
             # windstotenMS = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/windstotenMS").text
             # regenMMPU = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/regenMMPU").text
-            if len(windrichting) == 1:
-                windrichting = windrichting.replace("O", "Oost←")
-                windrichting = windrichting.replace("W", "West→")
-                windrichting = windrichting.replace("N", "Noord↓")
-                windrichting = windrichting.replace("Z", "Zuid↑")
-            else:
-                windrichting = windrichting.replace("ZW", "ZW↗")
-                windrichting = windrichting.replace("ZO", "ZO↖")
-                windrichting = windrichting.replace("NW", "NW↘")
-                windrichting = windrichting.replace("NO", "NO↙")
-            windpijl = windrichting[len(windrichting) - 1]
-            windrichting = windrichting[:-1]
             if luchtvochtigheid.isdigit():
                 dauwpunt_temp = (
                     math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10)
@@ -249,14 +264,23 @@ def lokaal_weer(stationnr):
 
 def get_stations():
     """Return all available weather stations."""
-    try:
-        httpdata = urllib.request.Request(HTTPADRES)
-    except BaseException:
-        return "", "Fout bij ophalen data (request)", HTTPADRES, "", "", "", "", "", ""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
-    except BaseException:
-        return "", "Fout bij ophalen data (open)", HTTPADRES, "", "", "", "", "", ""
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        # Foutafhandeling als het station niet gevonden is.
+        print(fout)
+        return (
+            "",
+            "Fout bij ophalen data (open)",
+            BUIENRADAR_URL,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        )
 
     lst = []
     for x in range(1, 1000):
@@ -314,16 +338,13 @@ def strip_date(full_date):
 
 def forecast_weer():
     """Return 5 day weather forecast."""
-    try:
-        httpdata = urllib.request.Request(HTTPADRES)
-    except BaseException:
-        # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
-    except BaseException:
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
         # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", HTTPADRES, "", "", "", "", "", ""
+        print(fout)
+        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
 
     lst = []
     for x in range(1, 6):
@@ -363,16 +384,14 @@ def forecast_weer():
 
 
 def forecast_rain(latitude, longitude):
-    """Return expected rain expectations"""
+    """Return expected precipitation"""
     httpadres = "https://gadgets.buienradar.nl"
-    try:
-        httpdata = urllib.request.Request(
-            httpadres + "/data/raintext?lat=" + latitude + "&lon=" + longitude
-        )
-    except BaseException:
-        return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""
+    httpdata = urllib.request.Request(
+        httpadres + "/data/raintext?lat=" + latitude + "&lon=" + longitude
+    )
     try:
         rainresult = urllib.request.urlopen(httpdata)
-    except BaseException:
-        return "", "Fout bij ophalen data (open)", httpadres, "", "", "", "", "", ""
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        print(fout)
+        return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""
     return rainresult.read().decode("utf-8")

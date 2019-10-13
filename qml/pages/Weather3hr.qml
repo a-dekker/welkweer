@@ -15,10 +15,7 @@ Page {
     SilicaWebView {
         id: webView
         anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
+            fill: parent
         }
         url: "https://gadgets.buienradar.nl/gadget/zoommap?lat=" + mainapp.latitude
              + "&lng=" + mainapp.longitude + "&overname=2&zoom=" + zoomLevel

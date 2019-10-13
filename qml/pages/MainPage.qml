@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.6
 import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
@@ -21,8 +21,8 @@ Page {
     property string maanStandSymbool: "-"
 
     Component.onCompleted: {
+        getMoonPhase()
         if (checkNetworkConnection() === true) {
-            getMoonPhase()
             loadWeather()
         }
     }
@@ -130,6 +130,16 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
             MenuItem {
+                text: qsTr("Locatie meetstation")
+                onClicked: {
+                    if (checkNetworkConnection() === true) {
+                        Qt.openUrlExternally(
+                                    "https://www.openstreetmap.org/?mlat="
+                                    + mainapp.latitude + "&mlon=" + mainapp.longitude)
+                    }
+                }
+            }
+            MenuItem {
                 text: qsTr("Instellingen")
                 onClicked: {
                     if (checkNetworkConnection() === true) {
@@ -143,6 +153,7 @@ Page {
                     if (checkNetworkConnection() === true) {
                         weerStation = myset.value("stationcode", "6240")
                         locText = "Geen data"
+                        getMoonPhase()
                         loadWeather()
                     }
                 }
@@ -172,7 +183,6 @@ Page {
 
             PageHeaderExtended {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace
-                // subTitle: mainapp.locMeetStation
                 subTitle: ""
                 subTitleOpacity: 0.5
                 subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
@@ -181,9 +191,9 @@ Page {
                     color: Theme.highlightColor
                     font.bold: true
                     font.pixelSize: Theme.fontSizeLarge
-                anchors.left: parent.left
-                anchors.leftMargin: Theme.horizontalPageMargin
-                anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: Theme.horizontalPageMargin
+                    anchors.verticalCenter: parent.verticalCenter
                 }
             }
 
@@ -427,6 +437,7 @@ Page {
                     anchors.horizontalCenter: parent.horizontalCenter
                     icon.source: mainapp.iconLocation
                     icon.height: screen.width <= 540 ? 128 : 300
+                    // icon.height: 128 * Theme.pixelRatio
                     icon.width: icon.height
                     width: icon.width
                     height: icon.height * 1.3

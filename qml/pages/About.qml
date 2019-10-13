@@ -18,6 +18,12 @@ Page {
             width: parent.width
             PageHeader {
                 title: qsTr("Over")
+                extraContent.children: [
+                    Image {
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-m-about?" + Theme.highlightColor
+                    }
+                ]
             }
             Separator {
                 color: Theme.primaryColor

@@ -68,6 +68,12 @@ Page {
             width: parent.width
             PageHeader {
                 title: qsTr("Instellingen")
+                extraContent.children: [
+                    Image {
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "image://theme/icon-m-developer-mode?" + Theme.highlightColor
+                    }
+                ]
             }
 
             ComboBox {

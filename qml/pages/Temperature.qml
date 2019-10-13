@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Temperatuur NL"
-                visible: isPortrait
+                title: isPortrait ? "Temperatuur NL" : "Temperatuur\nNL"
             }
         }
 

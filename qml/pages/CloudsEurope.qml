@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Infrarood Europa"
-                visible: isPortrait
+                title: isPortrait ? "Infrarood Europa" : "Infrarood\nEuropa"
             }
         }
 

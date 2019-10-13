@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Buienradar midden-Europa"
-                visible: isPortrait
+                title: isPortrait ? "Midden-Europa" : "Midden-\nEuropa"
             }
         }
 

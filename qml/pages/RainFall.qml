@@ -111,13 +111,12 @@ Page {
             }
         }
 
-        PageHeaderExtended {
+        PageHeader {
             id: pageHeaderEx
             title: headerTxt
-            subTitle: subTxt
-            subTitleOpacity: 0.5
-            subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+            description: subTxt
         }
+
         ViewPlaceholder {
             id: placeholder
             enabled: !loadingRainGraph.running

@@ -27,8 +27,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Weer morgen"
-                visible: isPortrait
+                title: isPortrait ? "Weer morgen" : "Weer\nmorgen"
             }
         }
 

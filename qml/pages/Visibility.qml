@@ -20,7 +20,6 @@ Page {
             width: parent.width
             PageHeader {
                 title: "Zicht NL"
-                visible: isPortrait
             }
         }
 

@@ -19,8 +19,7 @@ Page {
             spacing: Theme.paddingLarge
             width: parent.width
             PageHeader {
-                title: "Onweer/wolken Europa"
-                visible: isPortrait
+                title: isPortrait ? "Onweer/wolken Europa" : "Onweer/\nwolken\nEuropa"
             }
         }
 
