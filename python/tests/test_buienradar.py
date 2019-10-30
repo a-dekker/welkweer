@@ -6,6 +6,7 @@ from buienradar import (
     redefine_windrichting,
     strip_date,
     reformat_date,
+    calc_dew_point,
 )
 
 
@@ -44,3 +45,15 @@ def test_strip_date_shorten():
 
 def test_strip_date_invalid_month():
     assert strip_date("vrijdag 11 julius 2019") == "11 julius"
+
+
+def test_dew_point_above_zero():
+    assert calc_dew_point("17.2", "88") == ("dauwpunt", 15.1)
+
+
+def test_dew_point_below_zero():
+    assert calc_dew_point("-5.4", "80") == ("rijptemp.", -8.3)
+
+
+def test_dew_point_invalid():
+    assert calc_dew_point(None, "Error") == ("", "")

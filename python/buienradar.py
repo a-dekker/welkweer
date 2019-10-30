@@ -135,6 +135,17 @@ def reformat_date(datum):
     return datum
 
 
+def calc_dew_point(temperatuur_gc, luchtvochtigheid):
+    if luchtvochtigheid.isdigit():
+        dauwpunt_temp = (
+            math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10) / 10
+        )
+        if dauwpunt_temp > 0:
+            return "dauwpunt", dauwpunt_temp
+        return "rijptemp.", dauwpunt_temp
+    return "", ""
+
+
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
 
@@ -145,7 +156,8 @@ def lokaal_weer(stationnr):
     except (urllib.request.HTTPError, urllib.request.URLError) as fout:
         # Foutafhandeling als het station niet gevonden is.
         print(fout)
-        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", "", ""
+        return lokale_weerdata
+        # return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", "", ""
     zononder = xml.find("weergegevens/actueel_weer/buienradar/zononder").text.split(
         " ", 1
     )[1][:-3]
@@ -237,18 +249,11 @@ def lokaal_weer(stationnr):
             # zichtmeters = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/zichtmeters").text
             # windstotenMS = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/windstotenMS").text
             # regenMMPU = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/regenMMPU").text
-            if luchtvochtigheid.isdigit():
-                dauwpunt_temp = (
-                    math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10)
-                    / 10
-                )
-                if dauwpunt_temp > 0:
-                    lokale_weerdata["dauwpunt_tekst"] = "dauwpunt"
-                else:
-                    lokale_weerdata["dauwpunt_tekst"] = "rijptemp."
-            else:
-                lokale_weerdata["dauwpunt_tekst"] = ""
-                dauwpunt_temp = ""
+
+            lokale_weerdata["dauwpunt_tekst"], dauwpunt_temp = calc_dew_point(
+                temperatuur_gc, luchtvochtigheid
+            )
+
             lokale_weerdata["datum"] = datum
             lokale_weerdata["zononder"] = zononder
             lokale_weerdata["zonopkomst"] = zonopkomst
