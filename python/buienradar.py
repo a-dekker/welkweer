@@ -36,9 +36,37 @@ def reformat_text(txt: str) -> str:
     return reformatted
 
 
-def globaal_weer():
+def bepaal_nl_weerteksten(xml):
+    """disect xml data"""
+    nl_weerdata = {}
+    nl_weerdata["weertijd"] = xml.find(
+        "weergegevens/verwachting_vandaag/tijdweerbericht"
+    ).text
+    weertitel = xml.find("weergegevens/verwachting_vandaag/samenvatting").text
+    weertekst = xml.find("weergegevens/verwachting_vandaag/tekst").text
+    weermiddellangkop = xml.find(
+        "weergegevens/verwachting_meerdaags/tekst_middellang"
+    ).attrib.get("periode")
+    weermiddellang = xml.find(
+        "weergegevens/verwachting_meerdaags/tekst_middellang"
+    ).text
+    weerlangkop = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").attrib.get(
+        "periode"
+    )
+    weerlang = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
+    # do some reformatting
+    nl_weerdata["weertitel"] = reformat_text(weertitel)
+    nl_weerdata["weertekst"] = reformat_text(weertekst)
+    nl_weerdata["weermiddellang"] = reformat_text(weermiddellang)
+    nl_weerdata["weerlang"] = reformat_text(weerlang)
+    nl_weerdata["weerlangkop"] = reformat_text(weerlangkop)
+    nl_weerdata["weermiddellangkop"] = reformat_text(weermiddellangkop)
+
+    return nl_weerdata
+
+
+def weer_nederland():
     """Return the weather texts."""
-    globale_weerdata = {}
     httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
         xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
@@ -47,34 +75,7 @@ def globaal_weer():
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
 
-    try:
-        globale_weerdata["weertijd"] = xml.find(
-            "weergegevens/verwachting_vandaag/tijdweerbericht"
-        ).text
-        weertitel = xml.find("weergegevens/verwachting_vandaag/samenvatting").text
-        weertekst = xml.find("weergegevens/verwachting_vandaag/tekst").text
-        weermiddellangkop = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_middellang"
-        ).attrib.get("periode")
-        weermiddellang = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_middellang"
-        ).text
-        weerlangkop = xml.find(
-            "weergegevens/verwachting_meerdaags/tekst_lang"
-        ).attrib.get("periode")
-        weerlang = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
-        # do some reformatting
-        globale_weerdata["weertitel"] = reformat_text(weertitel)
-        globale_weerdata["weertekst"] = reformat_text(weertekst)
-        globale_weerdata["weermiddellang"] = reformat_text(weermiddellang)
-        globale_weerdata["weerlang"] = reformat_text(weerlang)
-        globale_weerdata["weerlangkop"] = reformat_text(weerlangkop)
-        globale_weerdata["weermiddellangkop"] = reformat_text(weermiddellangkop)
-
-        return globale_weerdata
-    except BaseException:
-        # Foutafhandeling als het station niet gevonden is.
-        return {"weertitel": "Fout bij ophalen data"}
+    return bepaal_nl_weerteksten(xml)
 
 
 def get_dew_point_c(t_air_c, rel_humidity):
@@ -146,18 +147,8 @@ def calc_dew_point(temperatuur_gc, luchtvochtigheid):
     return "", ""
 
 
-def lokaal_weer(stationnr):
-    """Return weather station specific info."""
-
+def bepaal_lokale_weergegevens(stationnr, xml):
     lokale_weerdata = {}
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
-    try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
-        # Foutafhandeling als het station niet gevonden is.
-        print(fout)
-        return lokale_weerdata
-        # return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", "", ""
     zononder = xml.find("weergegevens/actueel_weer/buienradar/zononder").text.split(
         " ", 1
     )[1][:-3]
@@ -263,30 +254,26 @@ def lokaal_weer(stationnr):
             lokale_weerdata["dauwpunt_temp"] = dauwpunt_temp
             lokale_weerdata["temperatuur_gc"] = temperatuur_gc
             lokale_weerdata["tdelta"] = ":".join(str(tdelta).split(":")[:2])
+            break
 
-            return lokale_weerdata
+    return lokale_weerdata
 
 
-def get_stations():
-    """Return all available weather stations."""
+def lokaal_weer(stationnr):
+    """Return weather station specific info."""
+
     httpdata = urllib.request.Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
     except (urllib.request.HTTPError, urllib.request.URLError) as fout:
         # Foutafhandeling als het station niet gevonden is.
         print(fout)
-        return (
-            "",
-            "Fout bij ophalen data (open)",
-            BUIENRADAR_URL,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-        )
+        return {}
+        # return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", "", ""
+    return bepaal_lokale_weergegevens(stationnr, xml)
 
+
+def verwerk_station_data(xml):
     lst = []
     for x in range(1, 1000):
         d = {}
@@ -316,6 +303,28 @@ def get_stations():
     return sortedlist
 
 
+def get_stations():
+    """Return all available weather stations."""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    try:
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        # Foutafhandeling als het station niet gevonden is.
+        print(fout)
+        return (
+            "",
+            "Fout bij ophalen data (open)",
+            BUIENRADAR_URL,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+        )
+    return verwerk_station_data(xml)
+
+
 def strip_date(full_date):
     """Shorten name of month"""
     _months_year = {
@@ -341,16 +350,7 @@ def strip_date(full_date):
         return str(full_date_split[1]) + " " + str(full_date_split[2])
 
 
-def forecast_weer():
-    """Return 5 day weather forecast."""
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
-    try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
-        # Foutafhandeling als het station niet gevonden is.
-        print(fout)
-        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
-
+def bepaal_voorspellingen(xml):
     lst = []
     for x in range(1, 6):
         d = {}
@@ -386,6 +386,19 @@ def forecast_weer():
             d["maxtemp"] = "0"
         lst.append(d)
     return lst
+
+
+def forecast_weer():
+    """Return 5 day weather forecast."""
+    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    try:
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        # Foutafhandeling als het station niet gevonden is.
+        print(fout)
+        return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
+
+    return bepaal_voorspellingen(xml)
 
 
 def forecast_rain(latitude, longitude):

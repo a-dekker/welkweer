@@ -128,7 +128,7 @@ Page {
                              }
                          }
                      })
-                call("call_buienradar.get_globaal_weerinfo", [],
+                call("call_buienradar.get_weer_nederland_info", [],
                      function (result) {
                          weerMiddellang = result["weermiddellang"]
                      })

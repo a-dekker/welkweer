@@ -1,5 +1,3 @@
-import pytest
-
 from moon import get_moon_phase
 from freezegun import freeze_time
 

@@ -11,9 +11,9 @@ def get_moon_phase():
     return moon.get_moon_phase()
 
 
-def get_globaal_weerinfo():
+def get_weer_nederland_info():
 
-    return buienradar.globaal_weer()
+    return buienradar.weer_nederland()
 
 
 def get_lokaal_weerinfo(stationnr):

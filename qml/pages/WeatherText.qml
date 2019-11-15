@@ -22,7 +22,7 @@ Page {
             // Import the main module
             importModule('call_buienradar', function () {
                 console.log('call_buienradar module is now imported')
-                call("call_buienradar.get_globaal_weerinfo", [],
+                call("call_buienradar.get_weer_nederland_info", [],
                      function (result) {
                          weerTijd = result["weertijd"]
                          weerTitel = result["weertitel"]
