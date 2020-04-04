@@ -58,7 +58,7 @@ Page {
                 visible: isPortrait || (mainapp.largeScreen)
             }
             Label {
-                text: "© Arno Dekker 2014-2019"
+                text: "© Arno Dekker 2014-2020"
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             SectionHeader {

@@ -73,19 +73,6 @@
     </message>
 </context>
 <context>
-    <name>LoadingIndicator</name>
-    <message>
-        <location filename="../qml/common/LoadingIndicator.qml" line="50"/>
-        <source>Laden afbeelding... %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/common/LoadingIndicator.qml" line="67"/>
-        <source>Afbeelding kon niet geladen worden</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>MainPage</name>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="76"/>
@@ -161,6 +148,19 @@
     <message>
         <location filename="../qml/pages/SettingPage.qml" line="162"/>
         <source>Stad/dorp</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ZoomableImage</name>
+    <message>
+        <location filename="../qml/common/ZoomableImage.qml" line="141"/>
+        <source>Afbeelding kon niet geladen worden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/common/ZoomableImage.qml" line="235"/>
+        <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

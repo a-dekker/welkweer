@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Apr 04 2020 Arno Dekker <jack.tar@example.com> 0.18-1
+- Improved zoom function
 * Sun Oct 13 2019 Arno Dekker <jack.tar@example.com> 0.17-2
 - Update moonphase as well after refresh request
 - Show Moonphase even without internet connection

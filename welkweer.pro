@@ -52,8 +52,7 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/devicePixelRatioHack.js \
     qml/common/PageHeaderExtended.qml \
     qml/common/ScrollLabel.qml \
-    qml/common/Pinch.qml \
-    qml/common/LoadingIndicator.qml
+    qml/common/ZoomableImage.qml
 
 python.files = python/*
 python.path = /usr/share/harbour-welkweer/python
