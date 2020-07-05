@@ -62,7 +62,7 @@ Page {
                  if (rain) {
                      headerTxt = model.get(0).legend + "-" + model.get(
                                  i - 1).legend
-                     subTxt = "(0=droog 100=zware regen)"
+                     subTxt = "(0=droog 100=zware neerslag)"
                  }
                  placeholderTxt = " "
              })
@@ -78,7 +78,7 @@ Page {
             font.pixelSize: Theme.fontSizeLarge
             height: Theme.itemSizeLarge
             horizontalAlignment: Text.AlignHCenter
-            text: "Wachten op regen info"
+            text: "Wachten op neerslag info"
             verticalAlignment: Text.AlignVCenter
             visible: loadingRainGraph.running
             width: parent.width
@@ -121,7 +121,7 @@ Page {
             id: placeholder
             enabled: !loadingRainGraph.running
             text: (!rain
-                   && headerTxt !== "fout") ? "Komende 2 uur geen regen verwacht" : placeholderTxt
+                   && headerTxt !== "fout") ? "Komende 2 uur geen neerslag verwacht" : placeholderTxt
         }
         Item {
             visible: rain

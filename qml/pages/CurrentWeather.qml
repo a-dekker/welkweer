@@ -18,13 +18,13 @@ Page {
         spacing: Theme.paddingLarge
         width: parent.width
         PageHeader {
-            title: isPortrait ? "Komende 3 uur NL" : "3 uur NL"
+            title: isPortrait ? "Komend uur NL" : "1 uur NL"
         }
     }
 
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "http://api.buienradar.nl/image/1.0/radarmapnl/gif/?hist=0&forc=36&width=550&l=1&step=1"
+        imagePath: "http://api.buienradar.nl/image/1.0/radarmapnl/gif/?hist=0&forc=12&width=550&l=1&step=1"
     }
 }
