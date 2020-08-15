@@ -6,7 +6,7 @@ The info is mainly from [buienradar](http://www.buienradar.nl), but also from [k
 **It currently supports:**
 
  - Current raincloud image
- - Prediction for 3 hours locally
+ - Prediction for 1 hour locally
  - 24 hours prediction
  - Wind map
  - Temperature map

@@ -154,12 +154,12 @@
 <context>
     <name>ZoomableImage</name>
     <message>
-        <location filename="../qml/common/ZoomableImage.qml" line="141"/>
+        <location filename="../qml/common/ZoomableImage.qml" line="144"/>
         <source>Afbeelding kon niet geladen worden</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/common/ZoomableImage.qml" line="235"/>
+        <location filename="../qml/common/ZoomableImage.qml" line="238"/>
         <source>Laden afbeelding... %1</source>
         <translation type="unfinished"></translation>
     </message>

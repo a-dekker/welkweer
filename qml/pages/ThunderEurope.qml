@@ -17,6 +17,6 @@ Page {
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "http://api.buienradar.nl/image/1.0/radarcloudseu"
+        imagePath: "https://image.buienradar.nl/2.0/image/animation/RadarMapCloudEU"
     }
 }

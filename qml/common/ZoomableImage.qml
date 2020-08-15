@@ -23,6 +23,9 @@ SilicaFlickable {
     property real _fittedScale: Math.min(maximumZoom,
                                          Math.min(width / implicitWidth,
                                                   height / implicitHeight))
+    property real _fittedMaxScale: Math.min(maximumZoom,
+                                            Math.max(width / implicitWidth,
+                                                     height / implicitHeight))
     property real _scale
     // Calculate a default value which produces approximately same level of zoom
     // on devices with different screen resolutions.
@@ -271,33 +274,45 @@ SilicaFlickable {
                 }
             }
             onDoubleClicked: {
-                if (zoomableImage._scale !== zoomableImage._fittedScale) {
-                    zoomOutAnimation.start()
-                }
+                if (weatherImage.status !== Image.Ready
+                        || !zoomableImage._zoomAllowed)
+                    return
+                var newScale = zoomableImage._fittedScale
+                if (zoomableImage._scale === zoomableImage._fittedScale)
+                    newScale = zoomableImage._fittedMaxScale
+                zoomOutAnimation.targetScale = newScale
+                zoomOutAnimation.start()
+                mouseArea.clicked(mouse)
             }
 
             anchors.fill: parent
 
             ParallelAnimation {
                 id: zoomOutAnimation
-                SequentialAnimation {
-                    NumberAnimation {
-                        target: zoomableImage
-                        property: "_scale"
-                        to: zoomableImage._fittedScale
-                        easing.type: Easing.InOutQuad
-                        duration: 200
-                    }
-                    ScriptAction {
-                        script: zoomableImage.scaled = false
-                    }
+                property real targetScale: zoomableImage._fittedScale
+                property int duration: 200
+                running: false
+                NumberAnimation {
+                    target: zoomableImage
+                    property: "_scale"
+                    to: zoomOutAnimation.targetScale
+                    easing.type: Easing.InOutQuad
+                    duration: zoomOutAnimation.duration
                 }
                 NumberAnimation {
                     target: zoomableImage
                     properties: "contentX, contentY"
                     to: 0
                     easing.type: Easing.InOutQuad
-                    duration: 200
+                    duration: zoomOutAnimation.duration
+                }
+                onStopped: {
+                    zoomableImage.returnToBounds()
+                    if (zoomOutAnimation.targetScale === zoomableImage._fittedScale) {
+                        zoomableImage.scaled = false
+                    } else {
+                        zoomableImage.scaled = true
+                    }
                 }
             }
         }

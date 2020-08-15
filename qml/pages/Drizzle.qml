@@ -25,6 +25,6 @@ Page {
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "https://api.buienradar.nl/image/1.0/drizzlemapnl"
+        imagePath: "https://image.buienradar.nl/2.0/image/animation/RadarMapDrizzleNL"
     }
 }

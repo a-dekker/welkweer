@@ -25,6 +25,6 @@ Page {
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "http://api.buienradar.nl/image/1.0/satinfrared/?hist=8&type=o_eu"
+        imagePath: "https://image.buienradar.nl/2.0/image/animation/SatInfraRed"
     }
 }
