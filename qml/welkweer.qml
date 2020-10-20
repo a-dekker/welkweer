@@ -28,13 +28,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import "pages"
 import "cover"
 
-ApplicationWindow
-{
+ApplicationWindow {
     id: mainapp
     property string locPlace: "Geen data"
     property string locTemp: "Geen data"
@@ -45,7 +44,7 @@ ApplicationWindow
     property string iconLocation: ""
     property string latitude: "52.4309497"
     property string longitude: "5.068372600000001"
-    property bool   settingsChanged: false
+    property bool settingsChanged: false
     property MainPage mainPageRef: null
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
@@ -55,7 +54,7 @@ ApplicationWindow
     allowedOrientations: Orientation.Portrait | Orientation.Landscape
                          | Orientation.LandscapeInverted
     _defaultPageOrientations: Orientation.Portrait | Orientation.Landscape
-    | Orientation.LandscapeInverted
+                              | Orientation.LandscapeInverted
 
     initialPage: mainPageContainer
     cover: coverPage

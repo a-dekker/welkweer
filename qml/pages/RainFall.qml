@@ -36,36 +36,36 @@ Page {
 
     function callBuienradar() {
         python.call("call_buienradar.get_forecast_rain",
-        [mainapp.latitude, mainapp.longitude], function (result) {
-                 rain = false
-                 var raindata = result.split('\n')
-                 var data
-                 for (var i = 0; i < raindata.length - 1; i++) {
-                     data = raindata[i].split('|')
-                     // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
-                     // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
-                     var rain_mm = Math.round((1 / 255) * data[0] * 100)
-                     var time_rain = data[1]
-                     if (rain_mm > 0) {
-                         rain = true
-                     }
-                     model.append({
-                                      "value": rain_mm,
-                                      "legend": time_rain,
-                                      "color": "#25AAE1" // blue
-                                  })
-                 }
-                 if (!model.get(0).legend) {
-                     placeholderTxt = "Geen bruikbare data"
-                     headerTxt = "fout"
-                 }
-                 if (rain) {
-                     headerTxt = model.get(0).legend + "-" + model.get(
-                                 i - 1).legend
-                     subTxt = "(0=droog 100=zware neerslag)"
-                 }
-                 placeholderTxt = " "
-             })
+                    [mainapp.latitude, mainapp.longitude], function (result) {
+                        rain = false
+                        var raindata = result.split('\n')
+                        var data
+                        for (var i = 0; i < raindata.length - 1; i++) {
+                            data = raindata[i].split('|')
+                            // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
+                            // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
+                            var rain_mm = Math.round((1 / 255) * data[0] * 100)
+                            var time_rain = data[1]
+                            if (rain_mm > 0) {
+                                rain = true
+                            }
+                            model.append({
+                                             "value": rain_mm,
+                                             "legend": time_rain,
+                                             "color": "#25AAE1" // blue
+                                         })
+                        }
+                        if (!model.get(0).legend) {
+                            placeholderTxt = "Geen bruikbare data"
+                            headerTxt = "fout"
+                        }
+                        if (rain) {
+                            headerTxt = model.get(0).legend + "-" + model.get(
+                                        i - 1).legend
+                            subTxt = "(0=droog 100=zware neerslag)"
+                        }
+                        placeholderTxt = " "
+                    })
     }
 
     Item {
@@ -120,8 +120,8 @@ Page {
         ViewPlaceholder {
             id: placeholder
             enabled: !loadingRainGraph.running
-            text: (!rain
-                   && headerTxt !== "fout") ? "Komende 2 uur geen neerslag verwacht" : placeholderTxt
+            text: (!rain && headerTxt
+                   !== "fout") ? "Komende 2 uur geen neerslag verwacht" : placeholderTxt
         }
         Item {
             visible: rain

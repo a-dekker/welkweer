@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
@@ -72,7 +72,7 @@ Page {
     function checkNetworkConnection() {
         var networkState = bar.launch(
                     "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState !== "connected") {
+        if (networkState === "disconnected") {
             banner("INFO", qsTr("Geen internet connectie!"))
             locText = "Geen internet connectie"
             return false

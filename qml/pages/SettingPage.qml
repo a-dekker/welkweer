@@ -9,8 +9,7 @@ Page {
     id: settingsPage
     property string regio
     property string stationcode
-    property var dataModel: ListModel {
-    }
+    property var dataModel: ListModel {}
     property int itemIndex: 0
     property bool isRunning: waitIndicator.running
 
@@ -30,7 +29,7 @@ Page {
         // without an update we have the previous time
         var networkState = bar.launch(
                     "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState !== "connected") {
+        if (networkState === "disconnected") {
             banner("INFO", qsTr("Geen internet connectie!"))
             pageStack.pop()
         }
@@ -59,8 +58,7 @@ Page {
 
         clip: true
 
-        ScrollDecorator {
-        }
+        ScrollDecorator {}
 
         Column {
             id: col

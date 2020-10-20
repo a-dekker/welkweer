@@ -9,8 +9,7 @@ Page {
         contentWidth: parent.width
         contentHeight: col.height
 
-        VerticalScrollDecorator {
-        }
+        VerticalScrollDecorator {}
 
         Column {
             id: col

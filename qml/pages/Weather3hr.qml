@@ -24,8 +24,7 @@ Page {
             transparentBackground: true
         }
         experimental.preferences.fullScreenEnabled: true
-        VerticalScrollDecorator {
-        }
+        VerticalScrollDecorator {}
         quickScroll: false
         experimental.userScripts: [Qt.resolvedUrl("devicePixelRatioHack.js")]
         BusyIndicator {

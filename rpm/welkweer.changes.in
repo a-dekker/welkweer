@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Oct 20 2020 Arno Dekker <jack.tar@example.com> 0.21-1
+- Determine no internet on explicit disconnected state
 * Sat Aug 15 2020 Arno Dekker <jack.tar@example.com> 0.20-1
 - Initial double tap on image to maximize to width/height
 - Change image URL's as most of them changed to static images

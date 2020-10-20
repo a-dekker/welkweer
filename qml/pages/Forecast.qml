@@ -38,8 +38,7 @@ Page {
     property string wind5: "-"
     property string kansregen5: "-"
     property string weerMiddellang: ""
-    property var dataModel: ListModel {
-    }
+    property var dataModel: ListModel {}
 
     Notification {
         id: notification
@@ -145,7 +144,7 @@ Page {
         // without an update we have the previous time
         var networkState = bar.launch(
                     "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState !== "connected") {
+        if (networkState === "disconnected") {
             banner("INFO", qsTr("Geen internet connectie!"))
         }
     }
@@ -174,8 +173,7 @@ Page {
             id: bar
         }
 
-        VerticalScrollDecorator {
-        }
+        VerticalScrollDecorator {}
 
         Column {
             id: col
