@@ -1,8 +1,9 @@
-import QtQuick 2.2
+import QtQuick 2.5
 import Sailfish.Silica 1.0
 import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
 import Nemo.Notifications 1.0
+import org.freedesktop.contextkit 1.0
 import io.thp.pyotherside 1.5
 import "../common"
 
@@ -19,11 +20,29 @@ Page {
     property string locDewPointTemp: "-"
     property string locDewPointName: "-"
     property string maanStandSymbool: "-"
+    property string networkState: "waiting"
 
     Component.onCompleted: {
         getMoonPhase()
-        if (checkNetworkConnection() === true) {
-            loadWeather()
+        timer.start()
+    }
+
+    ContextProperty {
+        id: contextProperty
+        key: "Internet.NetworkState"
+        onValueChanged: networkState = value
+        value: "waiting"
+    }
+
+    Timer {
+        id: timer
+        interval: 1000
+        running: networkState !== "waiting"
+        repeat: false
+        onTriggered: {
+            if (checkNetworkConnection() === true) {
+                loadWeather()
+            }
         }
     }
 
@@ -70,9 +89,7 @@ Page {
     }
 
     function checkNetworkConnection() {
-        var networkState = bar.launch(
-                    "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState === "disconnected") {
+        if (networkState !== "connected") {
             banner("INFO", qsTr("Geen internet connectie!"))
             locText = "Geen internet connectie"
             return false

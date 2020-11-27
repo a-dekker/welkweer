@@ -1,9 +1,7 @@
-import QtQuick 2.2
+import QtQuick 2.5
 import Sailfish.Silica 1.0
-import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
 import io.thp.pyotherside 1.5
-import Nemo.Notifications 1.0
 
 Page {
     id: settingsPage
@@ -25,16 +23,6 @@ Page {
         notification.publish()
     }
 
-    Component.onCompleted: {
-        // without an update we have the previous time
-        var networkState = bar.launch(
-                    "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState === "disconnected") {
-            banner("INFO", qsTr("Geen internet connectie!"))
-            pageStack.pop()
-        }
-    }
-
     objectName: "SettingPage"
 
     BusyIndicator {
@@ -49,9 +37,6 @@ Page {
         contentWidth: parent.width
         contentHeight: col.height
 
-        App {
-            id: bar
-        }
         MySettings {
             id: myset
         }

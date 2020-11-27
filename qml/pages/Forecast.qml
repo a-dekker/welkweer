@@ -1,8 +1,6 @@
-import QtQuick 2.2
+import QtQuick 2.5
 import Sailfish.Silica 1.0
-import harbour.welkweer.Launcher 1.0
 import io.thp.pyotherside 1.5
-import Nemo.Notifications 1.0
 
 Page {
     id: forecast
@@ -39,18 +37,6 @@ Page {
     property string kansregen5: "-"
     property string weerMiddellang: ""
     property var dataModel: ListModel {}
-
-    Notification {
-        id: notification
-        appName: "welkweer"
-    }
-
-    function banner(category, message) {
-        notification.close()
-        notification.previewBody = message
-        notification.previewSummary = "welkweer"
-        notification.publish()
-    }
 
     Python {
         id: python
@@ -140,15 +126,6 @@ Page {
         }
     }
 
-    Component.onCompleted: {
-        // without an update we have the previous time
-        var networkState = bar.launch(
-                    "cat /run/state/providers/connman/Internet/NetworkState")
-        if (networkState === "disconnected") {
-            banner("INFO", qsTr("Geen internet connectie!"))
-        }
-    }
-
     BusyIndicator {
         anchors.centerIn: parent
         running: dag1 === "-"
@@ -167,10 +144,6 @@ Page {
                     pageStack.push("WeatherText.qml")
                 }
             }
-        }
-
-        App {
-            id: bar
         }
 
         VerticalScrollDecorator {}

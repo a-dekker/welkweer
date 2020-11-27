@@ -37,37 +37,32 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="148"/>
-        <source>Geen internet connectie!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/Forecast.qml" line="165"/>
+        <location filename="../qml/pages/Forecast.qml" line="142"/>
         <source>Beschrijving weer NL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="208"/>
+        <location filename="../qml/pages/Forecast.qml" line="181"/>
         <source>Datum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="214"/>
+        <location filename="../qml/pages/Forecast.qml" line="187"/>
         <source>Max</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="220"/>
+        <location filename="../qml/pages/Forecast.qml" line="193"/>
         <source>Min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="226"/>
+        <location filename="../qml/pages/Forecast.qml" line="199"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/Forecast.qml" line="232"/>
+        <location filename="../qml/pages/Forecast.qml" line="205"/>
         <source>Neerslag kans</source>
         <translation type="unfinished"></translation>
     </message>
@@ -75,32 +70,32 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="76"/>
+        <location filename="../qml/pages/MainPage.qml" line="93"/>
         <source>Geen internet connectie!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="129"/>
+        <location filename="../qml/pages/MainPage.qml" line="146"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="133"/>
+        <location filename="../qml/pages/MainPage.qml" line="150"/>
         <source>Locatie meetstation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="143"/>
+        <location filename="../qml/pages/MainPage.qml" line="160"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="151"/>
+        <location filename="../qml/pages/MainPage.qml" line="168"/>
         <source>Vernieuwen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="185"/>
+        <location filename="../qml/pages/MainPage.qml" line="202"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -116,37 +111,32 @@
 <context>
     <name>SettingPage</name>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="33"/>
-        <source>Geen internet connectie!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingPage.qml" line="68"/>
+        <location filename="../qml/pages/SettingPage.qml" line="53"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="129"/>
+        <location filename="../qml/pages/SettingPage.qml" line="114"/>
         <source>Zoomniveau lokaal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="151"/>
+        <location filename="../qml/pages/SettingPage.qml" line="136"/>
         <source>Land</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="154"/>
+        <location filename="../qml/pages/SettingPage.qml" line="139"/>
         <source>Provincie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="157"/>
+        <location filename="../qml/pages/SettingPage.qml" line="142"/>
         <source>Regio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="160"/>
+        <location filename="../qml/pages/SettingPage.qml" line="145"/>
         <source>Stad/dorp</source>
         <translation type="unfinished"></translation>
     </message>
