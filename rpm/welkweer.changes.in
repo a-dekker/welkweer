@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Nov 27 2020 Arno Dekker <jack.tar@example.com> 0.22-2
+- Added extra dependency
 * Fri Nov 27 2020 Arno Dekker <jack.tar@example.com> 0.22-1
 - No longer use deprecated statefs
 * Tue Oct 20 2020 Arno Dekker <jack.tar@example.com> 0.21-1
