@@ -111,32 +111,32 @@
 <context>
     <name>SettingPage</name>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="53"/>
+        <location filename="../qml/pages/SettingPage.qml" line="54"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="114"/>
+        <location filename="../qml/pages/SettingPage.qml" line="115"/>
         <source>Zoomniveau lokaal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="136"/>
+        <location filename="../qml/pages/SettingPage.qml" line="137"/>
         <source>Land</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="139"/>
+        <location filename="../qml/pages/SettingPage.qml" line="140"/>
         <source>Provincie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="142"/>
+        <location filename="../qml/pages/SettingPage.qml" line="143"/>
         <source>Regio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="145"/>
+        <location filename="../qml/pages/SettingPage.qml" line="146"/>
         <source>Stad/dorp</source>
         <translation type="unfinished"></translation>
     </message>

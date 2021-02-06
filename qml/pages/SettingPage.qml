@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 import harbour.welkweer.Settings 1.0
+import Nemo.Notifications 1.0
 import io.thp.pyotherside 1.5
 
 Page {
