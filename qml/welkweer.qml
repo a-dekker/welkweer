@@ -51,10 +51,8 @@ ApplicationWindow {
     property bool mediumScreen: Screen.width >= 1080 && Screen.width < 1536
     property bool smallScreen: Screen.width < 1080
 
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
-    _defaultPageOrientations: Orientation.Portrait | Orientation.Landscape
-                              | Orientation.LandscapeInverted
+    allowedOrientations: defaultAllowedOrientations
+    _defaultPageOrientations: defaultAllowedOrientations
 
     initialPage: mainPageContainer
     cover: coverPage

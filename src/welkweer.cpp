@@ -34,11 +34,9 @@
 
 #include <qqml.h>
 #include <sailfishapp.h>
-#include <QProcess>
 #include <QQuickView>
 #include <QtGui>
 #include <QtQml>
-#include "osread.h"
 #include "settings.h"
 
 int main(int argc, char* argv[]) {
@@ -49,25 +47,13 @@ int main(int argc, char* argv[]) {
     //   - SailfishApp::createView() to get a new QQuickView * instance
     //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
     //
-    QProcess appinfo;
-    QString appversion;
-    // read app version from rpm database on startup
-    appinfo.start("/bin/rpm", QStringList() << "-qa"
-                                            << "--queryformat"
-                                            << "%{version}-%{RELEASE}"
-                                            << "harbour-welkweer");
-    appinfo.waitForFinished(-1);
-    if (appinfo.bytesAvailable() > 0) {
-        appversion = appinfo.readAll();
-    }
     // To display the view, call "show()" (will show fullscreen on device).
-    qmlRegisterType<Launcher>("harbour.welkweer.Launcher", 1, 0, "App");
     qmlRegisterType<Settings>("harbour.welkweer.Settings", 1, 0, "MySettings");
 
     QGuiApplication* app = SailfishApp::application(argc, argv);
 
     QQuickView* view = SailfishApp::createView();
-    view->rootContext()->setContextProperty("version", appversion);
+    view->rootContext()->setContextProperty("version", APP_VERSION);
     view->setSource(SailfishApp::pathTo("qml/welkweer.qml"));
     view->show();
     return app->exec();

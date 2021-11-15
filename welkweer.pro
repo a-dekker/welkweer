@@ -15,7 +15,6 @@ TARGET = harbour-welkweer
 CONFIG += sailfishapp
 
 SOURCES += src/welkweer.cpp \
-    src/osread.cpp \
     src/settings.cpp
 
 OTHER_FILES += qml/welkweer.qml \
@@ -54,6 +53,13 @@ OTHER_FILES += qml/welkweer.qml \
     qml/common/ScrollLabel.qml \
     qml/common/ZoomableImage.qml
 
+isEmpty(VERSION) {
+    VERSION = $$system( egrep "^Version:\|^Release:" rpm/welkweer.spec |tr -d "[A-Z][a-z]: " | tr "\\\n" "." | sed "s/\.$//g"| tr -d "[:space:]")
+    message("VERSION is unset, assuming $$VERSION")
+}
+DEFINES += APP_VERSION=\\\"$$VERSION\\\"
+
+
 python.files = python/*
 python.path = /usr/share/harbour-welkweer/python
 
@@ -78,5 +84,4 @@ INSTALLS += icon86 icon108 icon128 icon172 icon256 python
 CONFIG += sailfishapp_i18n
 
 HEADERS += \
-    src/osread.h \
     src/settings.h

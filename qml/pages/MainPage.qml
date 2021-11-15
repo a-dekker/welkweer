@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
-import harbour.welkweer.Launcher 1.0
 import harbour.welkweer.Settings 1.0
 import Nemo.Notifications 1.0
 import org.freedesktop.contextkit 1.0
@@ -182,10 +181,6 @@ Page {
 
         // Tell SilicaFlickable the height of its content.
         contentHeight: column.height
-        App {
-            id: bar
-        }
-
         MySettings {
             id: myset
         }

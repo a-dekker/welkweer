@@ -68,10 +68,10 @@ def test_dew_point_invalid():
 
 @pytest.fixture
 def xml_file_content():
-    buienrader_xml_file = os.path.join(
+    buienradar_xml_file = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "buienradar.xml"
     )
-    return ET.parse(buienrader_xml_file)
+    return ET.parse(buienradar_xml_file)
 
 
 def test_xml_file_content_nl(xml_file_content):
@@ -268,9 +268,9 @@ def test_xml_file_week_voorspelling(xml_file_content):
 
 @pytest.fixture
 def preticpation_file_content():
-    buienrader_txt_file = os.path.join(
+    buienradar_txt_file = os.path.join(
         os.path.dirname(os.path.abspath(__file__)), "preticpation.txt"
     )
-    with open(buienrader_txt_file, "rb") as input:
+    with open(buienradar_txt_file, "rb") as input:
         data = input.read()
     return data

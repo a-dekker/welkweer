@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSettings>
+#include <QStandardPaths>
 
 class Settings : public QObject {
     Q_OBJECT
@@ -16,7 +17,7 @@ class Settings : public QObject {
 
    public slots:
    private:
-    QSettings settings_;
+    QSettings *settings_;
 };
 
 #endif  // SRC_SETTINGS_H_

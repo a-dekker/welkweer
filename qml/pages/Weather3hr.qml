@@ -4,8 +4,6 @@ import harbour.welkweer.Settings 1.0
 
 Page {
     id: threeHourLocalPage
-    allowedOrientations: Orientation.Portrait | Orientation.Landscape
-                         | Orientation.LandscapeInverted
 
     MySettings {
         id: myset

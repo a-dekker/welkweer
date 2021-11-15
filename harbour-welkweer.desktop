@@ -4,3 +4,8 @@ X-Nemo-Application-Type=silica-qt5
 Name=WelkWeer
 Icon=harbour-welkweer
 Exec=harbour-welkweer
+
+[X-Sailjail]
+OrganizationName=org.adekker
+ApplicationName=welkweer
+Permissions=Internet

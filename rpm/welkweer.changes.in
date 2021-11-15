@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Mon Nov 15 2021 Arno Dekker <jack.tar@example.com> 0.23-1
+- Changes for sailjail compliancy
 * Sat Feb 06 2021 Arno Dekker <jack.tar@example.com> 0.22-3
 - Fixed Settings page for SFOS4
 * Fri Nov 27 2020 Arno Dekker <jack.tar@example.com> 0.22-2
