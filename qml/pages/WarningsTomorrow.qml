@@ -3,12 +3,11 @@ import Sailfish.Silica 1.0
 import "../common"
 
 Page {
-    id: currentWeatherPage
 
     onStatusChanged: {
         switch (status) {
         case PageStatus.Active:
-            pageStack.pushAttached(Qt.resolvedUrl("Weather3hr.qml"))
+            pageStack.pushAttached(Qt.resolvedUrl("WarningsTwoDays.qml"))
         }
     }
 
@@ -17,13 +16,13 @@ Page {
         spacing: Theme.paddingLarge
         width: parent.width
         PageHeader {
-            title: isPortrait ? "Komend uur NL" : "1 uur NL"
+            title: isPortrait ? "Waarschuwingen NL morgen" : "Waarschuwingen\nNL morgen"
         }
     }
 
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "http://api.buienradar.nl/image/1.0/radarmapnl/gif/?hist=0&forc=12&width=550&l=1&step=1"
+        imagePath: "https://cdn.knmi.nl/knmi/map/current/weather/warning/waarschuwing_land_1_new.gif?957fb971c0221877c4ab0e3bc19f7663"
     }
 }

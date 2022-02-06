@@ -65,6 +65,21 @@ def bepaal_nl_weerteksten(xml):
     return nl_weerdata
 
 
+def bepaal_nl_weercode(xml):
+    """disect xml data"""
+    nl_weerdata = {}
+    nl_weerdata["weercode"] = xml.find("channel/item/title").text
+    weercode = "transparent"
+    if "geel" in nl_weerdata["weercode"]:
+        weercode = "yellow"
+    if "oranje" in nl_weerdata["weercode"]:
+        weercode = "orange"
+    if "rood" in nl_weerdata["weercode"]:
+        weercode = "red"
+
+    return weercode
+
+
 def weer_nederland():
     """Return the weather texts."""
     httpdata = urllib.request.Request(BUIENRADAR_URL)
@@ -76,6 +91,20 @@ def weer_nederland():
         return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
 
     return bepaal_nl_weerteksten(xml)
+
+
+def weercode_nl():
+    """Return the weather info."""
+    knmi_url = "https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIwaarschuwingen.xml"
+    httpdata = urllib.request.Request(knmi_url)
+    try:
+        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
+    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        print(fout)
+        # Foutafhandeling als het station niet gevonden is.
+        return "", "Fout bij ophalen data", knmi_url, "", "", "", "", "", ""
+
+    return bepaal_nl_weercode(xml)
 
 
 def get_dew_point_c(t_air_c, rel_humidity):
@@ -233,6 +262,8 @@ def bepaal_lokale_weergegevens(stationnr, xml):
                 zononder = "?:??"
                 zonopkomst = "?:??"
                 tdelta = 0
+            if windrichting is None:
+                windrichting = "?"
 
             windrichting, windpijl = redefine_windrichting(windrichting)
             # temperatuur10cm = xml.find("weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]/temperatuur10cm").text

@@ -11,6 +11,7 @@ Page {
     property var dataModel: ListModel {}
     property int itemIndex: 0
     property bool isRunning: waitIndicator.running
+    property bool isOnline: false
 
     Notification {
         id: notification
@@ -60,9 +61,20 @@ Page {
                 ]
             }
 
+            TextSwitch {
+                width: parent.width
+                text: qsTr("Controleer internet toegang")
+                description: qsTr("Toon een blokkerende melding als er geen internet connectivteit is")
+                checked: myset.value("display_connectivity_error", "true") === "true"
+                onCheckedChanged: {
+                    checked ? myset.setValue("display_connectivity_error",
+                                            "true") : myset.setValue(
+                                  "display_connectivity_error", "false")
+                }
+            }
             ComboBox {
                 label: "Locatie"
-                visible: !isRunning
+                visible: !isRunning && isOnline
                 Python {
                     id: py
                     Component.onCompleted: {
@@ -110,7 +122,7 @@ Page {
             }
             ComboBox {
                 id: zoomlevel
-                visible: !isRunning
+                visible: !isRunning && isOnline
                 width: col.width
                 label: qsTr("Zoomniveau lokaal")
                 currentIndex: {

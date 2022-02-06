@@ -5,6 +5,13 @@ import "../common"
 Page {
     id: windchillPage
 
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            pageStack.pushAttached(Qt.resolvedUrl("Warnings.qml"))
+        }
+    }
+
     Column {
         id: col
         spacing: Theme.paddingLarge

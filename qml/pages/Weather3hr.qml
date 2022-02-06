@@ -5,16 +5,33 @@ import harbour.welkweer.Settings 1.0
 Page {
     id: threeHourLocalPage
 
+    onStatusChanged: {
+        switch (status) {
+        case PageStatus.Active:
+            pageStack.pushAttached(Qt.resolvedUrl("NL24hours.qml"))
+        }
+    }
+
     MySettings {
         id: myset
     }
     property string zoomLevel: myset.value("zoomlevel", "8")
 
+    Column {
+        id: col
+        spacing: Theme.paddingLarge
+        width: parent.width
+        PageHeader {
+            title: "Lokaal 3 uur"
+            visible: isPortrait
+        }
+    }
     SilicaWebView {
         id: webView
-        anchors {
-            fill: parent
-        }
+        anchors.top: col.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
         url: "https://gadgets.buienradar.nl/gadget/zoommap?lat=" + mainapp.latitude
              + "&lng=" + mainapp.longitude + "&overname=2&zoom=" + zoomLevel
              + "&naam=" + mainapp.locPlace + "&size=3&voor=1"

@@ -13,8 +13,8 @@ Name:       harbour-welkweer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Dutch weather related info
-Version:    0.23
-Release:    1
+Version:    0.24
+Release:    2
 Group:      Qt/Qt
 License:    LICENSE
 URL:        https://github.com/a-dekker/welkweer
@@ -22,6 +22,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5 >= 1.5.0
 Requires:   nemo-qml-plugin-contextkit-qt5
+Requires:   sailfish-version >= 4.0.0
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -68,13 +69,9 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}/qml
 %{_datadir}/%{name}/python
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/86x86/apps/%{name}.png
-/usr/bin
+%{_datadir}/icons/hicolor/*/apps/%{name}.png
+/usr/bin/*
 /usr/share/harbour-welkweer
 /usr/share/applications
-/usr/share/icons/hicolor/86x86/apps
-/usr/share/icons/hicolor/108x108/apps
-/usr/share/icons/hicolor/128x128/apps
-/usr/share/icons/hicolor/172x172/apps
-/usr/share/icons/hicolor/256x256/apps
+/usr/share/icons/hicolor/*/apps
 %exclude %{_datadir}/%{name}/python/tests

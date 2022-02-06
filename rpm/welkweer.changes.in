@@ -8,6 +8,15 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Feb 05 2022 Arno Dekker <jack.tar@example.com> 0.24-1
+- Added images for weather warnings tomorrow and day after tomorrow
+- Display warning symbol in weather-code color spanning next 2 days
+- Option to disable internet connectivity check
+* Mon Dec 27 2021 Arno Dekker <jack.tar@example.com> 0.23-3
+- Added weather warning on mainpage
+- Moved local map to precipitation part
+* Mon Nov 15 2021 Arno Dekker <jack.tar@example.com> 0.23-2
+- Removed sailjail because of bug in SFOS 4.3
 * Mon Nov 15 2021 Arno Dekker <jack.tar@example.com> 0.23-1
 - Changes for sailjail compliancy
 * Sat Feb 06 2021 Arno Dekker <jack.tar@example.com> 0.22-3

@@ -20,6 +20,7 @@ Page {
     property string locDewPointName: "-"
     property string maanStandSymbool: "-"
     property string networkState: "waiting"
+    property string weercode: "transparent"
 
     Component.onCompleted: {
         getMoonPhase()
@@ -32,6 +33,11 @@ Page {
         onValueChanged: networkState = value
         value: "waiting"
     }
+    ContextProperty {
+        id: contextPropertyType
+        key: "Internet.NetworkType"
+        // onValueChanged: console.log(value)
+    }
 
     Timer {
         id: timer
@@ -41,6 +47,7 @@ Page {
         onTriggered: {
             if (checkNetworkConnection() === true) {
                 loadWeather()
+                getWeatherCode()
             }
         }
     }
@@ -88,7 +95,8 @@ Page {
     }
 
     function checkNetworkConnection() {
-        if (networkState !== "connected") {
+        if (networkState !== "connected" && myset.value(
+                    "display_connectivity_error", "true") === "true") {
             banner("INFO", qsTr("Geen internet connectie!"))
             locText = "Geen internet connectie"
             return false
@@ -127,6 +135,12 @@ Page {
         })
     }
 
+    function getWeatherCode() {
+        python.call("call_buienradar.get_weercode", [], function (result) {
+            weercode = result
+        })
+    }
+
     Component.onDestruction: notification.close()
 
     BusyIndicator {
@@ -158,9 +172,9 @@ Page {
             MenuItem {
                 text: qsTr("Instellingen")
                 onClicked: {
-                    if (checkNetworkConnection() === true) {
-                        pageStack.push(Qt.resolvedUrl("SettingPage.qml"))
-                    }
+                    pageStack.push(Qt.resolvedUrl("SettingPage.qml"), {
+                                       "isOnline": checkNetworkConnection()
+                                   })
                 }
             }
             MenuItem {
@@ -171,6 +185,7 @@ Page {
                         locText = "Geen data"
                         getMoonPhase()
                         loadWeather()
+                        getWeatherCode()
                     }
                 }
             }
@@ -241,11 +256,14 @@ Page {
                     visible: isLandscape
                 }
                 Button {
-                    text: "Lokaal → 3uur"
+                    text: "Waarschuwingen"
+                    icon.source: weercode
+                                 !== "transparent" ? "image://theme/icon-system-warning" : ""
+                    icon.color: weercode
                     width: (column.width / 4) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
-                            pageStack.push("Weather3hr.qml")
+                            pageStack.push("Warnings.qml")
                         }
                     }
                     visible: isLandscape
@@ -255,11 +273,14 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 spacing: Theme.paddingSmall
                 Button {
-                    text: "Lokaal → 3uur"
+                    text: "Waarschuwingen"
+                    icon.source: weercode
+                                 !== "transparent" ? "image://theme/icon-system-warning" : ""
+                    icon.color: weercode
                     width: (column.width / 2) * 0.95
                     onClicked: {
                         if (checkNetworkConnection() === true) {
-                            pageStack.push("Weather3hr.qml")
+                            pageStack.push("Warnings.qml")
                         }
                     }
                     visible: isPortrait

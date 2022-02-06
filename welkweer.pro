@@ -37,6 +37,9 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherText.qml \
     qml/pages/Temperature.qml \
     qml/pages/Windchill.qml \
+    qml/pages/Warnings.qml \
+    qml/pages/WarningsTomorrow.qml \
+    qml/pages/WarningsTwoDays.qml \
     qml/pages/SettingPage.qml \
     qml/pages/Forecast.qml \
     qml/pages/NL24hours.qml \
@@ -54,7 +57,7 @@ OTHER_FILES += qml/welkweer.qml \
     qml/common/ZoomableImage.qml
 
 isEmpty(VERSION) {
-    VERSION = $$system( egrep "^Version:\|^Release:" rpm/welkweer.spec |tr -d "[A-Z][a-z]: " | tr "\\\n" "." | sed "s/\.$//g"| tr -d "[:space:]")
+    VERSION = $$system( egrep "^Version:\|^Release:" rpm/welkweer.spec |tr -d "[A-Z][a-z]: " | tr "\\\n" "-" | sed "s/\.$//g"| tr -d "[:space:]")
     message("VERSION is unset, assuming $$VERSION")
 }
 DEFINES += APP_VERSION=\\\"$$VERSION\\\"
