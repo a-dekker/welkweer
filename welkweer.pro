@@ -14,6 +14,8 @@ TARGET = harbour-welkweer
 
 CONFIG += sailfishapp
 
+QT += qml dbus
+
 SOURCES += src/welkweer.cpp \
     src/settings.cpp
 
@@ -87,4 +89,5 @@ INSTALLS += icon86 icon108 icon128 icon172 icon256 python
 CONFIG += sailfishapp_i18n
 
 HEADERS += \
+    src/notificationhelper.h \
     src/settings.h

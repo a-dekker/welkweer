@@ -75,27 +75,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <location filename="../qml/pages/MainPage.qml" line="184"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="163"/>
+        <location filename="../qml/pages/MainPage.qml" line="188"/>
         <source>Locatie meetstation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="173"/>
+        <location filename="../qml/pages/MainPage.qml" line="198"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="181"/>
+        <location filename="../qml/pages/MainPage.qml" line="206"/>
         <source>Vernieuwen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="212"/>
+        <location filename="../qml/pages/MainPage.qml" line="237"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -126,27 +126,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="127"/>
+        <location filename="../qml/pages/SettingPage.qml" line="77"/>
+        <source>Weerwaarschuwing notificatie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingPage.qml" line="78"/>
+        <source>Toon een melding als er een weerwaarschuwing is</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingPage.qml" line="138"/>
         <source>Zoomniveau lokaal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="149"/>
+        <location filename="../qml/pages/SettingPage.qml" line="160"/>
         <source>Land</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="152"/>
+        <location filename="../qml/pages/SettingPage.qml" line="163"/>
         <source>Provincie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="155"/>
+        <location filename="../qml/pages/SettingPage.qml" line="166"/>
         <source>Regio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingPage.qml" line="158"/>
+        <location filename="../qml/pages/SettingPage.qml" line="169"/>
         <source>Stad/dorp</source>
         <translation type="unfinished"></translation>
     </message>

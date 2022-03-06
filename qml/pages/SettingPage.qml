@@ -72,6 +72,17 @@ Page {
                                   "display_connectivity_error", "false")
                 }
             }
+            TextSwitch {
+                width: parent.width
+                text: qsTr("Weerwaarschuwing notificatie")
+                description: qsTr("Toon een melding als er een weerwaarschuwing is")
+                checked: myset.value("display_weather_alert", "false") === "true"
+                onCheckedChanged: {
+                    checked ? myset.setValue("display_weather_alert",
+                                            "true") : myset.setValue(
+                                  "display_weather_alert", "false")
+                }
+            }
             ComboBox {
                 label: "Locatie"
                 visible: !isRunning && isOnline
