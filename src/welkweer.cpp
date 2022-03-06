@@ -37,7 +37,9 @@
 #include <QQuickView>
 #include <QtGui>
 #include <QtQml>
+#include <QDBusConnection>
 #include "settings.h"
+#include "notificationhelper.h"
 
 int main(int argc, char* argv[]) {
     // SailfishApp::main() will display "qml/template.qml", if you need more
@@ -56,5 +58,31 @@ int main(int argc, char* argv[]) {
     view->rootContext()->setContextProperty("version", APP_VERSION);
     view->setSource(SailfishApp::pathTo("qml/welkweer.qml"));
     view->show();
+
+    QDBusConnection connection = QDBusConnection::sessionBus();
+    if (!connection.registerService("org.adekker.welkweer")) {
+        qWarning("Unable to register D-Bus service org.adekker.welkweer");
+    }
+    //if (!connection.registerObject("/", this, QDBusConnection::ExportAllSlots)) {
+    //    qWarning("Unable to register D-Bus object at /");
+    //}
+
     return app->exec();
+}
+
+notificationhelper::~notificationhelper()
+{
+    delete view;
+}
+
+void notificationhelper::bringToFront()
+{
+    view->showFullScreen();
+    view->raise();
+}
+
+void notificationhelper::actionInvoked(const QString &text)
+{
+    QQuickItem* rootObject = view->rootObject();
+    rootObject->metaObject()->invokeMethod(rootObject, "actionInvoked", Q_ARG(QVariant, text));
 }
