@@ -143,23 +143,24 @@ Page {
     }
 
     function translateWeatherCodeToDutch() {
-        switch(weercode) {
-        case "yellow" :
-            return "Geel";
-        case "orange" :
-            return "Oranje";
-        case "red" :
-            return "Rood";
-        default :
-            return "Groen";
+        switch (weercode) {
+        case "yellow":
+            return "Geel"
+        case "orange":
+            return "Oranje"
+        case "red":
+            return "Rood"
+        default:
+            return "Groen"
         }
     }
 
     function weatherAlert() {
-        if (myset.value("display_weather_alert", "true") && weercode !== "transparent") {
-            notification.summary = "Weerwaarschuwing";
-            notification.body = "Code " + translateWeatherCodeToDutch();
-            notification.publish();
+        if (myset.value("display_weather_alert",
+                        "false") === "true" && weercode !== "transparent") {
+            notification.summary = "Weerwaarschuwing"
+            notification.body = "Code " + translateWeatherCodeToDutch()
+            notification.publish()
         }
     }
 

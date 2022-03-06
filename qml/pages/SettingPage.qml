@@ -75,7 +75,7 @@ Page {
             TextSwitch {
                 width: parent.width
                 text: qsTr("Weerwaarschuwing notificatie")
-                description: qsTr("Toon een melding als er een weerwaarschuwing is")
+                description: qsTr("Toon ook een popup melding als er een weerwaarschuwing is")
                 checked: myset.value("display_weather_alert", "false") === "true"
                 onCheckedChanged: {
                     checked ? myset.setValue("display_weather_alert",

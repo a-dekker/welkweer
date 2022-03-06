@@ -35,6 +35,7 @@
 #include <qqml.h>
 #include <sailfishapp.h>
 #include <QQuickView>
+#include <QQuickItem>
 #include <QtGui>
 #include <QtQml>
 #include <QDBusConnection>
@@ -56,6 +57,7 @@ int main(int argc, char* argv[]) {
 
     QQuickView* view = SailfishApp::createView();
     view->rootContext()->setContextProperty("version", APP_VERSION);
+    view->rootContext()->setContextProperty("buildyear", BUILD_YEAR);
     view->setSource(SailfishApp::pathTo("qml/welkweer.qml"));
     view->show();
 
