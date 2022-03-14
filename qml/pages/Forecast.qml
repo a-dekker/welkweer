@@ -217,6 +217,7 @@ Page {
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon1 + ".png"
                     height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                     width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    anchors.verticalCenter: dag1txt.verticalCenter
                 }
                 Rectangle {
                     // some whitespace
@@ -225,6 +226,7 @@ Page {
                     opacity: 0
                 }
                 Label {
+                    id: dag1txt
                     width: parent.width / 4
                     font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag1
@@ -260,6 +262,7 @@ Page {
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon2 + ".png"
                     height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                     width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    anchors.verticalCenter: dag2txt.verticalCenter
                 }
                 Rectangle {
                     // some whitespace
@@ -268,6 +271,7 @@ Page {
                     opacity: 0
                 }
                 Label {
+                    id: dag2txt
                     width: parent.width / 4
                     font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag2
@@ -303,6 +307,7 @@ Page {
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon3 + ".png"
                     height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                     width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    anchors.verticalCenter: dag3txt.verticalCenter
                 }
                 Rectangle {
                     // some whitespace
@@ -311,6 +316,7 @@ Page {
                     opacity: 0
                 }
                 Label {
+                    id: dag3txt
                     width: parent.width / 4
                     font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag3
@@ -346,6 +352,7 @@ Page {
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon4 + ".png"
                     height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                     width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    anchors.verticalCenter: dag4txt.verticalCenter
                 }
                 Rectangle {
                     // some whitespace
@@ -354,6 +361,7 @@ Page {
                     opacity: 0
                 }
                 Label {
+                    id: dag4txt
                     width: parent.width / 4
                     font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag4
@@ -389,6 +397,7 @@ Page {
                     source: "/usr/share/harbour-welkweer/qml/images/icons/" + icoon5 + ".png"
                     height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
                     width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                    anchors.verticalCenter: dag5txt.verticalCenter
                 }
                 Rectangle {
                     // some whitespace
@@ -397,6 +406,7 @@ Page {
                     opacity: 0
                 }
                 Label {
+                    id: dag5txt
                     width: parent.width / 4
                     font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                     text: dag5

@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.25-?
+- better alignment icons on 5 days weather prediction page
 * Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.25-1
 - Optional extra popup message in case of weather warning (thanks mar1ad)
 * Sat Feb 05 2022 Arno Dekker <jack.tar@example.com> 0.24-1
