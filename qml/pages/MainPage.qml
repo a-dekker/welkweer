@@ -138,8 +138,8 @@ Page {
     function getWeatherCode() {
         python.call("call_buienradar.get_weercode", [], function (result) {
             weercode = result
+            weatherAlert()
         })
-        weatherAlert()
     }
 
     function translateWeatherCodeToDutch() {

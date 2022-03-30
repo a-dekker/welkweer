@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.26-2
+- Fix timing of weather notification popup
 * Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.26-1
 - Better alignment icons on 5 days weather prediction page
 - Enable Sailjail now bug is fixed in offically released SFOS 4.4
