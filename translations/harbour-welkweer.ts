@@ -75,27 +75,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="181"/>
+        <location filename="../qml/pages/MainPage.qml" line="182"/>
         <source>Over</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="185"/>
+        <location filename="../qml/pages/MainPage.qml" line="186"/>
         <source>Locatie meetstation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="195"/>
+        <location filename="../qml/pages/MainPage.qml" line="196"/>
         <source>Instellingen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="203"/>
+        <location filename="../qml/pages/MainPage.qml" line="204"/>
         <source>Vernieuwen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="234"/>
+        <location filename="../qml/pages/MainPage.qml" line="235"/>
         <source>WelkWeer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -132,7 +132,7 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingPage.qml" line="78"/>
-        <source>Toon een melding als er een weerwaarschuwing is</source>
+        <source>Toon ook een popup melding als er een weerwaarschuwing is</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

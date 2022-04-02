@@ -16,7 +16,7 @@ Summary:    Dutch weather related info
 Version:    0.26
 Release:    2
 Group:      Qt/Qt
-License:    LICENSE
+License:    GPLv2
 URL:        https://github.com/a-dekker/welkweer
 Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -66,13 +66,9 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}
+%attr(755,root,root) %{_bindir}/harbour-welkweer
 %{_datadir}/%{name}/qml
 %{_datadir}/%{name}/python
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-/usr/bin/*
-/usr/share/harbour-welkweer
-/usr/share/applications
-/usr/share/icons/hicolor/*/apps
 %exclude %{_datadir}/%{name}/python/tests
