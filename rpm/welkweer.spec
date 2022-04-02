@@ -66,7 +66,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/harbour-welkweer
+%attr(755,root,root) %{_bindir}/%{name}
 %{_datadir}/%{name}/qml
 %{_datadir}/%{name}/python
 %{_datadir}/applications/%{name}.desktop
