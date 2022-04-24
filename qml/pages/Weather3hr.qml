@@ -24,6 +24,7 @@ Page {
         spacing: Theme.paddingLarge
         width: parent.width
         PageHeader {
+            id: pageHeader
             title: "Lokaal 3 uur"
             visible: isPortrait
         }
@@ -34,16 +35,11 @@ Page {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
         anchors.right: parent.right
-        height: Math.ceil(width / 0.703125)
-        url: "https://gadgets.buienradar.nl/gadget/zoommap/?lat=" + mainapp.latitude
-             + "&lng=" + mainapp.longitude + "&overname=2&zoom=" + zoomLevel
-             + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
+        height: isPortrait ? parent.height - (2 * pageHeader.height) : parent.height
+        url: "https://gadgets.buienradar.nl/gadget/zoommap/?lat="
+             + mainapp.latitude + "&lng=" + mainapp.longitude + "&overname=2&zoom="
+             + zoomLevel + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
         privateMode: true
-        BusyIndicator {
-            anchors.centerIn: parent
-            running: webView.loading
-            size: BusyIndicatorSize.Large
-        }
         Component.onCompleted: {
             WebEngineSettings.cookieBehavior = WebEngineSettings.BlockAll
         }
