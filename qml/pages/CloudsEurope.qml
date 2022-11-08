@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: cloudsEuropePage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the thunder page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("ThunderEurope.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

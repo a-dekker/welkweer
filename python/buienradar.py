@@ -15,7 +15,8 @@ except ImportError:
 BUIENRADAR_URL = "https://data.buienradar.nl/1.0/feed/xml"
 
 
-def reformat_text(txt: str) -> str:
+# def reformat_text(txt: str) -> str:
+def reformat_text(txt):
     """Fix some html strings and common syntax issues"""
     reformatted = re.sub(r"\.(\w)", ". \\1", txt)
     reformatted = re.sub(r"\!(\w)", "! \\1", reformatted)
@@ -33,6 +34,7 @@ def reformat_text(txt: str) -> str:
     reformatted = reformatted.replace("&aacute;", "á")
     reformatted = reformatted.replace("&auml;", "ä")
     reformatted = reformatted.replace("&ordm;", "º")
+    reformatted = reformatted.replace("&deg;", "°")
     return reformatted
 
 
@@ -65,6 +67,7 @@ def bepaal_nl_weerteksten(xml):
     return nl_weerdata
 
 
+# def bepaal_nl_weercode(xml) -> str:
 def bepaal_nl_weercode(xml):
     """disect xml data"""
     nl_weerdata = {}
@@ -107,7 +110,7 @@ def weercode_nl():
     return bepaal_nl_weercode(xml)
 
 
-def get_dew_point_c(t_air_c, rel_humidity):
+def get_dew_point_c(t_air_c: float, rel_humidity: float) -> float:
     """Compute the dew point in degrees Celsius
 
     :param t_air_c: current ambient temperature in degrees Celsius
@@ -125,6 +128,7 @@ def get_dew_point_c(t_air_c, rel_humidity):
     return (b * alpha) / (a - alpha)
 
 
+# def redefine_windrichting(windrichting: str) -> tuple[str, str]:
 def redefine_windrichting(windrichting):
     """Reformat windrichting so it is to our liking"""
     if len(windrichting) == 1:
@@ -144,6 +148,7 @@ def redefine_windrichting(windrichting):
     return windrichting, windpijl
 
 
+# def reformat_date(datum: str) -> str:
 def reformat_date(datum):
     """Order is not to our liking, and format changed in the course of time"""
     if "/" in datum:
@@ -165,7 +170,7 @@ def reformat_date(datum):
     return datum
 
 
-def calc_dew_point(temperatuur_gc, luchtvochtigheid):
+def calc_dew_point(temperatuur_gc: int, luchtvochtigheid):
     if luchtvochtigheid.isdigit():
         dauwpunt_temp = (
             math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10) / 10
@@ -356,6 +361,7 @@ def get_stations():
     return verwerk_station_data(xml)
 
 
+# def strip_date(full_date: str) -> str:
 def strip_date(full_date):
     """Shorten name of month"""
     _months_year = {

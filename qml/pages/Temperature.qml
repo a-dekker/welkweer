@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: temperaturePage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the windchill page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Windchill.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

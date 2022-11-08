@@ -7,13 +7,6 @@ import harbour.welkweer.Settings 1.0
 Page {
     id: threeHourLocalPage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            pageStack.pushAttached(Qt.resolvedUrl("NL24hours.qml"))
-        }
-    }
-
     MySettings {
         id: myset
     }

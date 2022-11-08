@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: drizzlePage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the thunder page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Snow.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

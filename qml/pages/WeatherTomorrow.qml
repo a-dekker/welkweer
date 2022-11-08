@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: tomorrowPage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the night page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("WeatherNight.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

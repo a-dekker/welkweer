@@ -5,13 +5,6 @@ import "../common"
 Page {
     id: currentWeatherPage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            pageStack.pushAttached(Qt.resolvedUrl("Weather3hr.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

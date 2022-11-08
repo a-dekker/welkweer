@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Nov 08 2022 Arno Dekker <jack.tar@example.com> 0.27-1
+- Major layout change
+- Switch from the soon deprecated SilicaWebView to Sailfish WebView
 * Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.26-2
 - Fix timing of weather notification popup
 * Sun Mar 06 2022 Arno Dekker <jack.tar@example.com> 0.26-1

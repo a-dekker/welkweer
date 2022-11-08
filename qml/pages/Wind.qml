@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: windPage
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the flurry page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Flurry.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

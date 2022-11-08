@@ -5,14 +5,6 @@ import "../common"
 Page {
     id: hour24Page
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            // add the cloud page to the pagestack
-            pageStack.pushAttached(Qt.resolvedUrl("Drizzle.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge

@@ -39,7 +39,6 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherText.qml \
     qml/pages/Temperature.qml \
     qml/pages/Windchill.qml \
-    qml/pages/Warnings.qml \
     qml/pages/WarningsTomorrow.qml \
     qml/pages/WarningsTwoDays.qml \
     qml/pages/SettingPage.qml \
@@ -53,10 +52,17 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherTomorrow.qml \
     qml/pages/WeatherNight.qml \
     qml/pages/RainFall.qml \
+    qml/pages/WindMain.qml \
+    qml/pages/PreciationMain.qml \
+    qml/pages/PredictionsMain.qml \
+    qml/pages/TemperatureMain.qml \
+    qml/pages/WarningsMain.qml \
+    qml/pages/WarningsToday.qml \
     qml/pages/devicePixelRatioHack.js \
     qml/common/PageHeaderExtended.qml \
     qml/common/ScrollLabel.qml \
-    qml/common/ZoomableImage.qml
+    qml/common/ZoomableImage.qml \
+    qml/common/MainPageButton.qml
 
 isEmpty(VERSION) {
     VERSION = $$system( egrep "^Version:\|^Release:" rpm/welkweer.spec |tr -d "[A-Z][a-z]: " | tr "\\\n" "-" | sed "s/\.$//g"| tr -d "[:space:]")

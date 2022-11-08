@@ -21,10 +21,59 @@ Page {
     property string maanStandSymbool: "-"
     property string networkState: "waiting"
     property string weercode: "transparent"
+    ListModel {
+        id: mainMenuModel
+    }
 
     Component.onCompleted: {
+        mainMenuModel.append({
+                                 "name": qsTr("Neerslag"),
+                                 "ident": "neerslag",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/neerslag.png"
+                             })
+        mainMenuModel.append({
+                                 "name": qsTr("Temperatuur"),
+                                 "ident": "temperatuur",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/temperatuur.png"
+                             })
+        mainMenuModel.append({
+                                 "name": qsTr("Wind"),
+                                 "ident": "wind",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/wind.png"
+                             })
+        mainMenuModel.append({
+                                 "name": qsTr("Zicht"),
+                                 "ident": "zicht",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/zicht.png"
+                             })
+        mainMenuModel.append({
+                                 "name": qsTr("Voorspelling"),
+                                 "ident": "voorspelling",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/voorspelling.png"
+                             })
+        mainMenuModel.append({
+                                 "name": qsTr("Alarm"),
+                                 "ident": "alarm",
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/alarm.png"
+                             })
         getMoonPhase()
         timer.start()
+    }
+
+    function parseClickedMainMenu(ident) {
+        if (ident === "alarm") {
+            pageStack.push(Qt.resolvedUrl("WarningsMain.qml"))
+        } else if (ident === "wind") {
+            pageStack.push(Qt.resolvedUrl("WindMain.qml"))
+        } else if (ident === "zicht") {
+            pageStack.push(Qt.resolvedUrl("Visibility.qml"))
+        } else if (ident === "temperatuur") {
+            pageStack.push(Qt.resolvedUrl("TemperatureMain.qml"))
+        } else if (ident === "neerslag") {
+            pageStack.push(Qt.resolvedUrl("PreciationMain.qml"))
+        } else if (ident === "voorspelling") {
+            pageStack.push(Qt.resolvedUrl("PredictionsMain.qml"))
+        }
     }
 
     ContextProperty {
@@ -247,149 +296,59 @@ Page {
                 }
             }
 
-            Row {
-                spacing: Theme.paddingSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-                Button {
-                    text: "Neerslag NL"
-                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("CurrentWeather.qml")
-                        }
-                    }
-                }
-                Button {
-                    text: "5 daags NL"
-                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Forecast.qml")
-                        }
-                    }
-                }
-                Button {
-                    text: "Buien Europa"
-                    width: (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("WeatherEurope.qml")
-                        }
-                    }
-                    visible: isLandscape
-                }
-                Button {
-                    text: "Waarschuwingen"
-                    icon.source: weercode
-                                 !== "transparent" ? "image://theme/icon-system-warning" : ""
-                    icon.color: weercode
-                    width: (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Warnings.qml")
-                        }
-                    }
-                    visible: isLandscape
-                }
-            }
-            Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: Theme.paddingSmall
-                Button {
-                    text: "Waarschuwingen"
-                    icon.source: weercode
-                                 !== "transparent" ? "image://theme/icon-system-warning" : ""
-                    icon.color: weercode
-                    width: (column.width / 2) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Warnings.qml")
-                        }
-                    }
-                    visible: isPortrait
-                }
-                Button {
-                    text: "Morgen NL"
-                    width: isPortrait ? (column.width / 2) * 0.95 : (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("WeatherTomorrow.qml")
-                        }
-                    }
-                }
-                Button {
-                    text: "Neerslag → 2uur"
-                    width: (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("RainFall.qml")
-                        }
-                    }
-                    visible: isLandscape
-                }
-                Button {
-                    text: "Windkracht NL"
-                    width: (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Wind.qml")
-                        }
-                    }
-                    visible: isLandscape
-                }
-                Button {
-                    text: "Temperatuur NL"
-                    width: (column.width / 4) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Temperature.qml")
-                        }
-                    }
-                    visible: isLandscape
-                }
-            }
-            Row {
-                visible: isPortrait
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: Theme.paddingSmall
-                Button {
-                    text: "Windkracht NL"
-                    width: (column.width / 2) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Wind.qml")
-                        }
-                    }
-                }
-                Button {
-                    text: "Temperatuur NL"
-                    width: (column.width / 2) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("Temperature.qml")
-                        }
-                    }
-                }
-            }
-            Row {
-                visible: isPortrait
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: Theme.paddingSmall
-                Button {
-                    text: "Buien Europa"
-                    width: (column.width / 2) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("WeatherEurope.qml")
-                        }
-                    }
-                }
-                Button {
-                    text: "Neerslag → 2uur"
-                    width: (column.width / 2) * 0.95
-                    onClicked: {
-                        if (checkNetworkConnection() === true) {
-                            pageStack.push("RainFall.qml")
+            Item {
+                id: myItem
+                height: mainGrid.height
+                width: parent.width
+                Grid {
+                    id: mainGrid
+
+                    columns: isPortrait ? 3 : 6
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Repeater {
+                        model: mainMenuModel
+                        delegate: Component {
+                            BackgroundItem {
+                                id: gridItem
+                                width: Theme.itemSizeHuge
+                                height: Theme.itemSizeHuge
+                                Rectangle {
+                                    anchors.fill: parent
+                                    anchors.margins: Theme.paddingSmall
+                                    color: Theme.rgba(
+                                               Theme.highlightBackgroundColor,
+                                               Theme.highlightBackgroundOpacity)
+                                }
+                                Column {
+                                    anchors.centerIn: parent
+                                    HighlightImage {
+                                        id: itemIcon
+                                        source: icon
+                                        width: Theme.itemSizeHuge / 2
+                                        height: width
+                                        color: (ident === "alarm" && weercode
+                                                !== "transparent") ? weercode : Theme.primaryColor
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                    Label {
+                                        id: itemLabel
+                                        anchors {
+                                            horizontalCenter: parent.horizontalCenter
+                                        }
+                                        font.pixelSize: Theme.fontSizeMedium
+                                        width: gridItem.width - (2 * Theme.paddingSmall)
+                                        horizontalAlignment: "AlignHCenter"
+                                        scale: paintedWidth > width ? (width / paintedWidth) : 1
+                                        text: name
+                                        color: Theme.highlightColor
+                                    }
+                                }
+
+                                onClicked: {
+                                    parseClickedMainMenu(ident)
+                                }
+                            }
                         }
                     }
                 }

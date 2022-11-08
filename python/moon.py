@@ -3,6 +3,7 @@ import datetime
 from math import fmod
 
 
+# def get_moon_phase() -> dict[str, str]:
 def get_moon_phase():
     """Return the current moon phase."""
     now = datetime.date.today()  # datetime.timedelta(-3)

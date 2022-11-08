@@ -1,3 +1,5 @@
+
+
 /*
   Copyright (C) 2013 Jolla Ltd.
   Contact: Thomas Perl <thomas.perl@jollamobile.com>
@@ -27,7 +29,6 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 
@@ -59,11 +60,11 @@ CoverBackground {
         }
         Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: mainapp.locWind
-                  === "Geen data" ? "" : mainapp.locWind.split(
-                                        " ")[0] + mainapp.locWindArrow + " " + mainapp.locWind.split(
-                                        " ")[2] + " " + mainapp.locWind.split(
-                                        " ")[3]
+            text: mainapp.locWind === "Geen data" ? "" : mainapp.locWind.split(
+                                                        " ")[0] + mainapp.locWindArrow
+                                                    + " " + mainapp.locWind.split(
+                                                        " ")[2] + " " + mainapp.locWind.split(
+                                                        " ")[3]
         }
     }
     Label {

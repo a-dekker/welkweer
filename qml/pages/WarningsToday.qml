@@ -4,13 +4,6 @@ import "../common"
 
 Page {
 
-    onStatusChanged: {
-        switch (status) {
-        case PageStatus.Active:
-            pageStack.pushAttached(Qt.resolvedUrl("WarningsTomorrow.qml"))
-        }
-    }
-
     Column {
         id: col
         spacing: Theme.paddingLarge
