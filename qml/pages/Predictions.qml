@@ -12,16 +12,16 @@ Page {
         ListModel {
             id: imageInfoModel
             ListElement {
-                myText: "Windkaart NL"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=windkrachtanimatie&type=Freecontent"
-                myHeaderP: "Windkaart NL"
-                myHeaderL: "Windkaart\nNL"
+                myText: "Morgen in NL"
+                myURL: "http://cdn.knmi.nl/knmi/map/current/weather/forecast/kaart_verwachtingen_Morgen_dag.gif"
+                myHeaderP: "Weer morgen"
+                myHeaderL: "Weer\nmorgen"
             }
             ListElement {
-                myText: "Windstoten NL"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=maxwindkmanimatie&type=Freecontent"
-                myHeaderP: "Windstoten NL"
-                myHeaderL: "Windstoten\nNL"
+                myText: "Vannacht in NL"
+                myURL: "http://cdn.knmi.nl/knmi/map/current/weather/forecast/kaart_verwachtingen_Morgen_nacht.gif"
+                myHeaderP: "Weer vannacht"
+                myHeaderL: "Weer\nvannacht"
             }
         }
 
@@ -30,9 +30,17 @@ Page {
             width: parent.width
 
             PageHeader {
-                title: "Wind"
+                title: "Voorspellingen"
             }
 
+            MainPageButton {
+                text: "5 daagse voorspelling NL"
+                onClicked: pageStack.push(Qt.resolvedUrl("Forecast.qml"))
+            }
+            MainPageButton {
+                text: "Beschrijving komend weer NL"
+                onClicked: pageStack.push(Qt.resolvedUrl("WeatherText.qml"))
+            }
             Repeater {
                 id: imageRepeater
                 model: imageInfoModel

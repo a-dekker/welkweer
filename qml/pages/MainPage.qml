@@ -62,17 +62,17 @@ Page {
 
     function parseClickedMainMenu(ident) {
         if (ident === "alarm") {
-            pageStack.push(Qt.resolvedUrl("WarningsMain.qml"))
+            pageStack.push(Qt.resolvedUrl("Warnings.qml"))
         } else if (ident === "wind") {
-            pageStack.push(Qt.resolvedUrl("WindMain.qml"))
+            pageStack.push(Qt.resolvedUrl("Wind.qml"))
         } else if (ident === "zicht") {
             pageStack.push(Qt.resolvedUrl("Visibility.qml"))
         } else if (ident === "temperatuur") {
-            pageStack.push(Qt.resolvedUrl("TemperatureMain.qml"))
+            pageStack.push(Qt.resolvedUrl("Temperature.qml"))
         } else if (ident === "neerslag") {
-            pageStack.push(Qt.resolvedUrl("PreciationMain.qml"))
+            pageStack.push(Qt.resolvedUrl("Precipitation.qml"))
         } else if (ident === "voorspelling") {
-            pageStack.push(Qt.resolvedUrl("PredictionsMain.qml"))
+            pageStack.push(Qt.resolvedUrl("Predictions.qml"))
         }
     }
 

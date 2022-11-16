@@ -12,25 +12,30 @@ Page {
         ListModel {
             id: imageInfoModel
             ListElement {
-                myText: "Windkaart NL"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=windkrachtanimatie&type=Freecontent"
-                myHeaderP: "Windkaart NL"
-                myHeaderL: "Windkaart\nNL"
+                myText: "Weeralarm vandaag"
+                myURL: "https://cdn.knmi.nl/knmi/map/current/weather/warning/waarschuwing_land_0_new.gif?957fb971c0221877c4ab0e3bc19f7663"
+                myHeaderP: "Waarschuwingen NL"
+                myHeaderL: "Waarschuwingen\nNL"
             }
             ListElement {
-                myText: "Windstoten NL"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=maxwindkmanimatie&type=Freecontent"
-                myHeaderP: "Windstoten NL"
-                myHeaderL: "Windstoten\nNL"
+                myText: "Weeralarm morgen"
+                myURL: "https://cdn.knmi.nl/knmi/map/current/weather/warning/waarschuwing_land_1_new.gif?957fb971c0221877c4ab0e3bc19f7663"
+                myHeaderP: "Waarschuwingen NL morgen"
+                myHeaderL: "Waarschuwingen\nNL morgen"
+            }
+            ListElement {
+                myText: "Weeralarm overmorgen"
+                myURL: "https://cdn.knmi.nl/knmi/map/current/weather/warning/waarschuwing_land_2_new.gif?957fb971c0221877c4ab0e3bc19f7663"
+                myHeaderP: "Waarsch. NL overmorgen"
+                myHeaderL: "Waarschuwingen\nNL overmorgen"
             }
         }
-
         Column {
             id: content
             width: parent.width
 
             PageHeader {
-                title: "Wind"
+                title: "Weeralarm"
             }
 
             Repeater {

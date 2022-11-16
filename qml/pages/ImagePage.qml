@@ -3,20 +3,23 @@ import Sailfish.Silica 1.0
 import "../common"
 
 Page {
-    id: drizzlePage
+    id: page
+    property string imageURL
+    property string headerTXTPortrait
+    property string headerTXTLandscape
 
     Column {
         id: col
         spacing: Theme.paddingLarge
         width: parent.width
         PageHeader {
-            title: isPortrait ? "Motregen NL" : "Motregen\nNL"
+            title: isPortrait ? headerTXTPortrait : headerTXTLandscape
         }
     }
 
     ZoomableImage {
         id: zoomableImage
         anchors.fill: parent
-        imagePath: "https://image.buienradar.nl/2.0/image/animation/RadarMapDrizzleNL"
+        imagePath: imageURL
     }
 }
