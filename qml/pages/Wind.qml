@@ -23,6 +23,12 @@ Page {
                 myHeaderP: "Windstoten NL"
                 myHeaderL: "Windstoten\nNL"
             }
+            ListElement {
+                myText: "Max. wind NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=windmax"
+                myHeaderP: "Max wind NL"
+                myHeaderL: "Max wind\nNL"
+            }
         }
 
         Column {

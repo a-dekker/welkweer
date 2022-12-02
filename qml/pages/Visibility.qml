@@ -23,6 +23,18 @@ Page {
                 myHeaderP: "Zicht NL km"
                 myHeaderL: "Zicht NL km"
             }
+            ListElement {
+                myText: "Satelliet zicht"
+                myURL: "https://api.buienradar.nl/image/1.0/satvisual/?ext=gif&type=NL"
+                myHeaderP: "Satelliet"
+                myHeaderL: "Satelliet"
+            }
+            ListElement {
+                myText: "Totaal aantal zonuren"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=zonneschijn"
+                myHeaderP: "Zonuren"
+                myHeaderL: "Zonuren"
+            }
         }
 
         Column {

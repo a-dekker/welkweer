@@ -9,6 +9,8 @@ Page {
         anchors.fill: parent
         contentHeight: content.height
 
+        VerticalScrollDecorator {}
+
         ListModel {
             id: imageInfoModel
             ListElement {
@@ -19,9 +21,33 @@ Page {
             }
             ListElement {
                 myText: "Gevoelstemperatuur NL"
-                myURL: "http://www.weerplaza.nl/gdata/10min/GMT_WCHILL_latest.png"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=gevoelstemperatuur"
                 myHeaderP: "Gevoelstemperatuur NL"
                 myHeaderL: "Gevoelstemp\nNL"
+            }
+            ListElement {
+                myText: "Grondtemperatuur NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurgrond"
+                myHeaderP: "Grondtemperatuur NL"
+                myHeaderL: "Grondtemp\nNL"
+            }
+            ListElement {
+                myText: "Min. grondtemperatuur NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurgrondmin"
+                myHeaderP: "Min grondtemperatuur NL"
+                myHeaderL: "Min Grondtemp\nNL"
+            }
+            ListElement {
+                myText: "Min. temperaturen NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurmin"
+                myHeaderP: "Minimumtemperatuur NL"
+                myHeaderL: "Mintemp\nNL"
+            }
+            ListElement {
+                myText: "Max. temperaturen NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurmax"
+                myHeaderP: "Maximumtemperatuur NL"
+                myHeaderL: "Maxtemp\nNL"
             }
         }
 

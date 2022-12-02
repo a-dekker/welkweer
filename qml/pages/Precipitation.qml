@@ -31,6 +31,24 @@ Page {
                 myHeaderL: "Sneeuw\nNL"
             }
             ListElement {
+                myText: "Neerslag afgelopen uur NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=neerslaguur"
+                myHeaderP: "Neerslag uur NL"
+                myHeaderL: "Neerslag u.\nNL"
+            }
+            ListElement {
+                myText: "Neerslag afgelopen 24 uur NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=neerslag24uur"
+                myHeaderP: "Neerslag 24 uur NL"
+                myHeaderL: "Neerslag 24 u.\nNL"
+            }
+            ListElement {
+                myText: "Luchtvochtigheid NL"
+                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=luchtvochtigheid"
+                myHeaderP: "Luchtvochtigheid NL"
+                myHeaderL: "Luchtvocht.\nNL"
+            }
+            ListElement {
                 myText: "Infrarood Europa"
                 myURL: "https://image.buienradar.nl/2.0/image/animation/SatInfraRed"
                 myHeaderP: "Infrarood Europa"
