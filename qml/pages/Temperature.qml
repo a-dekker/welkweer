@@ -34,8 +34,8 @@ Page {
             ListElement {
                 myText: "Min. grondtemperatuur NL"
                 myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurgrondmin"
-                myHeaderP: "Min grondtemperatuur NL"
-                myHeaderL: "Min Grondtemp\nNL"
+                myHeaderP: "Min. grondtemperatuur NL"
+                myHeaderL: "Min. Grondtemp\nNL"
             }
             ListElement {
                 myText: "Min. temperaturen NL"
@@ -48,6 +48,12 @@ Page {
                 myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurmax"
                 myHeaderP: "Maximumtemperatuur NL"
                 myHeaderL: "Maxtemp\nNL"
+            }
+            ListElement {
+                myText: "Temperaturen in Europa"
+                myURL: "https://tempsreel.infoclimat.net/temperature/europe_now.png"
+                myHeaderP: "Temperaturen Europa"
+                myHeaderL: "Temperaturen\nEuropa"
             }
         }
 

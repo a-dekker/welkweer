@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Mon Jan 02 2023 Arno Dekker <jack.tar@example.com> 0.30-1
+- Added European temperature map
 * Fri Dec 02 2022 Arno Dekker <jack.tar@example.com> 0.29-1
 - Added more buienradar maps
 * Wed Nov 16 2022 Arno Dekker <jack.tar@example.com> 0.28-1

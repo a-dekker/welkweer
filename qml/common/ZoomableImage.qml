@@ -318,9 +318,4 @@ SilicaFlickable {
         }
     }
 
-    BusyIndicator {
-        anchors.centerIn: parent
-        running: weatherImage.status === Image.Loading
-        size: BusyIndicatorSize.Large
-    }
 }
