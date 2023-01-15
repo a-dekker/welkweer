@@ -24,7 +24,7 @@ Page {
                 myHeaderL: "Zicht NL km"
             }
             ListElement {
-                myText: "Satelliet zicht"
+                myText: "Zonsopkomst/ondergang"
                 myURL: "https://api.buienradar.nl/image/1.0/satvisual/?ext=gif&type=NL"
                 myHeaderP: "Satelliet"
                 myHeaderL: "Satelliet"

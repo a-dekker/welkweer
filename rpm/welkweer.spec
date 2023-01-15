@@ -13,7 +13,7 @@ Name:       harbour-welkweer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Dutch weather related info
-Version:    0.30
+Version:    0.31
 Release:    1
 Group:      Qt/Qt
 License:    GPLv2
@@ -22,7 +22,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   pyotherside-qml-plugin-python3-qt5 >= 1.5.0
 Requires:   nemo-qml-plugin-contextkit-qt5
-Requires:   sailfish-version >= 4.0.0
+# Requires:   sailfish-version >= 4.0.0
 Requires:   sailfish-components-webview-qt5
 Requires:   sailfish-components-webview-qt5-popups
 Requires:   sailfish-components-webview-qt5-pickers
