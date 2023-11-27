@@ -65,21 +65,23 @@ Page {
                 width: parent.width
                 text: qsTr("Controleer internet toegang")
                 description: qsTr("Toon een blokkerende melding als er geen internet connectivteit is")
-                checked: myset.value("display_connectivity_error", "true") === "true"
+                checked: myset.value("display_connectivity_error",
+                                     "true") === "true"
                 onCheckedChanged: {
                     checked ? myset.setValue("display_connectivity_error",
-                                            "true") : myset.setValue(
+                                             "true") : myset.setValue(
                                   "display_connectivity_error", "false")
                 }
             }
             TextSwitch {
                 width: parent.width
                 text: qsTr("Weerwaarschuwing notificatie")
-                description: qsTr("Toon ook een popup melding als er een weerwaarschuwing is")
-                checked: myset.value("display_weather_alert", "false") === "true"
+                description: qsTr("Toon een popup melding als er een weerwaarschuwing, is die op ook het notificatie scherm komt")
+                checked: myset.value("display_weather_alert",
+                                     "false") === "true"
                 onCheckedChanged: {
                     checked ? myset.setValue("display_weather_alert",
-                                            "true") : myset.setValue(
+                                             "true") : myset.setValue(
                                   "display_weather_alert", "false")
                 }
             }

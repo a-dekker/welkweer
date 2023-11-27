@@ -8,6 +8,12 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Mon Nov 27 2023 Arno Dekker <jack.tar@example.com> 0.33-2
+- Small fix for no weatheralarm
+* Sun Nov 26 2023 Arno Dekker <jack.tar@example.com> 0.33-1
+- Show weather alarm text
+* Sun Nov 26 2023 Arno Dekker <jack.tar@example.com> 0.32-1
+- Fixed weather warning for now
 * Mon Jan 02 2023 Arno Dekker <jack.tar@example.com> 0.31-1
 - Added European air pressure map
 * Mon Jan 02 2023 Arno Dekker <jack.tar@example.com> 0.30-1

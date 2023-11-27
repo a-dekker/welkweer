@@ -23,6 +23,12 @@ Page {
                 myHeaderP: "Weer vannacht"
                 myHeaderL: "Weer\nvannacht"
             }
+            ListElement {
+                myText: "Neerslag komende 24 uur NL"
+                myURL: "https://image.buienradar.nl/2.0/image/animation/RadarMapRain24HourForecastNL"
+                myHeaderP: "Komende 24 uur NL"
+                myHeaderL: "24 uur NL"
+            }
         }
 
         Column {

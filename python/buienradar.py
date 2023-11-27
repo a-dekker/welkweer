@@ -5,18 +5,13 @@ import datetime
 import math
 import re
 import urllib.request
-
-try:
-    import xml.etree.cElementTree as ET
-except ImportError:
-    import xml.etree.ElementTree as ET
+import xml.etree.ElementTree as ET
 
 # SETTINGS
 BUIENRADAR_URL = "https://data.buienradar.nl/1.0/feed/xml"
 
 
-# def reformat_text(txt: str) -> str:
-def reformat_text(txt):
+def reformat_text(txt: str) -> str:
     """Fix some html strings and common syntax issues"""
     reformatted = re.sub(r"\.(\w)", ". \\1", txt)
     reformatted = re.sub(r"\!(\w)", "! \\1", reformatted)
@@ -67,22 +62,6 @@ def bepaal_nl_weerteksten(xml):
     return nl_weerdata
 
 
-# def bepaal_nl_weercode(xml) -> str:
-def bepaal_nl_weercode(xml):
-    """disect xml data"""
-    nl_weerdata = {}
-    nl_weerdata["weercode"] = xml.find("channel/item/title").text
-    weercode = "transparent"
-    if "geel" in nl_weerdata["weercode"]:
-        weercode = "yellow"
-    if "oranje" in nl_weerdata["weercode"]:
-        weercode = "orange"
-    if "rood" in nl_weerdata["weercode"]:
-        weercode = "red"
-
-    return weercode
-
-
 def weer_nederland():
     """Return the weather texts."""
     httpdata = urllib.request.Request(BUIENRADAR_URL)
@@ -98,16 +77,47 @@ def weer_nederland():
 
 def weercode_nl():
     """Return the weather info."""
-    knmi_url = "https://cdn.knmi.nl/knmi/xml/rss/rss_KNMIwaarschuwingen.xml"
-    httpdata = urllib.request.Request(knmi_url)
+    url_knmi_waarschuwing: str = (
+        "https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht"
+    )
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
+        knmi_info = urllib.request.urlopen(url_knmi_waarschuwing)
+    except (
+        urllib.request.HTTPError,
+        urllib.request.URLError,
+        urllib.error.HTTPError,
+    ) as fout:
+        print(fout)
+        print(f"Fout bij ophalen data van {url_knmi_waarschuwing}")
+        return {"weercode": "fout", "tekst": "Kan weeralarm niet ophalen!"}
+    try:
+        knmi_pagedata = knmi_info.read().decode("utf8")
     except (urllib.request.HTTPError, urllib.request.URLError) as fout:
         print(fout)
-        # Foutafhandeling als het station niet gevonden is.
-        return "", "Fout bij ophalen data", knmi_url, "", "", "", "", "", ""
+        print(f"Fout bij lezen data van {url_knmi_waarschuwing}")
+        return {"weercode": "fout", "tekst": "Kan weeralarm niet inlezen!"}
+    knmi_info.close()
+    alert_message_found: bool = False
+    alert_msg: str = ""
+    weeralarm_info: dict = {}
+    for line in knmi_pagedata.splitlines():
+        if alert_message_found:
+            alert_msg: str = line.strip().replace("<br>", "")
+            break
+        if "alert__description" in line:
+            alert_message_found = True
+    if "Code rood" in knmi_pagedata:
+        weeralarm_info["weercode"] = "red"
+    elif "Code oranje" in knmi_pagedata:
+        weeralarm_info["weercode"] = "orange"
+    if "Code geel" in knmi_pagedata:
+        weeralarm_info["weercode"] = "yellow"
+    else:
+        weeralarm_info["code"] = "transparent"
+        # Foutafhandeling als het data niet gevonden is.
+    weeralarm_info["tekst"] = alert_msg
 
-    return bepaal_nl_weercode(xml)
+    return weeralarm_info
 
 
 def get_dew_point_c(t_air_c: float, rel_humidity: float) -> float:
@@ -148,8 +158,7 @@ def redefine_windrichting(windrichting):
     return windrichting, windpijl
 
 
-# def reformat_date(datum: str) -> str:
-def reformat_date(datum):
+def reformat_date(datum: str) -> str:
     """Order is not to our liking, and format changed in the course of time"""
     if "/" in datum:
         try:
@@ -361,8 +370,7 @@ def get_stations():
     return verwerk_station_data(xml)
 
 
-# def strip_date(full_date: str) -> str:
-def strip_date(full_date):
+def strip_date(full_date: str) -> str:
     """Shorten name of month"""
     _months_year = {
         "januari": "jan",

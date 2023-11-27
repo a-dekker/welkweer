@@ -21,6 +21,7 @@ Page {
     property string maanStandSymbool: "-"
     property string networkState: "waiting"
     property string weercode: "transparent"
+    property string alert_txt: ""
     ListModel {
         id: mainMenuModel
     }
@@ -186,7 +187,8 @@ Page {
 
     function getWeatherCode() {
         python.call("call_buienradar.get_weercode", [], function (result) {
-            weercode = result
+            weercode = result["weercode"]
+            alert_txt = result["tekst"]
             weatherAlert()
         })
     }
@@ -194,21 +196,27 @@ Page {
     function translateWeatherCodeToDutch() {
         switch (weercode) {
         case "yellow":
-            return "Geel"
+            return "GEEL"
         case "orange":
-            return "Oranje"
+            return "ORANJE"
         case "red":
-            return "Rood"
+            return "ROOD"
         default:
-            return "Groen"
+            return "GROEN"
         }
     }
 
     function weatherAlert() {
         if (myset.value("display_weather_alert",
                         "false") === "true" && weercode !== "transparent") {
-            notification.summary = "Weerwaarschuwing"
-            notification.body = "Code " + translateWeatherCodeToDutch()
+            notification.summary = "Weerwaarschuwing [code " + translateWeatherCodeToDutch() + "]"
+            notification.body = alert_txt
+            notification.publish()
+        }
+        if (myset.value("display_weather_alert",
+                        "false") === "false" && weercode !== "transparent") {
+            notification.icon = "icon-lock-warning"
+            notification.previewBody = "Code " + translateWeatherCodeToDutch() + " " + alert_txt
             notification.publish()
         }
     }

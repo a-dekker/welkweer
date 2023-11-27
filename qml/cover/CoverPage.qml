@@ -78,7 +78,7 @@ CoverBackground {
         id: coverAction
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-refresh"
+            iconSource: "image://theme/icon-cover-sync"
             onTriggered: loadWeather()
         }
     }

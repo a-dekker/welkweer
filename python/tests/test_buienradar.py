@@ -267,9 +267,9 @@ def test_xml_file_week_voorspelling(xml_file_content):
 
 
 @pytest.fixture
-def preticpation_file_content():
+def precipitation_file_content():
     buienradar_txt_file = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "preticpation.txt"
+        os.path.dirname(os.path.abspath(__file__)), "precipitation.txt"
     )
     with open(buienradar_txt_file, "rb") as input:
         data = input.read()
