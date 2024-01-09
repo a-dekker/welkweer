@@ -30,32 +30,38 @@ Page {
         mainMenuModel.append({
                                  "name": qsTr("Neerslag"),
                                  "ident": "neerslag",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/neerslag.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/neerslag.png",
+                                 "alarmcolor": "transparent"
                              })
         mainMenuModel.append({
                                  "name": qsTr("Temperatuur"),
                                  "ident": "temperatuur",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/temperatuur.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/temperatuur.png",
+                                 "alarmcolor": "transparent"
                              })
         mainMenuModel.append({
                                  "name": qsTr("Wind"),
                                  "ident": "wind",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/wind.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/wind.png",
+                                 "alarmcolor": "transparent"
                              })
         mainMenuModel.append({
                                  "name": qsTr("Zicht"),
                                  "ident": "zicht",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/zicht.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/zicht.png",
+                                 "alarmcolor": "transparent"
                              })
         mainMenuModel.append({
                                  "name": qsTr("Voorspelling"),
                                  "ident": "voorspelling",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/voorspelling.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/voorspelling.png",
+                                 "alarmcolor": "transparent"
                              })
         mainMenuModel.append({
                                  "name": qsTr("Alarm"),
                                  "ident": "alarm",
-                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/alarm.png"
+                                 "icon": "/usr/share/harbour-welkweer/qml/images/icons/alarm.png",
+                                 "alarmcolor": "transparent"
                              })
         getMoonPhase()
         timer.start()
@@ -187,7 +193,7 @@ Page {
 
     function getWeatherCode() {
         python.call("call_buienradar.get_weercode", [], function (result) {
-            weercode = result["weercode"]
+            weercode = mainMenuModel.get(5).alarmcolor = result["weercode"]
             alert_txt = result["tekst"]
             weatherAlert()
         })
@@ -335,8 +341,7 @@ Page {
                                         source: icon
                                         width: Theme.itemSizeHuge / 2
                                         height: width
-                                        color: (ident === "alarm" && weercode
-                                                !== "transparent") ? weercode : Theme.primaryColor
+                                        color: alarmcolor === "transparent" ? Theme.primaryColor : alarmcolor
                                         anchors.horizontalCenter: parent.horizontalCenter
                                     }
                                     Label {

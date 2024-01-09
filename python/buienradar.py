@@ -75,7 +75,7 @@ def weer_nederland():
     return bepaal_nl_weerteksten(xml)
 
 
-def weercode_nl():
+def weercode_nl() -> dict:
     """Return the weather info."""
     url_knmi_waarschuwing: str = (
         "https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht"
@@ -84,7 +84,6 @@ def weercode_nl():
         knmi_info = urllib.request.urlopen(url_knmi_waarschuwing)
     except (
         urllib.request.HTTPError,
-        urllib.request.URLError,
         urllib.error.HTTPError,
     ) as fout:
         print(fout)
@@ -92,7 +91,7 @@ def weercode_nl():
         return {"weercode": "fout", "tekst": "Kan weeralarm niet ophalen!"}
     try:
         knmi_pagedata = knmi_info.read().decode("utf8")
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+    except urllib.request.HTTPError as fout:
         print(fout)
         print(f"Fout bij lezen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet inlezen!"}
@@ -102,7 +101,7 @@ def weercode_nl():
     weeralarm_info: dict = {}
     for line in knmi_pagedata.splitlines():
         if alert_message_found:
-            alert_msg: str = line.strip().replace("<br>", "")
+            alert_msg = line.strip().replace("<br>", "")
             break
         if "alert__description" in line:
             alert_message_found = True
@@ -113,7 +112,7 @@ def weercode_nl():
     if "Code geel" in knmi_pagedata:
         weeralarm_info["weercode"] = "yellow"
     else:
-        weeralarm_info["code"] = "transparent"
+        weeralarm_info["weercode"] = "transparent"
         # Foutafhandeling als het data niet gevonden is.
     weeralarm_info["tekst"] = alert_msg
 
