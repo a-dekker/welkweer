@@ -109,7 +109,7 @@ def weercode_nl() -> dict:
         weeralarm_info["weercode"] = "red"
     elif "Code oranje" in knmi_pagedata:
         weeralarm_info["weercode"] = "orange"
-    if "Code geel" in knmi_pagedata:
+    elif "Code geel" in knmi_pagedata:
         weeralarm_info["weercode"] = "yellow"
     else:
         weeralarm_info["weercode"] = "transparent"

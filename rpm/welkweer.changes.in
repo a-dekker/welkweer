@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue jan 11 2024 Arno Dekker <jack.tar@example.com> 0.33-4
+- fix: wrong if statement prevented code orange
 * Tue jan 09 2024 Arno Dekker <jack.tar@example.com> 0.33-3
 - fix: weatheralarm did not change color if needed after a refresh
 * Mon Nov 27 2023 Arno Dekker <jack.tar@example.com> 0.33-2
