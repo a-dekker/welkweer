@@ -15,7 +15,7 @@ Page {
             id: imageInfoModel
             ListElement {
                 myText: "Temperaturen in NL"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=temperatuuranimatie&type=Freecontent"
+                myURL: "https://image.buienradar.nl/2.0/image/animation/WeatherMapTemperatureActualNL"
                 myHeaderP: "Temperatuur NL"
                 myHeaderL: "Temperatuur\nNL"
             }

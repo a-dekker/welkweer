@@ -26,25 +26,25 @@ Page {
             id: imageInfoModel
             Component.onCompleted: {
                 [{
-                    "myText": "Windkaart NL",
-                    "myURL": "https://weerdata.weerslag.nl/image/1.0/?size=windkrachtanimatie&type=Freecontent",
-                    "myHeaderP": "Windkaart NL",
-                    "myHeaderL": "Windkaart\nNL"
+                    myText: "Windkaart NL",
+                    myURL: "https://image.buienradar.nl/2.0/image/animation/WeatherMapWindNL",
+                    myHeaderP: "Windkaart NL",
+                    myHeaderL: "Windkaart\nNL"
                 }, {
-                    "myText": "Windstoten NL",
-                    "myURL": "https://weerdata.weerslag.nl/image/1.0/?size=maxwindkmanimatie&type=Freecontent",
-                    "myHeaderP": "Windstoten NL",
-                    "myHeaderL": "Windstoten\nNL"
+                    myText: "Windstoten NL",
+                    myURL: "https://image.buienradar.nl/2.0/image/animation/WeatherMapWindGustsNL",
+                    myHeaderP: "Windstoten NL",
+                    myHeaderL: "Windstoten\nNL"
                 }, {
-                    "myText": "Max. wind NL",
-                    "myURL": "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=windmax",
-                    "myHeaderP": "Max wind NL",
-                    "myHeaderL": "Max wind\nNL"
+                    myText: "Max. wind NL",
+                    myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=windmax",
+                    myHeaderP: "Max wind NL",
+                    myHeaderL: "Max wind\nNL"
                 }, {
-                    "myText": "Luchtdruk Europa",
-                    "myURL": get_pressure_url(),
-                    "myHeaderP": "Luchtdruk",
-                    "myHeaderL": "Lucht\ndruk"
+                    myText: "Luchtdruk Europa",
+                    myURL: get_pressure_url(),
+                    myHeaderP: "Luchtdruk",
+                    myHeaderL: "Lucht\ndruk"
                 }].forEach(function (e) {
                     append(e)
                 })

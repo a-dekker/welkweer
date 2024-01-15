@@ -12,12 +12,6 @@ Page {
         ListModel {
             id: imageInfoModel
             ListElement {
-                myText: "Zicht in meters"
-                myURL: "https://weerdata.weerslag.nl/image/1.0/?size=zichtanimatie&type=Freecontent"
-                myHeaderP: "Zicht NL mtrs"
-                myHeaderL: "Zicht NL mtrs"
-            }
-            ListElement {
                 myText: "Zicht in kilometers"
                 myURL: "https://image.buienradar.nl/2.0/image/animation/WeatherMapVisibilityNL?width=700&height=765"
                 myHeaderP: "Zicht NL km"
