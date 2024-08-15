@@ -4,8 +4,9 @@
 import datetime
 import math
 import re
-import urllib.request
 import xml.etree.ElementTree as ET
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 # SETTINGS
 BUIENRADAR_URL = "https://data.buienradar.nl/1.0/feed/xml"
@@ -35,22 +36,22 @@ def reformat_text(txt: str) -> str:
 
 def bepaal_nl_weerteksten(xml):
     """disect xml data"""
-    nl_weerdata = {}
+    nl_weerdata: dict = {}
     nl_weerdata["weertijd"] = xml.find(
         "weergegevens/verwachting_vandaag/tijdweerbericht"
     ).text
-    weertitel = xml.find("weergegevens/verwachting_vandaag/samenvatting").text
-    weertekst = xml.find("weergegevens/verwachting_vandaag/tekst").text
-    weermiddellangkop = xml.find(
+    weertitel: str = xml.find("weergegevens/verwachting_vandaag/samenvatting").text
+    weertekst: str = xml.find("weergegevens/verwachting_vandaag/tekst").text
+    weermiddellangkop: str = xml.find(
         "weergegevens/verwachting_meerdaags/tekst_middellang"
     ).attrib.get("periode")
-    weermiddellang = xml.find(
+    weermiddellang: str = xml.find(
         "weergegevens/verwachting_meerdaags/tekst_middellang"
     ).text
-    weerlangkop = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").attrib.get(
-        "periode"
-    )
-    weerlang = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
+    weerlangkop: str = xml.find(
+        "weergegevens/verwachting_meerdaags/tekst_lang"
+    ).attrib.get("periode")
+    weerlang: str = xml.find("weergegevens/verwachting_meerdaags/tekst_lang").text
     # do some reformatting
     nl_weerdata["weertitel"] = reformat_text(weertitel)
     nl_weerdata["weertekst"] = reformat_text(weertekst)
@@ -64,10 +65,10 @@ def bepaal_nl_weerteksten(xml):
 
 def weer_nederland():
     """Return the weather texts."""
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    httpdata = Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        xml = ET.parse(urlopen(httpdata))  # Parse het XML bestand
+    except (HTTPError, URLError, TimeoutError) as fout:
         print(fout)
         # Foutafhandeling als het station niet gevonden is.
         return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
@@ -81,17 +82,14 @@ def weercode_nl() -> dict:
         "https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht"
     )
     try:
-        knmi_info = urllib.request.urlopen(url_knmi_waarschuwing)
-    except (
-        urllib.request.HTTPError,
-        urllib.error.HTTPError,
-    ) as fout:
+        knmi_info = urlopen(url_knmi_waarschuwing)
+    except HTTPError as fout:
         print(fout)
         print(f"Fout bij ophalen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet ophalen!"}
     try:
         knmi_pagedata = knmi_info.read().decode("utf8")
-    except urllib.request.HTTPError as fout:
+    except HTTPError as fout:
         print(fout)
         print(f"Fout bij lezen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet inlezen!"}
@@ -190,11 +188,11 @@ def calc_dew_point(temperatuur_gc: int, luchtvochtigheid):
 
 
 def bepaal_lokale_weergegevens(stationnr, xml):
-    lokale_weerdata = {}
-    zononder = xml.find("weergegevens/actueel_weer/buienradar/zononder").text.split(
-        " ", 1
-    )[1][:-3]
-    zonopkomst = (
+    lokale_weerdata: dict = {}
+    zononder: str = xml.find(
+        "weergegevens/actueel_weer/buienradar/zononder"
+    ).text.split(" ", 1)[1][:-3]
+    zonopkomst: str = (
         xml.find("weergegevens/actueel_weer/buienradar/zonopkomst")
         .text.split(" ", 1)[1][:-3]
         .lstrip("0")
@@ -306,10 +304,10 @@ def bepaal_lokale_weergegevens(stationnr, xml):
 def lokaal_weer(stationnr):
     """Return weather station specific info."""
 
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    httpdata = Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse het XML bestand
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        xml = ET.parse(urlopen(httpdata))  # Parse het XML bestand
+    except (HTTPError, URLError, TimeoutError) as fout:
         # Foutafhandeling als het station niet gevonden is.
         print(fout)
         return {}
@@ -349,10 +347,10 @@ def verwerk_station_data(xml):
 
 def get_stations():
     """Return all available weather stations."""
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    httpdata = Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        xml = ET.parse(urlopen(httpdata))  # Parse XML file
+    except (HTTPError, URLError, TimeoutError) as fout:
         # Foutafhandeling als het station niet gevonden is.
         print(fout)
         return (
@@ -434,10 +432,10 @@ def bepaal_voorspellingen(xml):
 
 def forecast_weer():
     """Return 5 day weather forecast."""
-    httpdata = urllib.request.Request(BUIENRADAR_URL)
+    httpdata = Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urllib.request.urlopen(httpdata))  # Parse XML file
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        xml = ET.parse(urlopen(httpdata))  # Parse XML file
+    except (HTTPError, URLError, TimeoutError) as fout:
         # Foutafhandeling als het station niet gevonden is.
         print(fout)
         return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
@@ -448,12 +446,12 @@ def forecast_weer():
 def forecast_rain(latitude, longitude):
     """Return expected precipitation"""
     httpadres = "https://gadgets.buienradar.nl"
-    httpdata = urllib.request.Request(
+    httpdata = Request(
         httpadres + "/data/raintext?lat=" + latitude + "&lon=" + longitude
     )
     try:
-        rainresult = urllib.request.urlopen(httpdata)
-    except (urllib.request.HTTPError, urllib.request.URLError) as fout:
+        with urlopen(httpdata) as rainresult:
+            return rainresult.read().decode("utf-8")
+    except (HTTPError, URLError, TimeoutError) as fout:
         print(fout)
         return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""
-    return rainresult.read().decode("utf-8")

@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Thu Aug 15 2024 Arno Dekker <jack.tar@example.com> 0.35-1
+- Add page with hourly wind and temperature forecast (met.no api)
 * Mon Jan 15 2024 Arno Dekker <jack.tar@example.com> 0.34-1
 - Replaced all now offline weerslag images with buienradar
 * Tue Jan 11 2024 Arno Dekker <jack.tar@example.com> 0.33-4

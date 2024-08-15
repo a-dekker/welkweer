@@ -32,59 +32,78 @@
 #include <QtQuick>
 #endif
 
-#include <qqml.h>
-#include <sailfishapp.h>
-#include <QQuickView>
+#include "CustomNetworkAccessManager.h"
+#include "notificationhelper.h"
+#include "settings.h"
+#include <QDBusConnection>
+#include <QNetworkAccessManager>
+#include <QQmlEngine>
+#include <QQmlNetworkAccessManagerFactory>
 #include <QQuickItem>
+#include <QQuickView>
 #include <QtGui>
 #include <QtQml>
-#include <QDBusConnection>
-#include "settings.h"
-#include "notificationhelper.h"
+#include <qqml.h>
+#include <sailfishapp.h>
 
-int main(int argc, char* argv[]) {
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
-    qmlRegisterType<Settings>("harbour.welkweer.Settings", 1, 0, "MySettings");
+class MyNetworkAccessManagerFactory : public QQmlNetworkAccessManagerFactory {
+public:
+  virtual QNetworkAccessManager *create(QObject *parent);
+};
 
-    QGuiApplication* app = SailfishApp::application(argc, argv);
+QNetworkAccessManager *MyNetworkAccessManagerFactory::create(QObject *parent) {
 
-    QQuickView* view = SailfishApp::createView();
-    view->rootContext()->setContextProperty("version", APP_VERSION);
-    view->rootContext()->setContextProperty("buildyear", BUILD_YEAR);
-    view->setSource(SailfishApp::pathTo("qml/welkweer.qml"));
-    view->show();
+  CustomNetworkAccessManager *nam = new CustomNetworkAccessManager(parent);
 
-    QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.registerService("org.adekker.welkweer")) {
-        qWarning("Unable to register D-Bus service org.adekker.welkweer");
-    }
-    //if (!connection.registerObject("/", this, QDBusConnection::ExportAllSlots)) {
-    //    qWarning("Unable to register D-Bus object at /");
-    //}
-
-    return app->exec();
+  return nam;
 }
 
-notificationhelper::~notificationhelper()
-{
-    delete view;
+int main(int argc, char *argv[]) {
+  // SailfishApp::main() will display "qml/template.qml", if you need more
+  // control over initialization, you can use:
+  //
+  //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
+  //   - SailfishApp::createView() to get a new QQuickView * instance
+  //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
+  //
+  // To display the view, call "show()" (will show fullscreen on device).
+  qmlRegisterType<Settings>("harbour.welkweer.Settings", 1, 0, "MySettings");
+
+  QGuiApplication *app = SailfishApp::application(argc, argv);
+  QCoreApplication::setApplicationName("welkweer");
+  QCoreApplication::setApplicationVersion(APP_VERSION);
+
+  QQmlApplicationEngine engine;
+  MyNetworkAccessManagerFactory manager;
+
+  QQuickView *view = SailfishApp::createView();
+  view->rootContext()->setContextProperty("version", APP_VERSION);
+  view->rootContext()->setContextProperty("buildyear", BUILD_YEAR);
+  view->engine()->setNetworkAccessManagerFactory(&manager);
+  view->setSource(SailfishApp::pathTo("qml/welkweer.qml"));
+  view->show();
+
+  QDBusConnection connection = QDBusConnection::sessionBus();
+  if (!connection.registerService("org.adekker.welkweer")) {
+    qWarning("Unable to register D-Bus service org.adekker.welkweer");
+  }
+  // if (!connection.registerObject("/", this, QDBusConnection::ExportAllSlots))
+  // {
+  //     qWarning("Unable to register D-Bus object at /");
+  // }
+
+  return app->exec();
 }
 
-void notificationhelper::bringToFront()
-{
-    view->showFullScreen();
-    view->raise();
+notificationhelper::~notificationhelper() { delete view; }
+
+void notificationhelper::bringToFront() {
+  view->showFullScreen();
+  view->raise();
 }
 
-void notificationhelper::actionInvoked(const QString &text)
-{
-    QQuickItem* rootObject = view->rootObject();
-    rootObject->metaObject()->invokeMethod(rootObject, "actionInvoked", Q_ARG(QVariant, text));
+void notificationhelper::actionInvoked(const QString &text) {
+  QQuickItem *rootObject = view->rootObject();
+  rootObject->metaObject()->invokeMethod(rootObject, "actionInvoked",
+                                         Q_ARG(QVariant, text));
 }

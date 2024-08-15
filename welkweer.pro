@@ -17,7 +17,8 @@ CONFIG += sailfishapp
 QT += qml dbus
 
 SOURCES += src/welkweer.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/CustomNetworkAccessManager.cpp
 
 OTHER_FILES += qml/welkweer.qml \
     qml/cover/CoverPage.qml \
@@ -82,4 +83,5 @@ CONFIG += sailfishapp_i18n
 
 HEADERS += \
     src/notificationhelper.h \
+    src/CustomNetworkAccessManager.h \
     src/settings.h

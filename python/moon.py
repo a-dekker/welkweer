@@ -1,4 +1,5 @@
 """Imported by pyside"""
+
 import datetime
 from math import fmod
 
@@ -15,7 +16,7 @@ def get_moon_phase():
     ldays = fmod(diff + phase_length / 3, cycle)
     current_phase = ldays * (8 / cycle)
 
-    lunar_fases = {
+    lunar_fases: dict = {
         0: "Nieuwe maan",
         1: "Wassende maan",
         2: "Eerste kwartier",
@@ -26,7 +27,7 @@ def get_moon_phase():
         7: "Krimpende maan",
     }
 
-    lunar_fases_symbol = {
+    lunar_fases_symbol: dict = {
         0: "🌕",
         1: "🌖",
         2: "🌗",
@@ -37,7 +38,7 @@ def get_moon_phase():
         7: "🌔",
     }
 
-    lunar_info = {}
+    lunar_info: dict = {}
     lunar_info["text"] = lunar_fases[int(current_phase)]
     lunar_info["symbol"] = lunar_fases_symbol[int(current_phase)]
 

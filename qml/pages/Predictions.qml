@@ -47,6 +47,10 @@ Page {
                 text: "Beschrijving komend weer NL"
                 onClicked: pageStack.push(Qt.resolvedUrl("WeatherText.qml"))
             }
+            MainPageButton {
+                text: "Temperatuur en wind per uur"
+                onClicked: pageStack.push(Qt.resolvedUrl("WeatherHour.qml"))
+            }
             Repeater {
                 id: imageRepeater
                 model: imageInfoModel

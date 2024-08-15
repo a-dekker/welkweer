@@ -69,7 +69,7 @@ Page {
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
                 text: "<a href=\"http://www.buienradar.nl\">BuienRadar.NL</a>"
-                      + " en " + "<a href=\"http://www.knmi.nl\">knmi.nl</a>"
+                      + ", " + "<a href=\"http://www.knmi.nl\">knmi.nl</a>" + " en " + "<a href=\"https://api.met.no/\">met.no</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
                 linkColor: Theme.highlightColor
                 anchors.horizontalCenter: parent.horizontalCenter
