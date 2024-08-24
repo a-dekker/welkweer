@@ -1,12 +1,16 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
+import harbour.welkweer.Settings 1.0
 
 // https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=51.17416597&lon=6.870996516&altitude=44
 Page {
     id: page
 
+    MySettings {
+        id: myset
+    }
+    property string forecastHours: myset.value("forecast_hours", "14")
     property var measureMoment
-    property var firstMeasureHour
 
     ListModel {
         id: dataModel
@@ -18,11 +22,19 @@ Page {
         return arr[(val % 16)]
     }
 
-    function addHoursToDateNow(datum, n) {
+    function getDayMonthOrTime(datum, date_or_time) {
         const d = new Date(datum)
-        d.setTime(d.getTime() + n * 3600000)
-        const hour = d.getHours()
-        return ("0" + hour).slice(-2) + ":00"
+        if (date_or_time === "date") {
+            const month = d.getMonth()
+            const day = d.getDate()
+            const year = d.getFullYear()
+            return (("0" + day).slice(-2) + "/" + ("0" + month).slice(
+                        -2) + "/" + ("" + year).slice(-2))
+        }
+        if (date_or_time === "time") {
+            const hour = d.getHours()
+            return ("0" + hour).slice(-2) + ":00"
+        }
     }
 
     function msToBeaufort(ms) {
@@ -83,22 +95,20 @@ Page {
                     } else {
                         for (var key in objectArray) {
                             if (key === "properties") {
-                                var first_hour_timestamp
                                 var update_timestamp
-                                first_hour_timestamp = objectArray[key]["timeseries"][0]["time"]
                                 update_timestamp = objectArray[key]["meta"]["updated_at"]
-                                for (var timeserie = 0; timeserie < 15; timeserie++) {
+                                for (var timeserie = 0; timeserie < forecastHours; timeserie++) {
                                     dataModel.append(
-                                                objectArray[key]["timeseries"][timeserie]["data"]["instant"]["details"])
+                                                JSON.parse("{" + (JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["next_1_hours"]["summary"]) + "," + JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["instant"]["details"]) + ",\"time\":" + JSON.stringify(objectArray[key]["timeseries"][timeserie]["time"])).replace(
+                                                               /{/g, "").replace(
+                                                               /}/g, "") + "}"))
                                 }
                             }
                         }
                     }
                 }
                 var measureDateTime = new Date(update_timestamp)
-                var firstMeasureDateTime = new Date(first_hour_timestamp)
                 measureMoment = measureDateTime
-                firstMeasureHour = firstMeasureDateTime
             }
         }
         req.send()
@@ -119,6 +129,16 @@ Page {
         contentWidth: parent.width
         contentHeight: col.height
 
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Vernieuwen")
+                onClicked: {
+                    dataModel.clear()
+                    metno_info()
+                }
+            }
+        }
+
         VerticalScrollDecorator {}
 
         Column {
@@ -129,24 +149,29 @@ Page {
                 title: isPortrait ? "Voorspelling per uur" : "Voorspelling per uur lokaal"
             }
             Row {
-                id: koppenGrid
                 width: parent.width - Theme.paddingLarge
                 x: Theme.paddingLarge
                 y: Theme.paddingMedium
                 Label {
-                    width: parent.width / 5
+                    width: parent.width / 7
+                    font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
+                    text: qsTr("")
+                    color: Theme.highlightColor
+                }
+                Label {
+                    width: parent.width / 6
                     font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Tijd")
                     color: Theme.highlightColor
                 }
                 Label {
-                    width: parent.width / 4
+                    width: parent.width / 6
                     font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Temp")
                     color: Theme.highlightColor
                 }
                 Label {
-                    width: parent.width / 4
+                    width: parent.width / 4.5
                     font.pixelSize: mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                     text: qsTr("Wind m/s")
                     color: Theme.highlightColor
@@ -161,18 +186,50 @@ Page {
             Repeater {
                 model: dataModel
                 Row {
-                    id: row2
+                    opacity: (index & 1) ? 0.9 : 1
                     width: parent.width - Theme.paddingLarge
-                    x: Theme.paddingLarge
+                    x: Theme.paddingMedium
                     y: Theme.paddingMedium
-                    Label {
-                        width: parent.width / 5
-                        font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
-                        text: addHoursToDateNow(firstMeasureHour, index)
-                        color: Theme.secondaryColor
+                    Image {
+                        id: weatherimage
+                        source: "/usr/share/harbour-welkweer/qml/images/icons-metno/"
+                                + symbol_code + ".png"
+                        height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                        width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                        anchors.verticalCenter: windDirection.verticalCenter
+                    }
+                    Rectangle {
+                        // some whitespace
+                        width: (parent.width / 7) - weatherimage.width
+                        height: 1
+                        opacity: 0
+                        id: itemWhitespace
+                    }
+                    Rectangle {
+                        // some whitespace reservered for time and date
+                        width: parent.width / 6
+                        height: 1
+                        opacity: 0
+                    }
+                    Item {
+                        anchors.verticalCenter: weatherimage.top
+                        width: parent.width / 6
+                        id: hourtxt
+                        anchors.left: itemWhitespace.right
+                        Label {
+                            id: timeLabel
+                            font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
+                            text: getDayMonthOrTime(model.time, "time")
+                        }
+                        Label {
+                            anchors.top: timeLabel.bottom
+                            text: getDayMonthOrTime(model.time, "date")
+                            font.pixelSize: Theme.fontSizeExtraSmall
+                            color: Theme.secondaryColor
+                        }
                     }
                     Label {
-                        width: parent.width / 4
+                        width: parent.width / 5
                         font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
                         text: model.air_temperature.toFixed(1) + '°C'
                     }
@@ -183,6 +240,7 @@ Page {
                                   model.wind_speed) + " BF)"
                     }
                     Label {
+                        id: windDirection
                         width: parent.width / 4
                         font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
                         text: degToCompass(model.wind_from_direction)

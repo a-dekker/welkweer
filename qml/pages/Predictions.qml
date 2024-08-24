@@ -9,6 +9,8 @@ Page {
         anchors.fill: parent
         contentHeight: content.height
 
+        VerticalScrollDecorator {}
+
         ListModel {
             id: imageInfoModel
             ListElement {
@@ -48,7 +50,7 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("WeatherText.qml"))
             }
             MainPageButton {
-                text: "Temperatuur en wind per uur"
+                text: "Voorspellingen per uur"
                 onClicked: pageStack.push(Qt.resolvedUrl("WeatherHour.qml"))
             }
             Repeater {

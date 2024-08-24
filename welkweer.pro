@@ -34,6 +34,7 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherText.qml \
     qml/pages/SettingPage.qml \
     qml/pages/Forecast.qml \
+    qml/pages/WeatherHour.qml \
     qml/pages/Visibility.qml \
     qml/pages/call_buienradar.py \
     qml/pages/Forecast.qml \

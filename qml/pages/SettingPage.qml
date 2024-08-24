@@ -45,7 +45,7 @@ Page {
 
         clip: true
 
-        ScrollDecorator {}
+        VerticalScrollDecorator {}
 
         Column {
             id: col
@@ -76,7 +76,7 @@ Page {
             TextSwitch {
                 width: parent.width
                 text: qsTr("Weerwaarschuwing notificatie")
-                description: qsTr("Toon een popup melding als er een weerwaarschuwing, is die op ook het notificatie scherm komt")
+                description: qsTr("Toon een popup melding als er een weerwaarschuwing is, die op ook het notificatie scherm komt")
                 checked: myset.value("display_weather_alert",
                                      "false") === "true"
                 onCheckedChanged: {
@@ -203,6 +203,23 @@ Page {
                             mainapp.settingsChanged = true
                         }
                         break
+                    }
+                }
+            }
+            Slider {
+                id: forecastHours
+                width: parent.width
+                value: myset.value("forecast_hours", "14")
+                minimumValue: 8
+                maximumValue: 50
+                stepSize: 1
+                valueText: value + " uren"
+                label: qsTr("Uren vooruit op \"Voorspelling per uur\" pagina")
+                onPressedChanged: {
+                    if (pressed) {
+                        console.log("pressed")
+                    } else {
+                        myset.setValue("forecast_hours", forecastHours.value)
                     }
                 }
             }
