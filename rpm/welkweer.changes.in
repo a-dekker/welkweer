@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Tue Oct 08 2024 Arno Dekker <jack.tar@example.com> 0.39-1
+- Added local temperature graph for 12 or 24 hours
+* Sun Aug 25 2024 Arno Dekker <jack.tar@example.com> 0.38-1
+- Tap on hourly forecast line for additional info
 * Sat Aug 24 2024 Arno Dekker <jack.tar@example.com> 0.37-1
 - Max amount of hours forecast configurable (default 14)
 - Add date to timecolumn in hourly forecast

@@ -50,8 +50,12 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("WeatherText.qml"))
             }
             MainPageButton {
-                text: "Voorspellingen per uur"
+                text: "Lokale voorspelling per uur"
                 onClicked: pageStack.push(Qt.resolvedUrl("WeatherHour.qml"))
+            }
+            MainPageButton {
+                text: "Temperatuurgrafiek per uur"
+                onClicked: pageStack.push(Qt.resolvedUrl("TemperatureChart.qml"))
             }
             Repeater {
                 id: imageRepeater

@@ -34,6 +34,7 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/WeatherText.qml \
     qml/pages/SettingPage.qml \
     qml/pages/Forecast.qml \
+    qml/pages/TemperatureChart.qml \
     qml/pages/WeatherHour.qml \
     qml/pages/Visibility.qml \
     qml/pages/call_buienradar.py \
@@ -47,6 +48,8 @@ OTHER_FILES += qml/welkweer.qml \
     qml/pages/ImagePage.qml \
     qml/pages/Visibility.qml \
     qml/pages/devicePixelRatioHack.js \
+    qml/qchart/QChart.js \
+    qml/qchart/QChart.qml \
     qml/common/PageHeaderExtended.qml \
     qml/common/ScrollLabel.qml \
     qml/common/ZoomableImage.qml \

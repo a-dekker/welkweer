@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
 import harbour.welkweer.Settings 1.0
+import "../common"
 
 // https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=51.17416597&lon=6.870996516&altitude=44
 Page {
@@ -99,9 +100,7 @@ Page {
                                 update_timestamp = objectArray[key]["meta"]["updated_at"]
                                 for (var timeserie = 0; timeserie < forecastHours; timeserie++) {
                                     dataModel.append(
-                                                JSON.parse("{" + (JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["next_1_hours"]["summary"]) + "," + JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["instant"]["details"]) + ",\"time\":" + JSON.stringify(objectArray[key]["timeseries"][timeserie]["time"])).replace(
-                                                               /{/g, "").replace(
-                                                               /}/g, "") + "}"))
+                                                JSON.parse("{" + (JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["next_1_hours"]["details"]) + "," + JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["next_1_hours"]["summary"]) + "," + JSON.stringify(objectArray[key]["timeseries"][timeserie]["data"]["instant"]["details"]) + ",\"time\":" + JSON.stringify(objectArray[key]["timeseries"][timeserie]["time"])).replace(/{/g, "").replace(/}/g, "") + "}"))
                                 }
                             }
                         }
@@ -124,6 +123,7 @@ Page {
     Component.onCompleted: {
         metno_info()
     }
+
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width
@@ -145,8 +145,12 @@ Page {
             id: col
             spacing: isPortrait ? Theme.paddingLarge : mainapp.smallScreen ? Theme.paddingSmall : Theme.paddingMedium
             width: parent.width
-            PageHeader {
-                title: isPortrait ? "Voorspelling per uur" : "Voorspelling per uur lokaal"
+            PageHeaderExtended {
+            id: header
+            title: isPortrait ? "Voorspelling per uur" : "Voorspelling per uur lokaal"
+                subTitle: "www.met.no"
+                subTitleOpacity: 0.6
+                subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
             }
             Row {
                 width: parent.width - Theme.paddingLarge
@@ -185,65 +189,88 @@ Page {
             }
             Repeater {
                 model: dataModel
-                Row {
-                    opacity: (index & 1) ? 0.9 : 1
-                    width: parent.width - Theme.paddingLarge
-                    x: Theme.paddingMedium
-                    y: Theme.paddingMedium
-                    Image {
-                        id: weatherimage
-                        source: "/usr/share/harbour-welkweer/qml/images/icons-metno/"
-                                + symbol_code + ".png"
-                        height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
-                        width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
-                        anchors.verticalCenter: windDirection.verticalCenter
-                    }
-                    Rectangle {
-                        // some whitespace
-                        width: (parent.width / 7) - weatherimage.width
-                        height: 1
-                        opacity: 0
-                        id: itemWhitespace
-                    }
-                    Rectangle {
-                        // some whitespace reservered for time and date
-                        width: parent.width / 6
-                        height: 1
-                        opacity: 0
-                    }
-                    Item {
-                        anchors.verticalCenter: weatherimage.top
-                        width: parent.width / 6
-                        id: hourtxt
-                        anchors.left: itemWhitespace.right
+                delegate: ListItem {
+                    menu: contextMenu
+                    Row {
+                        width: parent.width - Theme.paddingLarge
+                        x: Theme.paddingMedium
+                        y: Theme.paddingMedium
+                        Image {
+                            id: weatherimage
+                            source: "/usr/share/harbour-welkweer/qml/images/icons-metno/"
+                                    + symbol_code + ".png"
+                            height: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                            width: mainapp.mediumScreen ? 110 : mainapp.largeScreen ? 125 : 40
+                            anchors.verticalCenter: windDirection.verticalCenter
+                        }
+                        Rectangle {
+                            // some whitespace
+                            width: (parent.width / 7) - weatherimage.width
+                            height: 1
+                            opacity: 0
+                            id: itemWhitespace
+                        }
+                        Rectangle {
+                            // some whitespace reservered for time and date
+                            width: parent.width / 6
+                            height: 1
+                            opacity: 0
+                        }
+                        Item {
+                            anchors.verticalCenter: weatherimage.top
+                            width: parent.width / 6
+                            id: hourtxt
+                            anchors.left: itemWhitespace.right
+                            Label {
+                                id: timeLabel
+                                font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
+                                text: getDayMonthOrTime(model.time, "time")
+                            }
+                            Label {
+                                anchors.top: timeLabel.bottom
+                                text: getDayMonthOrTime(model.time, "date")
+                                font.pixelSize: Theme.fontSizeExtraSmall
+                                color: Theme.secondaryColor
+                            }
+                        }
                         Label {
-                            id: timeLabel
+                            width: parent.width / 5
                             font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
-                            text: getDayMonthOrTime(model.time, "time")
+                            text: model.air_temperature.toFixed(1) + '°C'
                         }
                         Label {
-                            anchors.top: timeLabel.bottom
-                            text: getDayMonthOrTime(model.time, "date")
-                            font.pixelSize: Theme.fontSizeExtraSmall
-                            color: Theme.secondaryColor
+                            width: parent.width / 4
+                            font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
+                            text: model.wind_speed.toFixed(
+                                      1) + " (" + msToBeaufort(
+                                      model.wind_speed) + " BF)"
                         }
-                    }
-                    Label {
-                        width: parent.width / 5
-                        font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeExtraSmall
-                        text: model.air_temperature.toFixed(1) + '°C'
-                    }
-                    Label {
-                        width: parent.width / 4
-                        font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
-                        text: model.wind_speed.toFixed(1) + " (" + msToBeaufort(
-                                  model.wind_speed) + " BF)"
-                    }
-                    Label {
-                        id: windDirection
-                        width: parent.width / 4
-                        font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
-                        text: degToCompass(model.wind_from_direction)
+                        Label {
+                            id: windDirection
+                            width: parent.width / 4
+                            font.pixelSize: mainapp.mediumScreen ? Theme.fontSizeMedium : mainapp.largeScreen ? Theme.fontSizeLarge : Theme.fontSizeSmall
+                            text: degToCompass(model.wind_from_direction)
+                        }
+                        Component {
+                            id: contextMenu
+                            ContextMenu {
+                                MenuItem {
+                                    text: "kans op  🌧  is "
+                                          + model.probability_of_precipitation.toString(
+                                              ).replace(".", ",") + " %"
+                                }
+                                MenuItem {
+                                    text: "🌧 min: " + model.precipitation_amount_min.toString(
+                                              ) + " mm   🌧 max: "
+                                          + model.precipitation_amount_max.toString(
+                                              ) + " mm"
+                                }
+                                MenuItem {
+                                    text: "kans op 🗲is " + model.probability_of_thunder.toString(
+                                              ).replace(".", ",") + " %"
+                                }
+                            }
+                        }
                     }
                 }
             }
