@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Oct 12 2024 Arno Dekker <jack.tar@example.com> 0.40-1
+- Rework on 2 hours precipitation prediction
 * Tue Oct 08 2024 Arno Dekker <jack.tar@example.com> 0.39-1
 - Added local temperature graph for 12 or 24 hours
 * Sun Aug 25 2024 Arno Dekker <jack.tar@example.com> 0.38-1

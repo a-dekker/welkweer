@@ -31,11 +31,6 @@ def get_forecast_weer():
     return buienradar.forecast_weer()
 
 
-def get_forecast_rain(latitude, longitude):
-
-    return buienradar.forecast_rain(latitude, longitude)
-
-
 def get_weercode():
 
     return buienradar.weercode_nl()

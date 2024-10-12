@@ -441,17 +441,3 @@ def forecast_weer():
         return "", "Fout bij ophalen data", BUIENRADAR_URL, "", "", "", "", "", ""
 
     return bepaal_voorspellingen(xml)
-
-
-def forecast_rain(latitude, longitude):
-    """Return expected precipitation"""
-    httpadres = "https://gadgets.buienradar.nl"
-    httpdata = Request(
-        httpadres + "/data/raintext?lat=" + latitude + "&lon=" + longitude
-    )
-    try:
-        with urlopen(httpdata) as rainresult:
-            return rainresult.read().decode("utf-8")
-    except (HTTPError, URLError, TimeoutError) as fout:
-        print(fout)
-        return "", "Fout bij ophalen data (request)", httpadres, "", "", "", "", "", ""

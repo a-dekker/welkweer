@@ -107,23 +107,22 @@ Page {
             }
         }
 
-            PageHeaderExtended {
+        PageHeaderExtended {
             id: header
             title: "Temperatuur"
-                subTitle: isPortrait ? qsTr("+12 uur") : qsTr(
-                                    "+24 uur")
-                subTitleOpacity: 0.7
-                subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
-                Label {
-                    text: "www.met.no"
-                    color: Theme.highlightColor
-                    font.family: 'monospace'
-                    font.pixelSize: Theme.fontSizeExtraSmall
-                    anchors.left: parent.left
-                    anchors.leftMargin: Theme.horizontalPageMargin
-                    anchors.verticalCenter: parent.verticalCenter
-                }
+            subTitle: isPortrait ? qsTr("+12 uur") : qsTr("+24 uur")
+            subTitleOpacity: 0.7
+            subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+            Label {
+                text: "www.met.no"
+                color: Theme.highlightColor
+                font.family: 'monospace'
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.left: parent.left
+                anchors.leftMargin: Theme.horizontalPageMargin
+                anchors.verticalCenter: parent.verticalCenter
             }
+        }
 
         Item {
             anchors {

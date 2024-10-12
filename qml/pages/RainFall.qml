@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
-import io.thp.pyotherside 1.5
+import "../qchart/"
+import "../qchart/QChart.js" as Charts
 import "../common"
 
 Page {
@@ -11,61 +12,50 @@ Page {
     property string placeholderTxt: ""
     property bool rain: false
 
-    Component.onCompleted: {
-        callBuienradar()
-    }
+    function getRaindata2hrs() {
+        var rain_intensity = new Array(0)
+        var rain_time = new Array(0)
+        var req = new XMLHttpRequest()
+        req.open("GET", "https://gadgets.buienradar.nl//data/raintext?lat="
+                 + mainapp.latitude + "&lon=" + mainapp.longitude)
 
-    Python {
-        id: python
-
-        Component.onCompleted: {
-            // Add the directory of this .qml file to the search path
-            addImportPath(Qt.resolvedUrl('.'))
-            // Import the main module
-            importModule('call_buienradar', function () {
-                console.log('call_buienradar module is now imported')
-            })
+        req.onreadystatechange = function () {
+            if (req.readyState === XMLHttpRequest.DONE) {
+                if (req.status && req.status === 200) {
+                    // console.log(req.responseText)
+                    rain = false
+                    var raindata = req.responseText.split('\n')
+                    var data
+                    for (var i = 0; i < raindata.length - 1; i++) {
+                        data = raindata[i].split('|')
+                        // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
+                        // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
+                        var rain_mm = Math.round(
+                                    (1 / 255) * data[0] * 100)
+                        var time_rain = data[1]
+                        if (rain_mm > 0) {
+                            rain = true
+                        }
+                        rain_intensity.push(rain_mm)
+                        rain_time.push(" " + time_rain)  // leading space added to create space in legend
+                    }
+                    if (rain_time === "") {
+                        placeholderTxt = "Geen bruikbare data"
+                        headerTxt = "fout"
+                    }
+                    if (rain) {
+                        headerTxt = "Neerslag intensiteit"
+                        subTxt = "(leeg=droog vol=zware neerslag)"
+                    }
+                    placeholderTxt = " "
+                }
+                tempChart.chartData.datasets[0].data = rain_intensity
+                tempChart.chartData.datasets[0].fillColor.push("#25AAE1")
+                tempChart.chartData.labels = rain_time
+                tempChart.requestPaint()
+            }
         }
-        onError: {
-            // when an exception is raised, this error handler will be called
-            console.log('python error: ' + traceback)
-            placeholderTxt = "Geen bruikbare data"
-            headerTxt = "fout"
-        }
-    }
-
-    function callBuienradar() {
-        python.call("call_buienradar.get_forecast_rain",
-                    [mainapp.latitude, mainapp.longitude], function (result) {
-                        rain = false
-                        var raindata = result.split('\n')
-                        var data
-                        for (var i = 0; i < raindata.length - 1; i++) {
-                            data = raindata[i].split('|')
-                            // should be following formula, but we make a scale 0-100 (no rain - heavy rain (=255))
-                            // var mm_rain_hour = Math.pow(10,((rain_mm -109)/32)).toFixed(1)
-                            var rain_mm = Math.round((1 / 255) * data[0] * 100)
-                            var time_rain = data[1]
-                            if (rain_mm > 0) {
-                                rain = true
-                            }
-                            model.append({
-                                             "value": rain_mm,
-                                             "legend": time_rain,
-                                             "color": "#25AAE1" // blue
-                                         })
-                        }
-                        if (!model.get(0).legend) {
-                            placeholderTxt = "Geen bruikbare data"
-                            headerTxt = "fout"
-                        }
-                        if (rain) {
-                            headerTxt = model.get(0).legend + "-" + model.get(
-                                        i - 1).legend
-                            subTxt = "(0=droog 100=zware neerslag)"
-                        }
-                        placeholderTxt = " "
-                    })
+        req.send()
     }
 
     Item {
@@ -93,16 +83,13 @@ Page {
 
     SilicaFlickable {
         anchors.fill: parent
-        contentWidth: parent.width
-        anchors.verticalCenter: parent.verticalCenter
 
         PullDownMenu {
             id: menu
             MenuItem {
                 text: qsTr("Vernieuwen")
                 onClicked: {
-                    model.clear()
-                    callBuienradar()
+                    getRaindata2hrs()
                 }
             }
             MenuLabel {
@@ -125,96 +112,45 @@ Page {
         }
         Item {
             visible: rain
-            id: root
-            implicitWidth: parent.width
-            implicitHeight: parent.height
-            property color backgroundColor: "transparent"
-            property color gridColor: Theme.primaryColor
-            property color legendColor: "lightgray"
-            property bool legendEnabled: false
-            property int gridSpacing: 10
-            property double maxValue: 110
-            property int dataMargin: 2
-            property ListModel model: ListModel {
-                id: model
+            anchors {
+                top: pageHeaderEx.bottom
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
             }
-            Rectangle {
-                id: grid
-                anchors.left: root.left
-                anchors.right: root.right
-                anchors.top: root.top
-                anchors.bottom: root.bottom
-                anchors.leftMargin: mainapp.mediumScreen ? 70 : 50
-                anchors.rightMargin: Theme.paddingLarge
-                anchors.topMargin: 30
-                anchors.bottomMargin: 10
-                color: root.backgroundColor
-                Repeater {
-                    model: root.maxValue / root.gridSpacing
-                    Rectangle {
-                        width: grid.width
-                        height: 3
-                        color: root.gridColor
-                        opacity: 0.5
-                        y: grid.height - index * grid.height / (root.maxValue / root.gridSpacing)
-                    }
-                }
-                Repeater {
-                    model: root.maxValue / root.gridSpacing
-                    y: grid.height * grid.height
-                       / (root.maxValue / root.gridSpacing) // should be as y: above...
+            QChart {
+                id: tempChart
+                width: parent.width - 2 * Theme.horizontalPageMargin
+                height: isPortrait ? parent.height - 8 * Theme.horizontalPageMargin : parent.height
+                                     - 2 * Theme.horizontalPageMargin
+                anchors.centerIn: parent
+                property bool scaleOnly: false
 
-                    Text {
-                        text: index * root.gridSpacing
-                        y: grid.height - index * grid.height
-                           / (root.maxValue / root.gridSpacing) - height / 2
-                        anchors.right: grid.left
-                        color: Theme.secondaryHighlightColor
-                        font.pixelSize: Theme.fontSizeSmall
-                    }
-                }
-                Repeater {
-                    id: dataRep
-                    model: root.model
-                    Rectangle {
-                        height: model.value * grid.height / root.maxValue
-                        width: grid.width / dataRep.count - 2 * root.dataMargin
-                        color: model.color
-                        x: index * (width + root.dataMargin * 2) + root.dataMargin
-                        y: grid.height - height
-                        border.width: 3
-                    }
-                }
-            }
-            Rectangle {
-                id: legend
-                width: root.legendEnabled ? root.width * 0.293 : 0
-                color: root.legendColor
-                anchors.right: root.right
-                anchors.top: root.top
-                anchors.topMargin: 10
-                height: grid.height
-                visible: root.legendEnabled
-                Column {
-                    anchors.centerIn: legend
-                    anchors.left: legend.left
-                    Repeater {
-                        id: legendRep
-                        model: root.model
+                chartAnimated: false
+                chartType: Charts.ChartType.BAR
 
-                        Row {
-                            Rectangle {
-                                width: height
-                                height: legendText.height
-                                border.width: 3
-                                color: model.color
-                            }
-                            Text {
-                                id: legendText
-                                text: model.legend
-                            }
-                        }
+                Component.onCompleted: {
+                    chartData = {
+                        "labels": [],
+                        "datasets": [{
+                                "data": [],
+                                "fillColor": []
+                            }]
                     }
+                    chartOptions = ({
+                                        "scaleStartValue": 0,
+                                        "scaleFontSize": Theme.fontSizeExtraSmall * .8,
+                                        "scaleFontFamily": Theme.fontFamily,
+                                        "scaleFontColor": Theme.secondaryColor,
+                                        "scaleLineColor": Theme.secondaryColor,
+                                        "scaleSteps": 100,
+                                        "scaleStepWidth": 1,
+                                        "scaleOverride": true,
+                                        "scaleShowLabels": false,
+                                        "scaleGridLineWidth": .2,
+                                        "scaleOverlay": scaleOnly
+                                    })
+                    getRaindata2hrs()
                 }
             }
         }
