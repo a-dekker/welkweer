@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Dec 28 2024 Arno Dekker <jack.tar@example.com> 0.41-1
+- Add drop shadow to weather icons to improve visibility in light themes
 * Sat Oct 12 2024 Arno Dekker <jack.tar@example.com> 0.40-1
 - Rework on 2 hours precipitation prediction
 * Tue Oct 08 2024 Arno Dekker <jack.tar@example.com> 0.39-1
