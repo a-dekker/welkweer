@@ -18,14 +18,26 @@ Page {
                 myHeaderL: "Zicht NL km"
             }
             ListElement {
+                myText: "Zicht in meters"
+                myURL: "https://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/zicht.png"
+                myHeaderP: "Zicht NL mtr"
+                myHeaderL: "Zicht NL mtr"
+            }
+            ListElement {
+                myText: "Zonkracht (UV)"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapUv1dNL"
+                myHeaderP: "Zonkracht UV"
+                myHeaderL: "Zonkracht\nUV"
+            }
+            ListElement {
                 myText: "Zonsopkomst/ondergang"
-                myURL: "https://api.buienradar.nl/image/1.0/satvisual/?ext=gif&type=NL"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/SatMapVisual15m?subtype=nl"
                 myHeaderP: "Satelliet"
                 myHeaderL: "Satelliet"
             }
             ListElement {
                 myText: "Totaal aantal zonuren"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=zonneschijn"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapSunHours10mNL"
                 myHeaderP: "Zonuren"
                 myHeaderL: "Zonuren"
             }

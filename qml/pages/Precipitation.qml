@@ -26,27 +26,33 @@ Page {
             }
             ListElement {
                 myText: "Sneeuwval in NL"
-                myURL: "http://api.buienradar.nl/image/1.0/snowmapnl/gif/?width=550&rndm=1"
+                myURL: "https://image.buienradar.nl/2.0/image/animation/RadarMapSnowNL"
                 myHeaderP: "Sneeuw NL"
                 myHeaderL: "Sneeuw\nNL"
             }
             ListElement {
                 myText: "Neerslag afgelopen uur NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=neerslaguur"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapRain1Hour10mNL"
                 myHeaderP: "Neerslag uur NL"
                 myHeaderL: "Neerslag u.\nNL"
             }
             ListElement {
                 myText: "Neerslag afgelopen 24 uur NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=neerslag24uur"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapRain24Hours10mNL"
                 myHeaderP: "Neerslag 24 uur NL"
                 myHeaderL: "Neerslag 24 u.\nNL"
             }
             ListElement {
                 myText: "Luchtvochtigheid NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=luchtvochtigheid"
+                myURL: "https://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/relvocht.png"
                 myHeaderP: "Luchtvochtigheid NL"
                 myHeaderL: "Luchtvocht.\nNL"
+            }
+            ListElement {
+                myText: "Onweer NL"
+                myURL: "https://image.buienradar.nl/2.0/image/animation/RadarMapLightningNL"
+                myHeaderP: "Onweer NL"
+                myHeaderL: "Onweer\nNL"
             }
             ListElement {
                 myText: "Infrarood Europa"

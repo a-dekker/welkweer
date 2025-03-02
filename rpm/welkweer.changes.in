@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Mon Feb 17 2025 Arno Dekker <jack.tar@example.com> 0.42-1
+- More urls fixes
+* Mon Feb 17 2025 Arno Dekker <jack.tar@example.com> 0.41-2
+- Alternative urls now api.buienradar.nl stopped working
 * Sat Dec 28 2024 Arno Dekker <jack.tar@example.com> 0.41-1
 - Add drop shadow to weather icons to improve visibility in light themes
 * Sat Oct 12 2024 Arno Dekker <jack.tar@example.com> 0.40-1

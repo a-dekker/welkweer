@@ -21,34 +21,40 @@ Page {
             }
             ListElement {
                 myText: "Gevoelstemperatuur NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=gevoelstemperatuur"
+                myURL: "https://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/gevoelstemperatuur.png"
                 myHeaderP: "Gevoelstemperatuur NL"
                 myHeaderL: "Gevoelstemp\nNL"
             }
             ListElement {
                 myText: "Grondtemperatuur NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurgrond"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapGroundTemperature10mNL"
                 myHeaderP: "Grondtemperatuur NL"
                 myHeaderL: "Grondtemp\nNL"
             }
             ListElement {
                 myText: "Min. grondtemperatuur NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurgrondmin"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapMinGroundTemperature10mNL"
                 myHeaderP: "Min. grondtemperatuur NL"
                 myHeaderL: "Min. Grondtemp\nNL"
             }
             ListElement {
                 myText: "Min. temperaturen NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurmin"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapMinTemperature10mNL"
                 myHeaderP: "Minimumtemperatuur NL"
                 myHeaderL: "Mintemp\nNL"
             }
             ListElement {
                 myText: "Max. temperaturen NL"
-                myURL: "https://api.buienradar.nl/image/1.0/weathermapnl/?ext=png&width=500&type=temperatuurmax"
+                myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapMaxTemperature10mNL"
                 myHeaderP: "Maximumtemperatuur NL"
                 myHeaderL: "Maxtemp\nNL"
             }
+            //ListElement {
+            //    myText: "Zeetemperatuur"
+            //    myURL: "https://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/sst_nz.png"
+            //    myHeaderP: "Zeetemperatuur"
+            //    myHeaderL: "Zee\ntemperatuur"
+            //}
             ListElement {
                 myText: "Temperaturen in Europa"
                 myURL: "https://tempsreel.infoclimat.net/temperature/europe_now.png"
@@ -76,6 +82,10 @@ Page {
                                                   "headerTXTLandscape": model.myHeaderL
                                               })
                 }
+            }
+            MainPageButton {
+                text: "Temperatuurgrafiek per uur"
+                onClicked: pageStack.push(Qt.resolvedUrl("TemperatureChart.qml"))
             }
         }
     }
