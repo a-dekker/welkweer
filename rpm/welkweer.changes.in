@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sat Jan 3 2026 Arno Dekker <jack.tar@example.com> 0.42-2
+- Fix diacritics in weather alarm text
 * Mon Feb 17 2025 Arno Dekker <jack.tar@example.com> 0.42-1
 - More urls fixes
 * Mon Feb 17 2025 Arno Dekker <jack.tar@example.com> 0.41-2

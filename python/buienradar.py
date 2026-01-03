@@ -31,6 +31,7 @@ def reformat_text(txt: str) -> str:
     reformatted = reformatted.replace("&auml;", "ä")
     reformatted = reformatted.replace("&ordm;", "º")
     reformatted = reformatted.replace("&deg;", "°")
+    reformatted = reformatted.replace("&iuml;", "ï")
     return reformatted
 
 
@@ -88,7 +89,7 @@ def weercode_nl() -> dict:
         print(f"Fout bij ophalen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet ophalen!"}
     try:
-        knmi_pagedata = knmi_info.read().decode("utf8")
+        knmi_pagedata = reformat_text(knmi_info.read().decode("utf8"))
     except HTTPError as fout:
         print(fout)
         print(f"Fout bij lezen data van {url_knmi_waarschuwing}")
