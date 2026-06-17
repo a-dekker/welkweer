@@ -20,12 +20,6 @@ Page {
                 myHeaderL: "Temperatuur\nNL"
             }
             ListElement {
-                myText: "Gevoelstemperatuur NL"
-                myURL: "https://cdn.knmi.nl/knmi/map/page/weer/actueel-weer/gevoelstemperatuur.png"
-                myHeaderP: "Gevoelstemperatuur NL"
-                myHeaderL: "Gevoelstemp\nNL"
-            }
-            ListElement {
                 myText: "Grondtemperatuur NL"
                 myURL: "https://image-lite.buienradar.nl/3.0/singleimage/WeatherMapGroundTemperature10mNL"
                 myHeaderP: "Grondtemperatuur NL"
