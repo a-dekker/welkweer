@@ -16,7 +16,7 @@ Page {
         var rain_intensity = new Array(0)
         var rain_time = new Array(0)
         var req = new XMLHttpRequest()
-        req.open("GET", "https://gadgets.buienradar.nl//data/raintext?lat="
+        req.open("GET", "https://gadgets.buienradar.nl/data/raintext?lat="
                  + mainapp.latitude + "&lon=" + mainapp.longitude)
 
         req.onreadystatechange = function () {
