@@ -145,12 +145,10 @@ Page {
             id: col
             spacing: isPortrait ? Theme.paddingLarge : mainapp.smallScreen ? Theme.paddingSmall : Theme.paddingMedium
             width: parent.width
-            PageHeaderExtended {
-            id: header
-            title: isPortrait ? "Voorspelling per uur" : "Voorspelling per uur lokaal"
-                subTitle: "www.met.no"
-                subTitleOpacity: 0.6
-                subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+            PageHeader {
+                id: header
+                title: isPortrait ? "Voorspelling per uur" : "Voorspelling per uur lokaal"
+                description: "www.met.no"
             }
             Row {
                 width: parent.width - Theme.paddingLarge

@@ -68,7 +68,8 @@ def weer_nederland():
     """Return the weather texts."""
     httpdata = Request(BUIENRADAR_URL)
     try:
-        xml = ET.parse(urlopen(httpdata))  # Parse het XML bestand
+        with urlopen(httpdata) as weerdata:
+            xml = ET.parse(weerdata)
     except (HTTPError, URLError, TimeoutError) as fout:
         print(fout)
         # Foutafhandeling als het station niet gevonden is.
@@ -83,18 +84,18 @@ def weercode_nl() -> dict:
         "https://www.knmi.nl/nederland-nu/weer/waarschuwingen/utrecht"
     )
     try:
-        knmi_info = urlopen(url_knmi_waarschuwing)
-    except HTTPError as fout:
+        with urlopen(url_knmi_waarschuwing) as knmi_data:
+            knmi_info = knmi_data.read().decode("utf8")
+    except (HTTPError, URLError, TimeoutError) as fout:
         print(fout)
         print(f"Fout bij ophalen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet ophalen!"}
     try:
-        knmi_pagedata = reformat_text(knmi_info.read().decode("utf8"))
+        knmi_pagedata = reformat_text(knmi_info)
     except HTTPError as fout:
         print(fout)
         print(f"Fout bij lezen data van {url_knmi_waarschuwing}")
         return {"weercode": "fout", "tekst": "Kan weeralarm niet inlezen!"}
-    knmi_info.close()
     alert_message_found: bool = False
     alert_msg: str = ""
     weeralarm_info: dict = {}
@@ -150,7 +151,7 @@ def redefine_windrichting(windrichting):
         windrichting = windrichting.replace("NW", "NW↘")
         windrichting = windrichting.replace("NO", "NO↙")
 
-    windpijl = windrichting[len(windrichting) - 1]
+    windpijl: str = windrichting[len(windrichting) - 1]
     windrichting = windrichting[:-1]
 
     return windrichting, windpijl
@@ -179,13 +180,22 @@ def reformat_date(datum: str) -> str:
 
 def calc_dew_point(temperatuur_gc: int, luchtvochtigheid):
     if luchtvochtigheid.isdigit():
-        dauwpunt_temp = (
+        dauwpunt_temp: float = (
             math.floor(get_dew_point_c(temperatuur_gc, luchtvochtigheid) * 10) / 10
         )
         if dauwpunt_temp > 0:
             return "dauwpunt", dauwpunt_temp
         return "rijptemp.", dauwpunt_temp
     return "", ""
+
+
+def ms_to_beaufort(ms_speed: float) -> int:
+    """Converts m/s to Beaufort scale."""
+    if ms_speed < 0:
+        return 0
+    # Formula: B = (v / 0.836) ^ (2/3)
+    bft: float = (ms_speed / 0.836) ** (2.0 / 3.0)
+    return round(bft)
 
 
 def bepaal_lokale_weergegevens(stationnr, xml):
@@ -199,9 +209,13 @@ def bepaal_lokale_weergegevens(stationnr, xml):
         .lstrip("0")
     )
     for x in range(1, 1000):
-        stationscan = xml.find(
-            "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]"
-        ).attrib.get("id")
+        try:
+            stationscan = xml.find(
+                "weergegevens/actueel_weer/weerstations/weerstation[" + str(x) + "]"
+            ).attrib.get("id")
+        except AttributeError:
+            print("Weerstation heeft geen id!")
+            return {"weercode": "fout", "tekst": "Geen weerstations met een id!"}
         if stationscan == stationnr:
             # Weather station found, continue
             lokale_weerdata["regio"] = xml.find(
@@ -235,6 +249,10 @@ def bepaal_lokale_weergegevens(stationnr, xml):
                 + str(x)
                 + "]/windsnelheidBF"
             ).text
+            if not isinstance(lokale_weerdata["windsnelheid_bf"], float):
+                lokale_weerdata["windsnelheid_bf"] = ms_to_beaufort(
+                    float(lokale_weerdata["windsnelheid_ms"])
+                )
             lokale_weerdata["windrichting_gr"] = xml.find(
                 "weergegevens/actueel_weer/weerstations/weerstation["
                 + str(x)
@@ -368,7 +386,7 @@ def get_stations():
     return verwerk_station_data(xml)
 
 
-def strip_date(full_date: str) -> str:
+def strip_date(full_date: str):
     """Shorten name of month"""
     _months_year = {
         "januari": "jan",
@@ -384,10 +402,10 @@ def strip_date(full_date: str) -> str:
         "november": "nov",
         "december": "dec",
     }
-    full_date_split = full_date.split()
+    full_date_split: list[str] = full_date.split()
 
     try:
-        # full monthname fetched, use abbreviation
+        # full month-name fetched, use abbreviation
         return str(full_date_split[1]) + " " + _months_year[full_date_split[2]]
     except BaseException:
         return str(full_date_split[1]) + " " + str(full_date_split[2])

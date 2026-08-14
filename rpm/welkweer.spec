@@ -13,8 +13,8 @@ Name:       harbour-welkweer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Dutch weather related info
-Version:    0.42
-Release:    2
+Version:    0.44
+Release:    1
 Group:      Qt/Qt
 License:    GPLv2
 URL:        https://github.com/a-dekker/welkweer

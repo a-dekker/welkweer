@@ -107,12 +107,10 @@ Page {
             }
         }
 
-        PageHeaderExtended {
+        PageHeader {
             id: header
             title: "Temperatuur"
-            subTitle: isPortrait ? qsTr("+12 uur") : qsTr("+24 uur")
-            subTitleOpacity: 0.7
-            subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+            description: isPortrait ? qsTr("+12 uur") : qsTr("+24 uur")
             Label {
                 text: "www.met.no"
                 color: Theme.highlightColor

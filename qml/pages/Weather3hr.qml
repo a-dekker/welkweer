@@ -31,7 +31,7 @@ Page {
         height: isPortrait ? parent.height - (2 * pageHeader.height) : parent.height
         url: "https://gadgets.buienradar.nl/gadget/zoommap/?lat="
              + mainapp.latitude + "&lng=" + mainapp.longitude + "&overname=2&zoom="
-             + zoomLevel + "&naam=" + mainapp.locPlace + "&size=3&voor=1"
+             + zoomLevel + "&naam=" + mainapp.locPlace + "&size=3&voor=0"
         privateMode: true
         Component.onCompleted: {
             WebEngineSettings.cookieBehavior = WebEngineSettings.BlockAll

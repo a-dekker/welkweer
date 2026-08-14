@@ -49,8 +49,8 @@ ApplicationWindow {
     property MainPage mainPageRef: null
     property bool largeScreen: Screen.sizeCategory === Screen.Large
                                || Screen.sizeCategory === Screen.ExtraLarge
-    property bool mediumScreen: Screen.width >= 1080 && Screen.width < 1536
-    property bool smallScreen: Screen.width < 1080
+    property bool mediumScreen: Screen.width >= 1032 && Screen.width < 1536
+    property bool smallScreen: Screen.width < 1032
 
     allowedOrientations: defaultAllowedOrientations
     _defaultPageOrientations: defaultAllowedOrientations

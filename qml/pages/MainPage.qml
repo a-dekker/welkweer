@@ -215,14 +215,16 @@ Page {
     function weatherAlert() {
         if (myset.value("display_weather_alert",
                         "false") === "true" && weercode !== "transparent") {
-            notification.summary = "Weerwaarschuwing [code " + translateWeatherCodeToDutch() + "]"
+            notification.summary = "Weerwaarschuwing [code " + translateWeatherCodeToDutch(
+                        ) + "]"
             notification.body = alert_txt
             notification.publish()
         }
         if (myset.value("display_weather_alert",
                         "false") === "false" && weercode !== "transparent") {
             notification.icon = "icon-lock-warning"
-            notification.previewBody = "Code " + translateWeatherCodeToDutch() + " " + alert_txt
+            notification.previewBody = "Code " + translateWeatherCodeToDutch(
+                        ) + " " + alert_txt
             notification.publish()
         }
     }
@@ -294,11 +296,9 @@ Page {
             width: mainPage.width
             spacing: mainapp.largeScreen ? 50 : (mainapp.mediumScreen ? 20 : 7)
 
-            PageHeaderExtended {
+            PageHeader {
                 title: mainapp.locPlace === "" ? qsTr("WelkWeer") : mainapp.locPlace
-                subTitle: ""
-                subTitleOpacity: 0.5
-                subTitleBottomMargin: isPortrait ? Theme.paddingSmall : 0
+                description: " " // dummy for vert. aligning with temperature on the left
                 Label {
                     text: mainapp.locTemp
                     color: Theme.highlightColor
@@ -341,7 +341,8 @@ Page {
                                         source: icon
                                         width: Theme.itemSizeHuge / 2
                                         height: width
-                                        color: alarmcolor === "transparent" ? Theme.primaryColor : alarmcolor
+                                        color: alarmcolor
+                                               === "transparent" ? Theme.primaryColor : alarmcolor
                                         anchors.horizontalCenter: parent.horizontalCenter
                                     }
                                     Label {

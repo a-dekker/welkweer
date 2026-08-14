@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Aug 14 2026 Arno Dekker <jack.tar@example.com> 0.44-1
+- Abandon custom Pageheading (alignment issue with notch)
+* Sat Aug 8 2026 Arno Dekker <jack.tar@example.com> 0.43-1
+- Fix scaling for Jolla Phone 2026
 * Sat Jan 3 2026 Arno Dekker <jack.tar@example.com> 0.42-2
 - Fix diacritics in weather alarm text
 * Mon Feb 17 2025 Arno Dekker <jack.tar@example.com> 0.42-1
