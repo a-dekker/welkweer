@@ -22,6 +22,11 @@ Page {
     property string networkState: "waiting"
     property string weercode: "transparent"
     property string alert_txt: ""
+    property real infoRowTextWidth: isPortrait ? mainPage.width / 2 - Theme.iconSizeSmall / 2
+                                                 - Theme.paddingSmall : mainPage.width * 0.66 / 1.5
+    property real infoRowX: isPortrait ? (mainPage.width - (Theme.iconSizeSmall + Theme.paddingSmall
+                                                            + infoRowTextWidth))
+                                         / 2 : mainPage.width * 0.33 / 1.5 - Theme.iconSizeSmall
     ListModel {
         id: mainMenuModel
     }
@@ -368,58 +373,61 @@ Page {
                 }
             }
             Row {
+                x: infoRowX
                 width: parent.width
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    width: Theme.iconSizeSmall
                     text: mainapp.locWindArrow
-                    horizontalAlignment: Text.AlignRight
+                    horizontalAlignment: Text.AlignHCenter
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
+                    width: infoRowTextWidth
                     text: mainapp.locWind
                     font.pixelSize: Theme.fontSizeMedium
                 }
             }
             Row {
+                x: infoRowX
                 width: parent.width
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    width: Theme.iconSizeSmall
                     text: "💧"
-                    horizontalAlignment: Text.AlignRight
+                    horizontalAlignment: Text.AlignHCenter
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.33 / 1.5
+                    width: infoRowTextWidth
                     text: locHumidity + " (" + locDewPointName + " " + locDewPointTemp + ")"
                     font.pixelSize: Theme.fontSizeMedium
                 }
             }
             Row {
+                x: infoRowX
                 width: parent.width
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    width: Theme.iconSizeSmall
                     text: "☼"
-                    horizontalAlignment: Text.AlignRight
+                    horizontalAlignment: Text.AlignHCenter
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
 
                 Label {
-                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
+                    width: infoRowTextWidth
                     text: locDawn + "-" + locDusk
                     font.pixelSize: Theme.fontSizeMedium
                 }
@@ -434,19 +442,20 @@ Page {
                 }
             }
             Row {
+                x: infoRowX
                 width: parent.width
                 spacing: Theme.paddingSmall
 
                 Label {
-                    width: isPortrait ? parent.width * 0.33 : parent.width * 0.33 / 1.5
+                    width: Theme.iconSizeSmall
                     text: maanStandSymbool
-                    horizontalAlignment: Text.AlignRight
+                    horizontalAlignment: Text.AlignHCenter
                     color: Theme.primaryColor
                     font.pixelSize: Theme.fontSizeMedium
                     wrapMode: Text.Wrap
                 }
                 Label {
-                    width: isPortrait ? parent.width * 0.66 : parent.width * 0.66 / 1.5
+                    width: infoRowTextWidth
                     text: maanStand
                     font.pixelSize: Theme.fontSizeMedium
                 }
