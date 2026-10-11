@@ -1,10 +1,10 @@
 # XML data retrieval Buienradar (idea by S. Ebeltjes / domoticx.nl)
 #
 # Import libraries
-import datetime
 import math
 import re
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -161,14 +161,14 @@ def reformat_date(datum: str) -> str:
     """Order is not to our liking, and format changed in the course of time"""
     if "/" in datum:
         try:
-            datum = datetime.datetime.strptime(datum, "%m/%d/%Y %H:%M").strftime(
+            datum = datetime.strptime(datum, "%m/%d/%Y %H:%M").strftime(
                 "%d/%m/%y %H:%M"
             )
         except ValueError:
             datum = "??/??/?? ??:??"
     elif "-" in datum:
         try:
-            datum = datetime.datetime.strptime(datum, "%m-%d-%Y %H:%M").strftime(
+            datum = datetime.strptime(datum, "%m-%d-%Y %H:%M").strftime(
                 "%d-%m-%y %H:%M"
             )
         except ValueError:
@@ -285,9 +285,9 @@ def bepaal_lokale_weergegevens(stationnr, xml):
                 + "]/stationnaam"
             ).text
             try:
-                tdelta = datetime.datetime.strptime(
-                    zononder, "%H:%M"
-                ) - datetime.datetime.strptime(zonopkomst, "%H:%M")
+                tdelta = datetime.strptime(zononder, "%H:%M") - datetime.strptime(
+                    zonopkomst, "%H:%M"
+                )
             except ValueError:
                 zononder = "?:??"
                 zonopkomst = "?:??"

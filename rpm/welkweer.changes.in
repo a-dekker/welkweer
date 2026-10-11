@@ -8,6 +8,8 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Aug 14 2026 Arno Dekker <jack.tar@example.com> 0.45-1
+- Slightly better alignment of text middle mainpage
 * Fri Aug 14 2026 Arno Dekker <jack.tar@example.com> 0.44-1
 - Abandon custom Pageheading (alignment issue with notch)
 * Sat Aug 8 2026 Arno Dekker <jack.tar@example.com> 0.43-1
